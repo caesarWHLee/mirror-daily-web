@@ -1,4 +1,3 @@
-import type { HeroImage } from './common'
 import type { LatestPost } from './common'
 
 export type ItemInTopNewsSection = Pick<
@@ -28,13 +27,6 @@ export type TopicPost = Pick<
   'postName' | 'postId' | 'link' | 'heroImage'
 > & {
   topicLink: string
-}
-
-export type Game = {
-  name: string
-  description: string
-  link: string
-  heroImage: HeroImage
 }
 
 export type CityAndWeather = {

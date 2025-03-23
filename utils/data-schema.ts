@@ -104,13 +104,6 @@ export const topicsSchema = z.object({
   ),
 })
 
-export const gameSchema = z.object({
-  name: z.string(),
-  descriptions: z.string(),
-  link: z.string(),
-  heroImage: heroImageSchema,
-})
-
 const weatherSchema = z.object({
   date: z.string(),
   max_temp: z.number(),

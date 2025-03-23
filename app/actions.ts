@@ -5,13 +5,11 @@ import type {
   FlashNews,
   EditorChoice,
   TopicPost,
-  Game,
   CityAndWeather,
 } from '@/types/homepage'
 import {
   URL_STATIC_EDITOR_CHOICE,
   URL_STATIC_FLASH_NEWS,
-  URL_STATIC_GAME,
   URL_STATIC_TOPIC,
   URL_STATIC_WEATHER,
 } from '@/constants/config'
@@ -21,7 +19,6 @@ import type { GetLiveEventForHomepageQuery } from '@/graphql/__generated__/graph
 import {
   GetEditorChoicesDocument,
   GetFlashNewsDocument,
-  GetGamesDocument,
   GetLiveEventForHomepageDocument,
   GetTopicsDocument,
 } from '@/graphql/__generated__/graphql'
@@ -37,7 +34,6 @@ import {
   rawFlashNewsSchema,
   editorChoiceSchenma,
   topicsSchema,
-  gameSchema,
   cityWeatherSchema,
 } from '@/utils/data-schema'
 
@@ -249,48 +245,6 @@ export const fetchTopics = async (): Promise<
   )
 
   return transformTopics(data)
-}
-
-const transformGames = (
-  rawData: z.infer<ZodArray<typeof gameSchema>>
-): Game[] => {
-  return rawData.map((game) => {
-    return {
-      name: game.name ?? '',
-      link: game.link ?? '',
-      heroImage: getHeroImage(game.heroImage),
-      description: game.descriptions,
-    }
-  })
-}
-
-export const fetchGames = async (): Promise<Game[]> => {
-  const errorLogger = createErrorLogger(
-    'Error occurs while fetching games',
-    getTraceObject()
-  )
-  const schema = z.promise(z.object({ games: z.array(gameSchema) }))
-
-  const data = await createDataFetchingChain<
-    z.infer<ZodArray<typeof gameSchema>>
-  >(
-    errorLogger,
-    [],
-    async () => {
-      const resp = await fetch(URL_STATIC_GAME)
-
-      const result = await schema.parse(resp.json())
-      return result.games
-    },
-    async () => {
-      const result = await schema.parse(
-        fetchGQLData(errorLogger, GetGamesDocument)
-      )
-      return result.games
-    }
-  )
-
-  return transformGames(data).slice(0, 5)
 }
 
 const transformWeather = (

@@ -6,12 +6,14 @@ import type {
   EditorChoice,
   TopicPost,
   Game,
+  CityAndWeather,
 } from '@/types/homepage'
 import {
   URL_STATIC_EDITOR_CHOICE,
   URL_STATIC_FLASH_NEWS,
   URL_STATIC_GAME,
   URL_STATIC_TOPIC,
+  URL_STATIC_WEATHER,
 } from '@/constants/config'
 import { createErrorLogger, getTraceObject } from '@/utils/log/common'
 import { fetchGQLData } from '@/utils/graphql'
@@ -36,6 +38,7 @@ import {
   editorChoiceSchenma,
   topicsSchema,
   gameSchema,
+  cityWeatherSchema,
 } from '@/utils/data-schema'
 
 const transformRawLiveEvents = (
@@ -288,4 +291,39 @@ export const fetchGames = async (): Promise<Game[]> => {
   )
 
   return transformGames(data).slice(0, 5)
+}
+
+const transformWeather = (
+  rawData: z.infer<typeof cityWeatherSchema>
+): CityAndWeather => {
+  return Object.fromEntries(
+    Object.entries(rawData).map(([city, info]) => [
+      city,
+      {
+        date: info.date,
+        maxTemp: info.max_temp,
+        minTemp: info.min_temp,
+        weatherDesc: info.weather_desc,
+        weatherCode: info.weather_code,
+        weather: info.weather,
+        fetchTime: info.fetch_time,
+      },
+    ])
+  )
+}
+
+export const fetchWeather = async (): Promise<CityAndWeather | undefined> => {
+  const errorLogger = createErrorLogger(
+    'Error occurs while fetching weather',
+    getTraceObject()
+  )
+
+  try {
+    const resp = await fetch(URL_STATIC_WEATHER)
+    const rawWeatherData = await z.promise(cityWeatherSchema).parse(resp.json())
+
+    return transformWeather(rawWeatherData)
+  } catch (e) {
+    errorLogger(e)
+  }
 }

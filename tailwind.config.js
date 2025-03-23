@@ -34,6 +34,7 @@ module.exports = {
         'over-editor-choice': 10,
         'over-shorts': 10,
         'over-slides': 10,
+        'city-selection-box': 10,
         'upload-modal': 1000000,
         'light-box': 10000000,
         'mobile-nav': 1000000000,

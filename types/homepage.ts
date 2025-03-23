@@ -36,3 +36,15 @@ export type Game = {
   link: string
   heroImage: HeroImage
 }
+
+export type CityAndWeather = {
+  [city: string]: {
+    date: string
+    maxTemp: number
+    minTemp: number
+    weatherDesc: string
+    weatherCode: string
+    weather: string
+    fetchTime: string
+  }
+}

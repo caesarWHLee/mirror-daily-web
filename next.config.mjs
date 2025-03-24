@@ -54,7 +54,7 @@ const nextConfig = {
 
     /** @see https://paper.dropbox.com/doc/CDN-cache---CicA78_qhXGqWFqc4NC99FkAAg-9oJDty7PW69K9YuC40aic */
     return [
-      // default, 5 minutes
+      // default
       {
         source: '/:path*',
         headers: [
@@ -62,8 +62,20 @@ const nextConfig = {
             key: 'ETag',
             value: `"${process.env.GIT_HASH}"`,
           },
-          cacheControl5Min,
         ],
+      },
+      // 5 minutes
+      {
+        source: '/',
+        headers: [cacheControl5Min],
+      },
+      {
+        source: '/shorts/:path*',
+        headers: [cacheControl5Min],
+      },
+      {
+        source: '/topic/:path*',
+        headers: [cacheControl5Min],
       },
       // 30 minutes
       {

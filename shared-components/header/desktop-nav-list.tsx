@@ -64,7 +64,7 @@ export default function DesktopNavList({ data }: Props) {
               onMouseEnter={() => setActiveItem(slug)}
               onFocus={() => setActiveItem(slug)}
             >
-              <NextLink href={link} style={{ color }}>
+              <NextLink prefetch={false} href={link} style={{ color }}>
                 {name}
               </NextLink>
               <ul
@@ -79,6 +79,7 @@ export default function DesktopNavList({ data }: Props) {
                       className="whitespace-nowrap focus-within:text-[color:var(--active-section-color)] hover-or-active:text-[color:var(--active-section-color)]"
                     >
                       <NextLink
+                        prefetch={false}
                         href={getCategoryPageUrl(slug, isShortsCategory)}
                       >
                         {name}

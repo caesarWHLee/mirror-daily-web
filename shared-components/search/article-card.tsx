@@ -13,6 +13,7 @@ export default function ArticleCard({
 }: PostDataWithSection) {
   return (
     <Link
+      prefetch={false}
       href={link}
       target="_blank"
       rel="noopener noreferrer"

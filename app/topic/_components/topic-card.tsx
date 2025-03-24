@@ -6,6 +6,7 @@ import Link from 'next/link'
 export default function TopicCard({ topic }: { topic: Topic }) {
   return (
     <Link
+      prefetch={false}
       href={getTopicPageUrl(topic.slug)}
       target="_blank"
       className="mx-auto w-[319px] md:w-[280px] lg:w-[466px]"

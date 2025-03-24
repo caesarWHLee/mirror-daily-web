@@ -12,6 +12,7 @@ export default function PopularNewsCard({
 }: PopularNews): ReactElement {
   return (
     <Link
+      prefetch={false}
       href={link}
       target="_blank"
       rel="noopener noreferrer"

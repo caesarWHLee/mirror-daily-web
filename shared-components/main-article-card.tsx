@@ -10,6 +10,7 @@ type Props = {
 export default function MainArticleCard({ postItem, color }: Props) {
   return (
     <Link
+      prefetch={false}
       href={postItem.link}
       target="_blank"
       rel="noopener noreferrer"

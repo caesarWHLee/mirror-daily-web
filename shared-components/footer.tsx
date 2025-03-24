@@ -44,7 +44,11 @@ export default function Footer(): ReactElement {
   return (
     <footer className="flex w-full flex-col bg-mirror-blue-800">
       <div className="flex w-full max-w-screen-lg flex-col items-center self-center lg:flex-row">
-        <NextLink href="/" className="mt-5 md:mt-7 lg:ml-5 lg:mt-0">
+        <NextLink
+          prefetch={false}
+          href="/"
+          className="mt-5 md:mt-7 lg:ml-5 lg:mt-0"
+        >
           <NextImage
             src={IconMirrorDaily}
             alt="Mirror Daily"
@@ -103,6 +107,7 @@ export default function Footer(): ReactElement {
         >
           {PAGE_LINKS.map(({ name, href, isExternal }) => (
             <NextLink
+              prefetch={false}
               className="block"
               key={name}
               href={href}

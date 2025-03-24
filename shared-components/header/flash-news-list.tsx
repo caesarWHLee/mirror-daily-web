@@ -46,6 +46,7 @@ export default function FlashNewsList({ items }: Props) {
 
         return (
           <NextLink
+            prefetch={false}
             key={postId}
             href={link}
             className={`${baseStyles} ${getClassesByIndex(index, currentIndex)}`}

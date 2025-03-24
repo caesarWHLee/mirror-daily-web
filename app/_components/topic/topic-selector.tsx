@@ -145,6 +145,7 @@ export default function TopicSelector({
         )
       })}
       <NextLink
+        prefetch={false}
         href={getTopicListingPage()}
         target="_blank"
         className="whitespace-nowrap font-medium text-[#000928] hover-or-active:text-[#575D71]"

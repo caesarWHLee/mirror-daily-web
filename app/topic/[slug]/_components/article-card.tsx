@@ -12,6 +12,7 @@ export default function ArticleCard({
 }: TopicPostData) {
   return (
     <Link
+      prefetch={false}
       href={link}
       target="_blank"
       rel="noopener noreferrer"

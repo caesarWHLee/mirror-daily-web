@@ -29,6 +29,7 @@ export default function HeaderBlock({ inputValue, setInputValue }: Props) {
   return (
     <div className="relative hidden w-full md:flex">
       <NextLink
+        prefetch={false}
         href="/"
         className="relative my-5 ml-5 h-[58px] w-[200px] lg:my-6 lg:h-[60px] lg:w-[208px]"
       >

@@ -30,7 +30,9 @@ type Props = {
 export default function WeatherMain({ data }: Props) {
   const cities = Object.keys(data)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [selectedCity, setSelectedCity] = useState(cities?.[0] ?? '')
+  const [selectedCity, setSelectedCity] = useState(
+    cities.includes('臺北市') ? '臺北市' : cities?.[0] || ''
+  )
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen)

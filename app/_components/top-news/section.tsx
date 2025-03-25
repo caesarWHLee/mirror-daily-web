@@ -11,6 +11,7 @@ import {
   selectPopularNews,
 } from '@/redux/homepage/selector'
 import { initializeData } from '@/redux/homepage/slice'
+import Loading from '../loading'
 
 export const TAB = {
   Latest: '即時新聞',
@@ -86,7 +87,12 @@ export default function TopNewsSection({ headerData }: Props) {
     }
   }, [isInitialized, dispatch, headerData])
 
-  if (!isInitialized) return null
+  if (!isInitialized)
+    return (
+      <div className="h-[80vh] w-full">
+        <Loading />
+      </div>
+    )
 
   return (
     <section className="section-in-homepage mb-4 mt-[41px] md:mb-14 md:mt-6 lg:mb-9 lg:mt-[26px]">

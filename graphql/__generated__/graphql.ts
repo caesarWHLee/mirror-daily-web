@@ -6341,12 +6341,17 @@ export const GetLiveEventForHomepageDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -6859,12 +6864,17 @@ export const GetPostsBySectionSlugDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -6999,12 +7009,17 @@ export const GetFlashNewsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -7172,12 +7187,17 @@ export const GetPostsByCategorySlugDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -7477,12 +7497,17 @@ export const GetPostsByAuthorIdDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -7730,12 +7755,17 @@ export const GetPostsByTagSlugDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -8345,17 +8375,27 @@ export const GetTopicsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'sortOrder' },
-                      value: { kind: 'EnumValue', value: 'asc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'sortOrder' },
+                          value: { kind: 'EnumValue', value: 'asc' },
+                        },
+                      ],
                     },
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'id' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -8406,12 +8446,17 @@ export const GetTopicsDocument = {
                       kind: 'Argument',
                       name: { kind: 'Name', value: 'orderBy' },
                       value: {
-                        kind: 'ObjectValue',
-                        fields: [
+                        kind: 'ListValue',
+                        values: [
                           {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'publishedDate' },
-                            value: { kind: 'EnumValue', value: 'desc' },
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'publishedDate' },
+                                value: { kind: 'EnumValue', value: 'desc' },
+                              },
+                            ],
                           },
                         ],
                       },
@@ -9509,12 +9554,17 @@ export const GetLatestShortsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -9614,12 +9664,17 @@ export const GetLatestShortsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -9927,12 +9982,17 @@ export const GetShortsByTagAndVideoSectionDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -10175,12 +10235,17 @@ export const GetShortsByVideoSectionDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },

@@ -5,6 +5,7 @@ steps:
     env:
     - 'NEXT_PUBLIC_ENV=$_ENV'
     - 'NEXT_PUBLIC_IS_PREVIEW_MODE=$_IS_PREVIEW_MODE'
+    - 'GIT_HASH=${SHORT_SHA}'
     entrypoint: 'bash'
     args:
       - '-c'

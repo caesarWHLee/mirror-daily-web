@@ -27,7 +27,7 @@ export default function ShortsItem({
   }, [])
 
   return (
-    <NextLink className="w-full select-none" href={link}>
+    <NextLink prefetch={false} className="w-full select-none" href={link}>
       <div className="relative h-[400px] w-full lg:h-[400px]">
         {isClientSide && (
           <ReactPlayer
@@ -41,6 +41,7 @@ export default function ShortsItem({
               file: {
                 attributes: {
                   poster,
+                  preload: 'none',
                 },
               },
             }}

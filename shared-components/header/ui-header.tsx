@@ -58,6 +58,7 @@ export default function UiHeader({
       <div className="flex h-[68px] w-full justify-center bg-mirror-blue-700 md:h-[95px] lg:h-[80px]">
         <div className="flex w-full max-w-screen-sm pl-4 pr-6 md:max-w-screen-md md:pl-5 lg:max-w-screen-lg lg:pl-9">
           <NextLink
+            prefetch={false}
             href="/"
             className="relative mt-4 h-[42px] w-[150px] md:mt-5 md:h-[55.74px] md:w-[200px] lg:mt-3 lg:h-[56px] lg:w-[200px] lg:shrink-0"
           >

@@ -18,6 +18,7 @@ export default function TopicItem({
       } `}
     >
       <NextLink
+        prefetch={false}
         href={topicLink}
         className={`relative aspect-[329/182] w-full shrink-0 overflow-hidden rounded ${
           isFirst
@@ -37,6 +38,7 @@ export default function TopicItem({
         )}
       </NextLink>
       <NextLink
+        prefetch={false}
         href={link}
         className={`line-clamp-2 text-base font-normal leading-normal text-[#000928] group-hover/card:text-[#575D71] group-active/card:text-[#575D71] ${
           isFirst

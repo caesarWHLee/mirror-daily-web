@@ -13,7 +13,14 @@ export const getSectionPageUrl = (slug: string) =>
     ? LATEST_SHORT_PAGES.news
     : `/section/${slug}`
 
-export const getCategoryPageUrl = (slug: string) => `/category/${slug}`
+export const getCategoryPageUrl = (
+  slug: string,
+  isShortsCategory?: boolean
+) => {
+  if (typeof isShortsCategory === 'boolean' && isShortsCategory) {
+    return `/shorts/${slug}`
+  } else return `/category/${slug}`
+}
 
 export const getTopicListingPage = () => `/topic`
 

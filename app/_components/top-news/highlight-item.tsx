@@ -11,6 +11,7 @@ export default function HighlightItem({
 }: PickupItemInTopNewsSection): ReactNode {
   return (
     <NextLink
+      prefetch={false}
       className="group/highlight-item w-full shrink-0 md:w-[312px] lg:w-[560px]"
       href={link}
       target="_blank"

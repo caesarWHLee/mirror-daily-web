@@ -29,7 +29,12 @@ export default function LatestNewsCard({
       >
         {categoryName}
       </p>
-      <NextLink href={link} target="_blank" className="group/card">
+      <NextLink
+        prefetch={false}
+        href={link}
+        target="_blank"
+        className="group/card"
+      >
         <div className="relative aspect-[329/182] w-full overflow-hidden rounded group-hover/card:*:scale-110 group-active/card:*:scale-110 md:aspect-auto md:h-[134px] lg:h-[172px]">
           <CustomImage
             images={heroImage.resized}

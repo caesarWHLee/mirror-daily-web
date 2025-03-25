@@ -1,6 +1,6 @@
 query GetLiveEventForHomepage($startDate: DateTime!) {
   events(
-    orderBy: { publishedDate: desc},
+    orderBy: [{ publishedDate: desc}],
     take: 1,
     where:  {
       eventType: { equals: "livestreaming" }

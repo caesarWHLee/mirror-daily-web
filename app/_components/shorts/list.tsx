@@ -2,7 +2,7 @@
 
 import { twMerge } from 'tailwind-merge'
 import NextImage from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ShortsItem from './item'
 import type { SwiperRef } from 'swiper/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -29,6 +29,14 @@ export default function ShortsList({ items, customClass = '' }: Props) {
   const [swiperIsEnd, setSwiperIsEnd] = useState(false)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const { isIntersecting, ref } = useIntersectionObserver({ threshold: 0.75 })
+  const initialized = useRef(false)
+
+  useEffect(() => {
+    if (initialized.current === false && swiperRef.current) {
+      setActiveIndex(swiperRef.current?.swiper.realIndex)
+      initialized.current = true
+    }
+  }, [isIntersecting])
 
   return (
     <div
@@ -61,9 +69,6 @@ export default function ShortsList({ items, customClass = '' }: Props) {
         navigation={{
           nextEl: slideNextRef.current,
           prevEl: slidePrevRef.current,
-        }}
-        onInit={(swiper) => {
-          setActiveIndex(swiper.realIndex)
         }}
         onSlideChange={(swiper) => {
           setSwiperIsBeginning(swiper.isBeginning)

@@ -10,7 +10,12 @@ export default function RelatedNewsCard({
   sectionName,
 }: RelatedPost) {
   return (
-    <Link href={link} target="_blank" rel="noopener noreferrer">
+    <Link
+      prefetch={false}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <figure className="flex max-w-[330px] flex-row gap-x-3 md:w-[280px] md:flex-col md:gap-y-2 lg:w-[240px]">
         <div className="relative h-[88px] w-40 shrink-0 overflow-hidden rounded md:h-[154px] md:w-full lg:h-[133px]">
           <CustomImage

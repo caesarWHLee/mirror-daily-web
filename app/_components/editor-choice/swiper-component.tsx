@@ -42,6 +42,7 @@ export default function SwiperComponent({ list }: Props) {
             className="relative w-full max-w-screen-sm md:max-w-none"
           >
             <NextLink
+              prefetch={false}
               href={link}
               target="_blank"
               className="group/slide w-full"

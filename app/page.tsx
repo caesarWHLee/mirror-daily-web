@@ -50,7 +50,7 @@ export default async function Home() {
             <ShortsNewsSection />
           </Suspense>
           <SectionDivider />
-          {/* Topic（4則）＋遊戲區 */}
+          {/* Topic（4則）+ 天氣 */}
           <Suspense
             fallback={
               <div className="h-[80vh] w-full">

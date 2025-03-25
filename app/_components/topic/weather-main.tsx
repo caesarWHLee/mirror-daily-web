@@ -103,7 +103,7 @@ export default function WeatherMain({ data }: Props) {
           <ul className="absolute left-[68px] top-full z-city-selection-box h-[91px] w-[100px] cursor-pointer overflow-y-auto bg-[#f6f6fb] px-[26px] pt-[11px] md:left-[378px] md:h-[196px]">
             {cities.map((city) => (
               <li
-                className="pb-4 text-base font-medium hover-or-active:text-[#674ab1]"
+                className="whitespace-nowrap pb-4 text-base font-medium hover-or-active:text-[#674ab1]"
                 key={city}
                 onClick={() => handleCitySelect(city)}
               >

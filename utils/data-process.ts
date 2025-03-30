@@ -94,7 +94,7 @@ const getHeroImage = (
 
 const dateFormatter = (date: string) => {
   dayjs.extend(utc)
-  const utcDate = dayjs(date).utc().format('YYYY/MM/DD HH:mm:ss')
+  const utcDate = dayjs(date).utc().add(8, 'hour').format('YYYY/MM/DD HH:mm:ss')
   return utcDate
 }
 

@@ -1230,6 +1230,8 @@ export type Mutation = {
   createUsers?: Maybe<Array<Maybe<User>>>
   createVideo?: Maybe<Video>
   createVideos?: Maybe<Array<Maybe<Video>>>
+  createWarning?: Maybe<Warning>
+  createWarnings?: Maybe<Array<Maybe<Warning>>>
   deleteAudioFile?: Maybe<AudioFile>
   deleteAudioFiles?: Maybe<Array<Maybe<AudioFile>>>
   deleteCategories?: Maybe<Array<Maybe<Category>>>
@@ -1264,6 +1266,8 @@ export type Mutation = {
   deleteUsers?: Maybe<Array<Maybe<User>>>
   deleteVideo?: Maybe<Video>
   deleteVideos?: Maybe<Array<Maybe<Video>>>
+  deleteWarning?: Maybe<Warning>
+  deleteWarnings?: Maybe<Array<Maybe<Warning>>>
   endSession: Scalars['Boolean']['output']
   updateAudioFile?: Maybe<AudioFile>
   updateAudioFiles?: Maybe<Array<Maybe<AudioFile>>>
@@ -1299,6 +1303,8 @@ export type Mutation = {
   updateUsers?: Maybe<Array<Maybe<User>>>
   updateVideo?: Maybe<Video>
   updateVideos?: Maybe<Array<Maybe<Video>>>
+  updateWarning?: Maybe<Warning>
+  updateWarnings?: Maybe<Array<Maybe<Warning>>>
 }
 
 export type MutationAuthenticateUserWithPasswordArgs = {
@@ -1446,6 +1452,14 @@ export type MutationCreateVideosArgs = {
   data: Array<VideoCreateInput>
 }
 
+export type MutationCreateWarningArgs = {
+  data: WarningCreateInput
+}
+
+export type MutationCreateWarningsArgs = {
+  data: Array<WarningCreateInput>
+}
+
 export type MutationDeleteAudioFileArgs = {
   where: AudioFileWhereUniqueInput
 }
@@ -1580,6 +1594,14 @@ export type MutationDeleteVideoArgs = {
 
 export type MutationDeleteVideosArgs = {
   where: Array<VideoWhereUniqueInput>
+}
+
+export type MutationDeleteWarningArgs = {
+  where: WarningWhereUniqueInput
+}
+
+export type MutationDeleteWarningsArgs = {
+  where: Array<WarningWhereUniqueInput>
 }
 
 export type MutationUpdateAudioFileArgs = {
@@ -1733,6 +1755,15 @@ export type MutationUpdateVideoArgs = {
 
 export type MutationUpdateVideosArgs = {
   data: Array<VideoUpdateArgs>
+}
+
+export type MutationUpdateWarningArgs = {
+  data: WarningUpdateInput
+  where: WarningWhereUniqueInput
+}
+
+export type MutationUpdateWarningsArgs = {
+  data: Array<WarningUpdateArgs>
 }
 
 export type NestedStringFilter = {
@@ -1964,6 +1995,7 @@ export type PhotoWhereUniqueInput = {
 
 export type Post = {
   __typename?: 'Post'
+  Warning?: Maybe<Warning>
   adTrace?: Maybe<Scalars['String']['output']>
   apiData?: Maybe<Scalars['JSON']['output']>
   apiDataBrief?: Maybe<Scalars['JSON']['output']>
@@ -2211,6 +2243,7 @@ export type PostWritersCountArgs = {
 }
 
 export type PostCreateInput = {
+  Warning?: InputMaybe<WarningRelateToOneForCreateInput>
   adTrace?: InputMaybe<Scalars['String']['input']>
   apiData?: InputMaybe<Scalars['JSON']['input']>
   apiDataBrief?: InputMaybe<Scalars['JSON']['input']>
@@ -2327,6 +2360,7 @@ export type PostUpdateArgs = {
 }
 
 export type PostUpdateInput = {
+  Warning?: InputMaybe<WarningRelateToOneForUpdateInput>
   adTrace?: InputMaybe<Scalars['String']['input']>
   apiData?: InputMaybe<Scalars['JSON']['input']>
   apiDataBrief?: InputMaybe<Scalars['JSON']['input']>
@@ -2386,6 +2420,7 @@ export type PostWhereInput = {
   AND?: InputMaybe<Array<PostWhereInput>>
   NOT?: InputMaybe<Array<PostWhereInput>>
   OR?: InputMaybe<Array<PostWhereInput>>
+  Warning?: InputMaybe<WarningWhereInput>
   adTrace?: InputMaybe<StringFilter>
   camera_man?: InputMaybe<ContactManyRelationFilter>
   categories?: InputMaybe<CategoryManyRelationFilter>
@@ -2482,6 +2517,9 @@ export type Query = {
   video?: Maybe<Video>
   videos?: Maybe<Array<Video>>
   videosCount?: Maybe<Scalars['Int']['output']>
+  warning?: Maybe<Warning>
+  warnings?: Maybe<Array<Warning>>
+  warningsCount?: Maybe<Scalars['Int']['output']>
 }
 
 export type QueryAudioFileArgs = {
@@ -2754,6 +2792,22 @@ export type QueryVideosArgs = {
 
 export type QueryVideosCountArgs = {
   where?: VideoWhereInput
+}
+
+export type QueryWarningArgs = {
+  where: WarningWhereUniqueInput
+}
+
+export type QueryWarningsArgs = {
+  cursor?: InputMaybe<WarningWhereUniqueInput>
+  orderBy?: Array<WarningOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: WarningWhereInput
+}
+
+export type QueryWarningsCountArgs = {
+  where?: WarningWhereInput
 }
 
 export enum QueryMode {
@@ -3639,6 +3693,71 @@ export type VideoWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>
 }
 
+export type Warning = {
+  __typename?: 'Warning'
+  content?: Maybe<Scalars['String']['output']>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  createdBy?: Maybe<User>
+  id: Scalars['ID']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+  updatedBy?: Maybe<User>
+}
+
+export type WarningCreateInput = {
+  content?: InputMaybe<Scalars['String']['input']>
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>
+  createdBy?: InputMaybe<UserRelateToOneForCreateInput>
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>
+  updatedBy?: InputMaybe<UserRelateToOneForCreateInput>
+}
+
+export type WarningOrderByInput = {
+  content?: InputMaybe<OrderDirection>
+  createdAt?: InputMaybe<OrderDirection>
+  id?: InputMaybe<OrderDirection>
+  updatedAt?: InputMaybe<OrderDirection>
+}
+
+export type WarningRelateToOneForCreateInput = {
+  connect?: InputMaybe<WarningWhereUniqueInput>
+  create?: InputMaybe<WarningCreateInput>
+}
+
+export type WarningRelateToOneForUpdateInput = {
+  connect?: InputMaybe<WarningWhereUniqueInput>
+  create?: InputMaybe<WarningCreateInput>
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+export type WarningUpdateArgs = {
+  data: WarningUpdateInput
+  where: WarningWhereUniqueInput
+}
+
+export type WarningUpdateInput = {
+  content?: InputMaybe<Scalars['String']['input']>
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>
+  createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>
+  updatedBy?: InputMaybe<UserRelateToOneForUpdateInput>
+}
+
+export type WarningWhereInput = {
+  AND?: InputMaybe<Array<WarningWhereInput>>
+  NOT?: InputMaybe<Array<WarningWhereInput>>
+  OR?: InputMaybe<Array<WarningWhereInput>>
+  content?: InputMaybe<StringFilter>
+  createdAt?: InputMaybe<DateTimeNullableFilter>
+  createdBy?: InputMaybe<UserWhereInput>
+  id?: InputMaybe<IdFilter>
+  updatedAt?: InputMaybe<DateTimeNullableFilter>
+  updatedBy?: InputMaybe<UserWhereInput>
+}
+
+export type WarningWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
 export type EditorChoiceDataFragment = {
   __typename?: 'EditorChoice'
   outlink?: string | null
@@ -4158,6 +4277,24 @@ export type GetRelatedPostsByExternalIdQuery = {
   } | null
 }
 
+export type GetExternalsByPartnerSlugQueryVariables = Exact<{
+  skip: Scalars['Int']['input']
+  take: Scalars['Int']['input']
+  slug: Scalars['String']['input']
+}>
+
+export type GetExternalsByPartnerSlugQuery = {
+  __typename?: 'Query'
+  externals?: Array<{
+    __typename?: 'External'
+    id: string
+    title?: string | null
+    brief?: string | null
+    createdAt?: any | null
+    thumb?: string | null
+  }> | null
+}
+
 export type GetGamesQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetGamesQuery = {
@@ -4190,6 +4327,15 @@ export type GetGamesQuery = {
       } | null
     } | null
   }> | null
+}
+
+export type GetPartnerInformationQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type GetPartnerInformationQuery = {
+  __typename?: 'Query'
+  partner?: { __typename?: 'Partner'; name?: string | null } | null
 }
 
 export type GetPostsBySectionSlugQueryVariables = Exact<{
@@ -6771,6 +6917,134 @@ export const GetRelatedPostsByExternalIdDocument = {
   GetRelatedPostsByExternalIdQuery,
   GetRelatedPostsByExternalIdQueryVariables
 >
+export const GetExternalsByPartnerSlugDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetExternalsByPartnerSlug' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'take' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'externals' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'skip' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'skip' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'take' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'take' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'partner' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'slug' },
+                            value: {
+                              kind: 'ObjectValue',
+                              fields: [
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'equals' },
+                                  value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'slug' },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'orderBy' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'publishedDate' },
+                      value: { kind: 'EnumValue', value: 'desc' },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'brief' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'thumb' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetExternalsByPartnerSlugQuery,
+  GetExternalsByPartnerSlugQueryVariables
+>
 export const GetGamesDocument = {
   kind: 'Document',
   definitions: [
@@ -6906,6 +7180,66 @@ export const GetGamesDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGamesQuery, GetGamesQueryVariables>
+export const GetPartnerInformationDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetPartnerInformation' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'partner' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'slug' },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetPartnerInformationQuery,
+  GetPartnerInformationQueryVariables
+>
 export const GetPostsBySectionSlugDocument = {
   kind: 'Document',
   definitions: [

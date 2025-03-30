@@ -1,8 +1,9 @@
 import FeaturedNewsCard from './featured-news-card'
 import { fetchPopularPost } from '@/app/actions-general'
 
-export default async function PopularNewsSection(): Promise<JSX.Element> {
+export default async function PopularNewsSection(): Promise<JSX.Element | null> {
   const articles = await fetchPopularPost()
+  if (!articles.length) return null
 
   return (
     <section className="hidden md:flex md:w-[588px] md:flex-col md:items-center md:gap-y-[31px] lg:w-[240px] lg:gap-y-[19px]">

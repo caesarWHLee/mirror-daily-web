@@ -80,6 +80,18 @@ const updateMetadataOnClientSide = ({
   }
 }
 
+const formatTimestamp = (date: string | Date) => {
+  if (!date) return
+  const targetDate = new Date(date)
+  const year = targetDate.getFullYear()
+  const month = String(targetDate.getMonth() + 1).padStart(2, '0')
+  const day = String(targetDate.getDate()).padStart(2, '0')
+  const hour = String(targetDate.getHours()).padStart(2, '0')
+  const second = String(targetDate.getMinutes()).padStart(2, '0')
+
+  return `${year}/${month}/${day} ${hour}:${second}`
+}
+
 export {
   isServer,
   isValidUrl,
@@ -88,4 +100,5 @@ export {
   isSectionItem,
   getDefaultMetadata,
   updateMetadataOnClientSide,
+  formatTimestamp,
 }

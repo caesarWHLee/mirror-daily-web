@@ -1,4 +1,5 @@
 export type External = {
+  id: string
   title: string
   thumb: string
   link: string

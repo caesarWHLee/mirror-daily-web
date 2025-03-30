@@ -41,6 +41,8 @@ export async function generateMetadata({
   return metaData
 }
 
+const PAGE_SIZE = 12
+
 export default async function Page({
   params,
 }: PageProps): Promise<JSX.Element> {
@@ -48,12 +50,25 @@ export default async function Page({
 
   const tagInfo = await fetchTagInformation(slug)
   if (!tagInfo) notFound()
-  const posts = await fetchTagPosts(1, slug)
+  const posts = await fetchTagPosts({ take: PAGE_SIZE, skip: 0, slug })
   if (posts.length === 0) notFound()
+
+  const fetchMorePosts = async (page: number) => {
+    'use server'
+    return await fetchTagPosts({
+      slug,
+      take: PAGE_SIZE,
+      skip: PAGE_SIZE * (page - 1),
+    })
+  }
 
   return (
     <main className="flex flex-col items-center pl-[17px] pr-[18px] md:mb-[68px] md:pt-3 lg:flex-row lg:items-start lg:justify-center lg:gap-x-[100px] lg:pt-5">
-      <ArticlesSection info={tagInfo} initialList={posts} slug={slug} />
+      <ArticlesSection
+        info={tagInfo}
+        initialList={posts}
+        fetchMorePosts={fetchMorePosts}
+      />
       <PopularNewsSection />
     </main>
   )

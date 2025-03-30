@@ -1,20 +1,17 @@
 import ArticlesList from '../../../shared-components/search/articles-list'
 import type { AuthorInfo, AuthorPost } from '@/types/author'
-import { fetchAuthorPosts } from '@/app/author/actions'
 
 type Props = {
   info: AuthorInfo
   initialList: AuthorPost[]
-  id: string
+  fetchMorePosts: (page: number) => Promise<AuthorPost[]>
 }
 
-export default function ArticleSection({ info, initialList, id }: Props) {
-  const fetchMorePosts = async (page: number) => {
-    'use server'
-    const posts = await fetchAuthorPosts(page, id)
-    return posts
-  }
-
+export default function ArticleSection({
+  info,
+  initialList,
+  fetchMorePosts,
+}: Props) {
   return (
     <section className="flex flex-col items-center">
       <div className="mb-3 flex w-full flex-col items-center gap-y-6 md:mb-6 md:gap-y-9 lg:mb-5 lg:items-start lg:gap-y-10">

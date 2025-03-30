@@ -49,19 +49,24 @@ function transformTagPost(rawData: GetPostsByTagSlugQuery['posts']): TagPost[] {
   return rawData.map(transfromRawPostWithSection)
 }
 
-async function fetchTagPosts(page: number, slug: string): Promise<TagPost[]> {
+async function fetchTagPosts({
+  take,
+  skip = 0,
+  slug,
+}: {
+  take: number
+  skip: number
+  slug: string
+}): Promise<TagPost[]> {
   const errorLogger = createErrorLogger(
     'Error occurs while fetching posts in tag page',
     getTraceObject()
   )
 
-  const pageSize = 12
-  const take = pageSize * 2
-
   const result = await fetchGQLData(errorLogger, GetPostsByTagSlugDocument, {
-    skip: (page - 1) * pageSize,
-    take: take,
-    slug: slug,
+    skip,
+    take,
+    slug,
   })
 
   if (result) {

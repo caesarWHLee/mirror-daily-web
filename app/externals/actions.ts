@@ -55,7 +55,7 @@ function transformExternal(
     const link = getExternalPageUrl(rawExternal.id)
     const title = rawExternal.title ?? ''
     const thumb = rawExternal.thumb ?? ''
-    const publishedDate = dateFormatter(rawExternal.publishedDate) ?? ''
+    const publishedDate = dateFormatter(rawExternal.publishedDate ?? '')
     const textContent = rawExternal.brief ?? ''
     const sectionName = DEFAULT_SECTION_NAME
     const sectionColor = DEFAULT_SECTION_COLOR

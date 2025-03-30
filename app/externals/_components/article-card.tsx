@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import NextImage from 'next/image'
-import { formatTimestamp } from '@/utils/common'
 import type { External } from '@/types/externals'
 
 export default function ArticleCard({
@@ -32,7 +31,7 @@ export default function ArticleCard({
         style={{ color: sectionColor }}
         className="mb-[11px] text-sm font-normal leading-normal"
       >
-        {formatTimestamp(publishedDate)}
+        {publishedDate}
       </p>
       <figcaption className="mb-[6px] line-clamp-2 text-lg font-bold leading-normal text-[#4A4A4A]">
         {title}

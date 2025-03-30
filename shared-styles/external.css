@@ -19,6 +19,11 @@
     font-size: 18px;
     line-height: 2;
 
+    a {
+      color: #007aff;
+    }
+
+
     @apply md:p-0;
   }
 }

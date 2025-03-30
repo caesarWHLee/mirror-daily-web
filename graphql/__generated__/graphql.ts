@@ -4290,7 +4290,7 @@ export type GetExternalsByPartnerSlugQuery = {
     id: string
     title?: string | null
     brief?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     thumb?: string | null
   }> | null
 }
@@ -7032,7 +7032,10 @@ export const GetExternalsByPartnerSlugDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'brief' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'publishedDate' },
+                },
                 { kind: 'Field', name: { kind: 'Name', value: 'thumb' } },
               ],
             },

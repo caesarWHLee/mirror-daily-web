@@ -32,7 +32,7 @@ query GetExternalsByPartnerSlug($skip: Int!, $take: Int!, $slug: String!) {
     id
     title
     brief
-    createdAt
+    publishedDate
     thumb
   }
 }

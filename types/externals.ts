@@ -4,7 +4,7 @@ export type External = {
   thumb: string
   link: string
   textContent: string
-  createdTime: string
+  publishedDate: string
   sectionName: string
   sectionColor: string
 }

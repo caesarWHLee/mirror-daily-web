@@ -31,7 +31,7 @@ export default function ArticleIntro({
           {title}
         </h1>
         <div className="mb-4 flex flex-col gap-y-1 text-[13px] font-normal leading-normal text-[#7F8493] md:mb-3 lg:mb-4">
-          <p>發佈時間：{publishedTime}</p>
+          <p>{publishedTime}</p>
           <p>記者：{writer}</p>
         </div>
         <div className="mb-4 md:mb-3 lg:mb-4">

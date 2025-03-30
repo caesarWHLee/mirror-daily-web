@@ -68,18 +68,22 @@ export default function HeroSection({
 
         <div className="mb-4 flex flex-col gap-y-1 text-[13px] font-normal leading-normal text-[#7F8493] md:mb-3 lg:mb-4">
           <p>{publishedTime}</p>
-          <div className="flex">
-            <p className="shrink-0">記者：</p>
-            <p className="flex flex-wrap items-center break-all">
-              {getAuthorsContent(writers)}
-            </p>
-          </div>
-          <div className="flex">
-            <p className="shrink-0">攝影：</p>
-            <p className="flex flex-wrap items-center break-all">
-              {getAuthorsContent(photographers)}
-            </p>
-          </div>
+          {!!writers.length && (
+            <div className="flex">
+              <p className="shrink-0">記者：</p>
+              <p className="flex flex-wrap items-center break-all">
+                {getAuthorsContent(writers)}
+              </p>
+            </div>
+          )}
+          {!!photographers.length && (
+            <div className="flex">
+              <p className="shrink-0">攝影：</p>
+              <p className="flex flex-wrap items-center break-all">
+                {getAuthorsContent(photographers)}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="mb-4 md:mb-3 lg:mb-4">

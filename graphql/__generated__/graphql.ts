@@ -4277,67 +4277,6 @@ export type GetRelatedPostsByExternalIdQuery = {
   } | null
 }
 
-export type GetExternalsByPartnerSlugQueryVariables = Exact<{
-  skip: Scalars['Int']['input']
-  take: Scalars['Int']['input']
-  slug: Scalars['String']['input']
-}>
-
-export type GetExternalsByPartnerSlugQuery = {
-  __typename?: 'Query'
-  externals?: Array<{
-    __typename?: 'External'
-    id: string
-    title?: string | null
-    brief?: string | null
-    publishedDate?: any | null
-    thumb?: string | null
-  }> | null
-}
-
-export type GetGamesQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetGamesQuery = {
-  __typename?: 'Query'
-  games?: Array<{
-    __typename?: 'Game'
-    name?: string | null
-    descriptions?: string | null
-    link?: string | null
-    heroImage?: {
-      __typename?: 'Photo'
-      id: string
-      resized?: {
-        __typename?: 'ResizedImages'
-        original?: string | null
-        w480?: string | null
-        w800?: string | null
-        w1200?: string | null
-        w1600?: string | null
-        w2400?: string | null
-      } | null
-      resizedWebp?: {
-        __typename?: 'ResizedWebPImages'
-        original?: string | null
-        w480?: string | null
-        w800?: string | null
-        w1200?: string | null
-        w1600?: string | null
-        w2400?: string | null
-      } | null
-    } | null
-  }> | null
-}
-
-export type GetPartnerInformationQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-}>
-
-export type GetPartnerInformationQuery = {
-  __typename?: 'Query'
-  partner?: { __typename?: 'Partner'; name?: string | null } | null
-}
-
 export type GetPostsBySectionSlugQueryVariables = Exact<{
   skip: Scalars['Int']['input']
   take?: InputMaybe<Scalars['Int']['input']>
@@ -6521,12 +6460,17 @@ export const GetLiveEventForHomepageDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -6917,332 +6861,6 @@ export const GetRelatedPostsByExternalIdDocument = {
   GetRelatedPostsByExternalIdQuery,
   GetRelatedPostsByExternalIdQueryVariables
 >
-export const GetExternalsByPartnerSlugDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetExternalsByPartnerSlug' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'take' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'externals' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'skip' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'skip' },
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'take' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'take' },
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'partner' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'slug' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'equals' },
-                                  value: {
-                                    kind: 'Variable',
-                                    name: { kind: 'Name', value: 'slug' },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'orderBy' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'brief' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'publishedDate' },
-                },
-                { kind: 'Field', name: { kind: 'Name', value: 'thumb' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetExternalsByPartnerSlugQuery,
-  GetExternalsByPartnerSlugQueryVariables
->
-export const GetGamesDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetGames' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'games' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'take' },
-                value: { kind: 'IntValue', value: '5' },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'orderBy' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'sortOrder' },
-                      value: { kind: 'EnumValue', value: 'asc' },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'state' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'equals' },
-                            value: {
-                              kind: 'StringValue',
-                              value: 'published',
-                              block: false,
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'descriptions' },
-                },
-                { kind: 'Field', name: { kind: 'Name', value: 'link' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'heroImage' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'ImageData' },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'ImageData' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'Photo' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'resized' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'original' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w480' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w800' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w1200' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w1600' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w2400' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'resizedWebp' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'original' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w480' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w800' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w1200' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w1600' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'w2400' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetGamesQuery, GetGamesQueryVariables>
-export const GetPartnerInformationDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetPartnerInformation' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'partner' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'slug' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'slug' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetPartnerInformationQuery,
-  GetPartnerInformationQueryVariables
->
 export const GetPostsBySectionSlugDocument = {
   kind: 'Document',
   definitions: [
@@ -7365,12 +6983,17 @@ export const GetPostsBySectionSlugDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -7505,12 +7128,17 @@ export const GetFlashNewsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -7678,12 +7306,17 @@ export const GetPostsByCategorySlugDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -7983,12 +7616,17 @@ export const GetPostsByAuthorIdDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -8236,12 +7874,17 @@ export const GetPostsByTagSlugDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -8851,17 +8494,27 @@ export const GetTopicsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'sortOrder' },
-                      value: { kind: 'EnumValue', value: 'asc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'sortOrder' },
+                          value: { kind: 'EnumValue', value: 'asc' },
+                        },
+                      ],
                     },
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'id' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -8912,12 +8565,17 @@ export const GetTopicsDocument = {
                       kind: 'Argument',
                       name: { kind: 'Name', value: 'orderBy' },
                       value: {
-                        kind: 'ObjectValue',
-                        fields: [
+                        kind: 'ListValue',
+                        values: [
                           {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'publishedDate' },
-                            value: { kind: 'EnumValue', value: 'desc' },
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'publishedDate' },
+                                value: { kind: 'EnumValue', value: 'desc' },
+                              },
+                            ],
                           },
                         ],
                       },
@@ -10015,12 +9673,17 @@ export const GetLatestShortsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -10120,12 +9783,17 @@ export const GetLatestShortsDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -10433,12 +10101,17 @@ export const GetShortsByTagAndVideoSectionDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -10681,12 +10354,17 @@ export const GetShortsByVideoSectionDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'publishedDate' },
-                      value: { kind: 'EnumValue', value: 'desc' },
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'publishedDate' },
+                          value: { kind: 'EnumValue', value: 'desc' },
+                        },
+                      ],
                     },
                   ],
                 },

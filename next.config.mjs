@@ -35,6 +35,12 @@ const cacheControl7Day = {
   value: `public, s-maxage=${DAY * 7}, stale-while-revalidate=60`,
 }
 
+/** @type {Header} */
+const cacheControlAssets = {
+  key: 'cache-control',
+  value: `public, s-maxage=${DAY * 7}, stale-while-revalidate=60`,
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: SITE_BASE_PATH,
@@ -106,6 +112,15 @@ const nextConfig = {
       {
         source: '/external/:path*',
         headers: [cacheControl7Day],
+      },
+      // public assets
+      {
+        source: '/icons/:path*',
+        headers: [cacheControlAssets],
+      },
+      {
+        source: '/images-next/:path*',
+        headers: [cacheControlAssets],
       },
     ]
   },

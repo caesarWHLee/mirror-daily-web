@@ -104,12 +104,17 @@ export const topicsSchema = z.object({
   ),
 })
 
-export const gameSchema = z.object({
-  name: z.string(),
-  descriptions: z.string(),
-  link: z.string(),
-  heroImage: heroImageSchema,
+const weatherSchema = z.object({
+  date: z.string(),
+  max_temp: z.number(),
+  min_temp: z.number(),
+  weather_desc: z.string(),
+  weather_code: z.string(),
+  weather: z.string(),
+  fetch_time: z.string(),
 })
+
+export const cityWeatherSchema = z.record(z.string(), weatherSchema)
 
 export const latestShortsSchema = z.object({
   id: z.string(),

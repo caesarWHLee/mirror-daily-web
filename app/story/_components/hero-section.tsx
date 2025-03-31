@@ -27,7 +27,7 @@ export default function HeroSection({
 
     authors.forEach((author, index) => {
       const authorLink = (
-        <Link href={author.link} target="_blank">
+        <Link prefetch={false} href={author.link} target="_blank">
           {author.name}
         </Link>
       )
@@ -93,6 +93,7 @@ export default function HeroSection({
         <div className="flex flex-wrap gap-x-2 gap-y-4 md:grid-cols-6 md:gap-x-3 lg:mb-4">
           {tags.map((item) => (
             <Link
+              prefetch={false}
               href={getTagPageUrl(item.slug)}
               target="_blank"
               key={item.slug}

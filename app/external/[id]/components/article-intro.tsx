@@ -41,6 +41,7 @@ export default function ArticleIntro({
           <div className="mb-4 flex flex-wrap gap-x-2 gap-y-4 md:mb-6 md:grid-cols-6 md:gap-x-3 lg:mb-4">
             {tags.map((tag) => (
               <Link
+                prefetch={false}
                 href={getTagPageUrl(tag.slug)}
                 target="_blank"
                 key={tag.slug}

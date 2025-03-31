@@ -6,7 +6,7 @@ query GetPostsBySectionSlug($skip: Int!, $take: Int, $slug: String!) {
       state: { equals: "published" }
       sections: { some: { slug: { equals: $slug } } }
     }
-    orderBy: { publishedDate: desc }
+    orderBy: [{ publishedDate: desc }]
   ) {
     ...PostOverview
   }
@@ -15,7 +15,7 @@ query GetPostsBySectionSlug($skip: Int!, $take: Int, $slug: String!) {
 query GetFlashNews {
   posts(
     take: 8
-    orderBy: { publishedDate: desc }
+    orderBy: [{ publishedDate: desc }]
     where: { state: { equals: "published" } }
   ) {
     id
@@ -31,7 +31,7 @@ query GetPostsByCategorySlug($skip: Int!, $take: Int, $slug: String!) {
       state: { equals: "published" }
       categories: { some: { slug: { equals: $slug } } }
     }
-    orderBy: { publishedDate: desc }
+    orderBy: [{ publishedDate: desc }]
   ) {
     ...PostOverview
   }
@@ -48,7 +48,7 @@ query GetPostsByAuthorId($skip: Int!, $take: Int!, $id: ID!) {
         { photographers: { some: { id: { equals: $id } } } }
       ]
     }
-    orderBy: { publishedDate: desc }
+    orderBy: [{ publishedDate: desc }]
   ) {
     sections {
       name
@@ -66,7 +66,7 @@ query GetPostsByTagSlug($skip: Int!, $take: Int!, $slug: String!) {
       state: { equals: "published" }
       tags: { some: { slug: { equals: $slug } } }
     }
-    orderBy: { publishedDate: desc }
+    orderBy: [{ publishedDate: desc }]
   ) {
     sections {
       name

@@ -79,6 +79,7 @@ export default function MobileNavList({ data }: Props) {
               {/* section item */}
               <div className="flex items-center justify-between">
                 <NextLink
+                  prefetch={false}
                   href={link}
                   className="grow text-base font-bold leading-[175%] tracking-[0.5px]"
                   style={{
@@ -113,6 +114,7 @@ export default function MobileNavList({ data }: Props) {
                       <li key={slug}>
                         {/* category item */}
                         <NextLink
+                          prefetch={false}
                           href={getCategoryPageUrl(slug, isShortsCategory)}
                           className="hover-or-active:text-[color:var(--active-section-color)]"
                         >

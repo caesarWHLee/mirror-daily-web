@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { SITE_NAME } from '@/constants/misc'
 import { getAuthorPageUrl } from '@/utils/site-urls'
 import { getDefaultMetadata } from '@/utils/common'
-import ArticleSection from '../_components/articles-section'
+import ArticlesSection from '../_components/articles-section'
 
 // add segment config to prevent data fetch during build
 export const dynamic = 'force-dynamic'
@@ -63,7 +63,7 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <main className="flex flex-col items-center pl-[17px] pr-[18px] md:mb-[68px] md:pt-3 lg:flex-row lg:items-start lg:justify-center lg:gap-x-[100px] lg:pt-5">
-      <ArticleSection
+      <ArticlesSection
         info={authorInfo}
         initialList={posts}
         fetchMorePosts={fetchMorePosts}

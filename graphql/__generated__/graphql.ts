@@ -4625,6 +4625,7 @@ export type GetPostByIdQuery = {
       id: string
       name?: string | null
     }> | null
+    Warning?: { __typename?: 'Warning'; content?: string | null } | null
   } | null
 }
 
@@ -8134,6 +8135,19 @@ export const GetPostByIdDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'apiDataBrief' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'Warning' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'content' },
+                      },
+                    ],
+                  },
                 },
               ],
             },

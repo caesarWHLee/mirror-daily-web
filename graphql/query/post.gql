@@ -107,6 +107,9 @@ query GetPostById($id: ID!) {
     }
     apiData
     apiDataBrief
+    Warning {
+      content
+    }
   }
 }
 

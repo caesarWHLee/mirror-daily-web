@@ -66,6 +66,7 @@ export default function useRecaptcha() {
         }
       )
 
+      // https://cloud.google.com/recaptcha/docs/interpret-assessment-website#interpret_assessment
       const assessments = await response.json()
 
       if (!response.ok) {

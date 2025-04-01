@@ -11,6 +11,7 @@ import IconClose from '@/public/icons/shorts/close.svg'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { selectIsModalOpened } from '@/redux/shorts-upload/selector'
 import { shortsUploadActions } from '@/redux/shorts-upload/slice'
+import useRecaptcha from '@/hooks/use-recaptcha'
 
 type Props = {
   inputValue: string
@@ -20,10 +21,18 @@ type Props = {
 export default function HeaderBlock({ inputValue, setInputValue }: Props) {
   const dispatch = useAppDispatch()
   const isModalOpened = useAppSelector(selectIsModalOpened)
+  const { handleRecaptchaVerification } = useRecaptcha()
   const [isOpened, setIsOpened] = useState(false)
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value)
+  }
+
+  const onUpload = async () => {
+    if (isModalOpened) return
+    const isVerified = await handleRecaptchaVerification('short_submit')
+    if (!isVerified) return
+    dispatch(shortsUploadActions.setIsModalOpened(true))
   }
 
   return (
@@ -107,10 +116,7 @@ export default function HeaderBlock({ inputValue, setInputValue }: Props) {
         className={`my-[34px] ml-3 mr-7 h-7 shrink-0 rounded-[29px] bg-[#FF5A36] px-[10px] py-[3px] text-[15px] font-normal leading-[22px] text-white shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] hover:bg-[#FF9078] active:bg-[#E54B29] ${
           isModalOpened ? 'bg-[#E54B29]' : ''
         }`}
-        onClick={() => {
-          if (isModalOpened) return
-          dispatch(shortsUploadActions.setIsModalOpened(true))
-        }}
+        onClick={onUpload}
       >
         我要投稿
       </button>

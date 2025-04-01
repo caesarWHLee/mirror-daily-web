@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import ShortsItem from './item'
 import type { SwiperRef } from 'swiper/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Navigation, Keyboard, Mousewheel } from 'swiper/modules'
+import { FreeMode, Navigation, Keyboard } from 'swiper/modules'
 import IconPrev from '@/public/icons/slide-prev.svg'
 import IconNext from '@/public/icons/slide-next.svg'
 
@@ -49,9 +49,8 @@ export default function ShortsList({ items, customClass = '' }: Props) {
       <Swiper
         ref={swiperRef}
         slidesPerView={'auto'}
-        modules={[FreeMode, Navigation, Keyboard, Mousewheel]}
+        modules={[FreeMode, Navigation, Keyboard]}
         keyboard={true}
-        mousewheel={true}
         grabCursor={true}
         breakpoints={{
           320: {

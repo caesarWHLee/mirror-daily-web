@@ -24,6 +24,7 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
   const title = rawData.title ?? ''
   const subtitle = rawData.subtitle ?? ''
   const heroCaption = rawData.heroCaption ?? ''
+  const warning = rawData.Warning?.content ?? ''
   const publishedTime = dateFormatter(rawData.publishedDate) ?? ''
   const heroImage = getHeroImage(rawData.heroImage)
   const ogImage = getHeroImage(rawData.og_image)
@@ -64,6 +65,7 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
     apiDataBrief,
     tags,
     link,
+    warning,
   }
 }
 

@@ -25,6 +25,10 @@
 
 }
 
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 @layer components {
   .section-in-homepage {
     @apply px-[23px] md:px-5 lg:px-9 w-full max-w-[375px] md:max-w-screen-md lg:max-w-none;

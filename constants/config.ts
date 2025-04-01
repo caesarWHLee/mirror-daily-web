@@ -29,6 +29,9 @@ const ENV = (function () {
 })()
 
 const GCP_PROJECT_ID = 'mirrordaily'
+const RECAPTCHA_SITE_KEY = '6LfXbQIrAAAAAPrIGJH_oBhdpNsDTkO5IwlM4UfX'
+const RECAPTCHA_API_KEY = 'AIzaSyCCEuV8oEN0SZsU0Fg7E6e2gx-fdTCQLAQ'
+const RECAPTCHA_SCORE = 0.7
 /** section shorts must use specific key for navigation purpose */
 const FIXED_KEY_FOR_SECTION_SHORTS = 'shorts'
 
@@ -91,6 +94,9 @@ export {
   URL_STATIC_NEWS_SHORTSPAGE,
   URL_STATIC_CREATIVTY_SHORTPAGE,
   GCP_PROJECT_ID,
+  RECAPTCHA_SITE_KEY,
+  RECAPTCHA_API_KEY,
+  RECAPTCHA_SCORE,
   FIXED_KEY_FOR_SECTION_SHORTS,
   SITE_URL,
   GTM_ID,

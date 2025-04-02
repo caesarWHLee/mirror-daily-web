@@ -19,6 +19,7 @@
     font-size: 18px;
     line-height: 2;
 
+    /* The <a> style is the same as in story page */
     a {
       color: #007aff;
     }

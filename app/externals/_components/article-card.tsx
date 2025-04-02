@@ -15,6 +15,7 @@ export default function ArticleCard({
     <Link
       href={link}
       target="_blank"
+      prefetch={false}
       rel="noopener noreferrer"
       className="flex max-w-[340px] flex-col md:min-h-[291px] md:w-[280px] md:max-w-none lg:w-[240px]"
     >

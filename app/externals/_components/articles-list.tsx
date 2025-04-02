@@ -24,9 +24,7 @@ export default function ArticlesList({ initialList, fetchMorePosts }: Props) {
         </button>
       }
     >
-      {(posts) =>
-        posts.map((post) => <ArticleCard {...post} key={post.title} />)
-      }
+      {(posts) => posts.map((post) => <ArticleCard {...post} key={post.id} />)}
     </InfiniteScrollList>
   )
 }

@@ -10,6 +10,7 @@ import type {
 import type { HeaderData, HeroImage, Shorts } from '@/types/common'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
 import type { createErrorLogger } from './log/common'
 import type {
   latestShortsSchema,
@@ -94,8 +95,8 @@ const getHeroImage = (
 
 const dateFormatter = (date: string) => {
   dayjs.extend(utc)
-  const utcDate = dayjs(date).utc().add(8, 'hour').format('YYYY/MM/DD HH:mm:ss')
-  return utcDate
+  dayjs.extend(timezone)
+  return dayjs(date).utc().tz('Asia/Taipei').format('YYYY/MM/DD HH:mm:ss')
 }
 
 type DataFetchFunction<T> = () => Promise<T>

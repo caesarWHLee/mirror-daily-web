@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import NextImage from 'next/image'
 import type { External } from '@/types/externals'
 
@@ -12,10 +11,9 @@ export default function ArticleCard({
   textContent,
 }: External) {
   return (
-    <Link
+    <a
       href={link}
       target="_blank"
-      prefetch={false}
       rel="noopener noreferrer"
       className="flex max-w-[340px] flex-col md:min-h-[291px] md:w-[280px] md:max-w-none lg:w-[240px]"
     >
@@ -40,6 +38,6 @@ export default function ArticleCard({
       <p className="line-clamp-2 text-sm font-normal leading-normal text-[#4A4A4A]">
         {textContent}
       </p>
-    </Link>
+    </a>
   )
 }

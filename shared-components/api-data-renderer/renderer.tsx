@@ -35,9 +35,7 @@ export default function ApiDataRenderer({
     getOrganizationFromSourceCustomId(sourceCustomId) || 'mirror-media'
 
   return (
-    <article
-      className={`max-w-screen-sm md:max-w-[600px] lg:max-w-screen-md ${isBrief ? 'brief' : 'content'} story-renderer`}
-    >
+    <article className={`${isBrief ? 'brief' : 'content'} story-renderer`}>
       {apiData.map((apiDataBlock) => {
         switch (apiDataBlock.type) {
           case ApiDataBlockType.Unstyled:

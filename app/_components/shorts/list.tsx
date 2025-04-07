@@ -69,7 +69,7 @@ export default function ShortsList({ items, customClass = '' }: Props) {
           nextEl: slideNextRef.current,
           prevEl: slidePrevRef.current,
         }}
-        onSlideChange={(swiper) => {
+        onSlideChangeTransitionEnd={(swiper) => {
           setSwiperIsBeginning(swiper.isBeginning)
           setSwiperIsEnd(swiper.isEnd)
           setActiveIndex(swiper.realIndex)

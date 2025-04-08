@@ -20,6 +20,7 @@ export type Post = {
   apiData: ApiData
   apiDataBrief: ApiData
   tags: { name: string; slug: string }[]
+  algoTags: { name: string; slug: string }[]
   link: string
   warning: string
 }

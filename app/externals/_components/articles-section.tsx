@@ -1,14 +1,13 @@
-import ArticlesList from '../../../shared-components/search/articles-list'
-import type { AuthorInfo, AuthorPost } from '@/types/author'
+import ArticlesList from './articles-list'
+import type { External } from '@/types/externals'
 
 type Props = {
-  info: AuthorInfo
-  initialList: AuthorPost[]
-  fetchMorePosts: (page: number) => Promise<AuthorPost[]>
+  partnerName: string
+  initialList: External[]
+  fetchMorePosts: (page: number) => Promise<External[]>
 }
-
 export default function ArticleSection({
-  info,
+  partnerName,
   initialList,
   fetchMorePosts,
 }: Props) {
@@ -17,7 +16,7 @@ export default function ArticleSection({
       <div className="mb-3 flex w-full flex-col items-center gap-y-6 md:mb-6 md:gap-y-9 lg:mb-5 lg:items-start lg:gap-y-10">
         <hr className="w-full max-w-[343px] border-2 border-[#000928] md:w-[680px] md:max-w-none md:text-base lg:w-[768px]" />
         <p className="text-[13px] font-medium">
-          <span className="text-xl font-bold md:text-2xl">{info.name} </span>
+          <span className="text-xl font-bold md:text-2xl">{partnerName} </span>
           的文章
         </p>
       </div>
@@ -28,7 +27,6 @@ export default function ArticleSection({
           initialList={initialList}
         />
       </div>
-
       <hr className="mb-[38px] hidden w-[588px] border border-[#000928] md:block lg:hidden" />
     </section>
   )

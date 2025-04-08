@@ -93,6 +93,10 @@ query GetPostById($id: ID!) {
       slug
       name
     }
+    tags_algo {
+      slug
+      name
+    }
     sections {
       name
       color

@@ -17,6 +17,7 @@ export default function HeroSection({
   writers,
   photographers,
   tags,
+  algoTags,
   link,
 }: ItemInHeroSection) {
   const getAuthorsContent = (authors: Contact[]) => {
@@ -38,6 +39,8 @@ export default function HeroSection({
     })
     return elements
   }
+
+  const displayTags = [...tags, ...algoTags]
 
   return (
     <section className="mb-4 flex max-w-screen-sm flex-col items-center md:mb-6 md:w-[600px] md:max-w-none lg:mb-4 lg:w-[720px] lg:items-start">
@@ -91,7 +94,7 @@ export default function HeroSection({
         </div>
 
         <div className="flex flex-wrap gap-x-2 gap-y-4 md:grid-cols-6 md:gap-x-3 lg:mb-4">
-          {tags.map((item) => (
+          {displayTags.map((item) => (
             <Link
               prefetch={false}
               href={getTagPageUrl(item.slug)}

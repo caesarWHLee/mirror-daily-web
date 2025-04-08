@@ -48,6 +48,11 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
       name: tag.name ?? '',
       slug: tag.slug ?? '',
     })) ?? []
+  const algoTags =
+    rawData.tags_algo?.map((tag) => ({
+      name: tag.name ?? '',
+      slug: tag.slug ?? '',
+    })) ?? []
   const link = getStoryPageUrl(rawData.id)
 
   return {
@@ -64,6 +69,7 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
     apiData,
     apiDataBrief,
     tags,
+    algoTags,
     link,
     warning,
   }

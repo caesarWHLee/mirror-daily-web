@@ -4637,6 +4637,11 @@ export type GetPostByIdQuery = {
       slug?: string | null
       name?: string | null
     }> | null
+    tags_algo?: Array<{
+      __typename?: 'Tag'
+      slug?: string | null
+      name?: string | null
+    }> | null
     sections?: Array<{
       __typename?: 'Section'
       name?: string | null
@@ -8308,6 +8313,17 @@ export const GetPostByIdDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'tags' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'tags_algo' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [

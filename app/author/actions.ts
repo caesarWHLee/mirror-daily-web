@@ -21,22 +21,24 @@ function transformAuthorPost(
   return rawData.map(transfromRawPostWithSection)
 }
 
-async function fetchAuthorPosts(
-  page: number,
+async function fetchAuthorPosts({
+  take,
+  skip = 0,
+  id,
+}: {
+  take: number
+  skip?: number
   id: string
-): Promise<AuthorPost[]> {
+}): Promise<AuthorPost[]> {
   const errorLogger = createErrorLogger(
-    'Error occurs while fetching author posts in author page',
+    'Error occurs while fetching author posts on author page',
     getTraceObject()
   )
 
-  const pageSize = 12
-  const take = pageSize * 2
-
   const result = await fetchGQLData(errorLogger, GetPostsByAuthorIdDocument, {
-    skip: (page - 1) * pageSize,
-    take: take,
-    id: id,
+    skip,
+    take,
+    id,
   })
 
   if (result) {

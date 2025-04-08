@@ -21,3 +21,18 @@ query GetRelatedPostsByExternalId($id: ID!) {
     }
   }
 }
+
+query GetExternalsByPartnerSlug($skip: Int!, $take: Int!, $slug: String!) {
+  externals(
+    skip: $skip
+    take: $take
+    where: { partner: { slug: { equals: $slug } } }
+    orderBy: { publishedDate: desc }
+  ) {
+    id
+    title
+    brief
+    publishedDate
+    thumb
+  }
+}

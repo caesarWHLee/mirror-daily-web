@@ -1,20 +1,17 @@
 import ArticlesList from '../../../shared-components/search/articles-list'
 import type { TagInfo, TagPost } from '@/types/tag'
-import { fetchTagPosts } from '@/app/tag/actions'
 
 type Props = {
   info: TagInfo
   initialList: TagPost[]
-  slug: string
+  fetchMorePosts: (page: number) => Promise<TagPost[]>
 }
 
-export default function ArticleSection({ info, initialList, slug }: Props) {
-  const fetchMorePosts = async (page: number) => {
-    'use server'
-    const posts = await fetchTagPosts(page, slug)
-    return posts
-  }
-
+export default function ArticleSection({
+  info,
+  initialList,
+  fetchMorePosts,
+}: Props) {
   return (
     <section className="flex flex-col items-center">
       <div className="mb-5 flex w-full flex-col items-center gap-y-5 md:mb-6 md:gap-y-7 lg:mb-3 lg:items-start lg:gap-y-10">

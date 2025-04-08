@@ -1,0 +1,5 @@
+query GetPartnerInformation($slug: String!) {
+  partner(where: { slug: $slug }) {
+    name
+  }
+}

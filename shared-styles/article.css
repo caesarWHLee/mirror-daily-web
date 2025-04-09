@@ -424,9 +424,6 @@
         margin: auto;
         position: relative;
         aspect-ratio: 1;
-
-        @apply md:w-[576px] md:h-[346.67px];
-        @apply lg:w-[520px];
       }
 
       & figcaption {

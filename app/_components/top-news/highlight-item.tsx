@@ -16,7 +16,7 @@ export default function HighlightItem({
       href={link}
       target="_blank"
     >
-      <div className="aspect-[297/165] overflow-hidden rounded group-hover/highlight-item:*:scale-110 group-active/highlight-item:*:scale-110 md:aspect-auto md:h-[174px] lg:h-[311px]">
+      <div className="aspect-[330/200] overflow-hidden rounded group-hover/highlight-item:*:scale-110 group-active/highlight-item:*:scale-110 md:aspect-auto md:h-[187px] lg:h-[336px]">
         <CustomImage
           images={heroImage.resized}
           imagesWebP={heroImage.resizedWebp}

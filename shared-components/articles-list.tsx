@@ -32,7 +32,7 @@ export default function ArticlesList<T extends PostData>({
   if (!firstPost) notFound()
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex w-full max-w-screen-sm flex-col items-center md:max-w-[670px] lg:max-w-[740px]">
       <div className="mb-5 w-full pl-[23px] pr-[22px] md:mb-7 md:px-0">
         <h1
           style={{ color: color }}
@@ -45,8 +45,8 @@ export default function ArticlesList<T extends PostData>({
           className="max-w-[342px] border-2 md:max-w-[670px] lg:max-w-[740px]"
         />
       </div>
-      <div className="flex flex-col items-start">
-        <div className="mb-10 md:mb-[50px]">
+      <div className="flex w-full flex-col items-start">
+        <div className="mb-10 w-full md:mb-[50px]">
           <MainArticleCard color={color} postItem={firstPost} />
         </div>
         <div className="pl-[23px] pr-[22px] md:px-0">

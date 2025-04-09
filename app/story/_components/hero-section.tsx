@@ -44,20 +44,20 @@ export default function HeroSection({
 
   return (
     <section className="mb-4 flex max-w-screen-sm flex-col items-center md:mb-6 md:w-[600px] md:max-w-none lg:mb-4 lg:w-[720px] lg:items-start">
-      <figure className="order-1 mb-6 flex w-full flex-col lg:order-2">
-        <div className="mb-2 h-[187.5px] w-full md:h-[300px] lg:mb-4 lg:h-[360px]">
+      <figure className="order-1 mb-6 flex w-full flex-col lg:order-2 lg:mb-0">
+        <div className="relative aspect-[375/250] w-full overflow-hidden md:aspect-auto md:h-[400px] lg:h-[480px]">
           <CustomImage
             images={postMainImage.resized}
             imagesWebP={postMainImage.resizedWebp}
             alt={title}
           />
         </div>
-        <figcaption className="px-5 text-[13px] font-normal leading-normal text-[#7F8493] md:px-0">
+        <figcaption className="mt-2 px-5 text-[13px] font-normal leading-normal text-[#7F8493] md:px-0 lg:mt-4">
           {heroCaption}
         </figcaption>
       </figure>
 
-      <div className="order-2 px-5 md:px-0 lg:order-1">
+      <div className="order-2 w-full px-5 md:px-0 lg:order-1">
         <p
           style={{ color: sectionColor }}
           className="mb-1"

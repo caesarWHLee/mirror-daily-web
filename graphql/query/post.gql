@@ -64,7 +64,10 @@ query GetPostsByTagSlug($skip: Int!, $take: Int!, $slug: String!) {
     take: $take
     where: {
       state: { equals: "published" }
-      tags: { some: { slug: { equals: $slug } } }
+      OR: [
+        { tags: { some: { slug: { equals: $slug } } } }
+        { tags_algo: { some: { slug: { equals: $slug } } } }
+      ]
     }
     orderBy: [{ publishedDate: desc }]
   ) {

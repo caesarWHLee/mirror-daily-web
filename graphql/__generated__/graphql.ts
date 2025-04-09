@@ -276,8 +276,22 @@ export type Contact = {
   createdBy?: Maybe<User>
   id: Scalars['ID']['output']
   name?: Maybe<Scalars['String']['output']>
+  sections?: Maybe<Array<Section>>
+  sectionsCount?: Maybe<Scalars['Int']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
   updatedBy?: Maybe<User>
+}
+
+export type ContactSectionsArgs = {
+  cursor?: InputMaybe<SectionWhereUniqueInput>
+  orderBy?: Array<SectionOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: SectionWhereInput
+}
+
+export type ContactSectionsCountArgs = {
+  where?: SectionWhereInput
 }
 
 export type ContactCreateInput = {
@@ -285,6 +299,7 @@ export type ContactCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
   name?: InputMaybe<Scalars['String']['input']>
+  sections?: InputMaybe<SectionRelateToManyForCreateInput>
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>
   updatedBy?: InputMaybe<UserRelateToOneForCreateInput>
 }
@@ -315,6 +330,17 @@ export type ContactRelateToManyForUpdateInput = {
   set?: InputMaybe<Array<ContactWhereUniqueInput>>
 }
 
+export type ContactRelateToOneForCreateInput = {
+  connect?: InputMaybe<ContactWhereUniqueInput>
+  create?: InputMaybe<ContactCreateInput>
+}
+
+export type ContactRelateToOneForUpdateInput = {
+  connect?: InputMaybe<ContactWhereUniqueInput>
+  create?: InputMaybe<ContactCreateInput>
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>
+}
+
 export type ContactUpdateArgs = {
   data: ContactUpdateInput
   where: ContactWhereUniqueInput
@@ -325,6 +351,7 @@ export type ContactUpdateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
   name?: InputMaybe<Scalars['String']['input']>
+  sections?: InputMaybe<SectionRelateToManyForUpdateInput>
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>
   updatedBy?: InputMaybe<UserRelateToOneForUpdateInput>
 }
@@ -338,6 +365,7 @@ export type ContactWhereInput = {
   createdBy?: InputMaybe<UserWhereInput>
   id?: InputMaybe<IdFilter>
   name?: InputMaybe<StringFilter>
+  sections?: InputMaybe<SectionManyRelationFilter>
   updatedAt?: InputMaybe<DateTimeNullableFilter>
   updatedBy?: InputMaybe<UserWhereInput>
 }
@@ -1218,6 +1246,8 @@ export type Mutation = {
   createPartners?: Maybe<Array<Maybe<Partner>>>
   createPhoto?: Maybe<Photo>
   createPhotos?: Maybe<Array<Maybe<Photo>>>
+  createPopularTag?: Maybe<PopularTag>
+  createPopularTags?: Maybe<Array<Maybe<PopularTag>>>
   createPost?: Maybe<Post>
   createPosts?: Maybe<Array<Maybe<Post>>>
   createSection?: Maybe<Section>
@@ -1254,6 +1284,8 @@ export type Mutation = {
   deletePartners?: Maybe<Array<Maybe<Partner>>>
   deletePhoto?: Maybe<Photo>
   deletePhotos?: Maybe<Array<Maybe<Photo>>>
+  deletePopularTag?: Maybe<PopularTag>
+  deletePopularTags?: Maybe<Array<Maybe<PopularTag>>>
   deletePost?: Maybe<Post>
   deletePosts?: Maybe<Array<Maybe<Post>>>
   deleteSection?: Maybe<Section>
@@ -1291,6 +1323,8 @@ export type Mutation = {
   updatePartners?: Maybe<Array<Maybe<Partner>>>
   updatePhoto?: Maybe<Photo>
   updatePhotos?: Maybe<Array<Maybe<Photo>>>
+  updatePopularTag?: Maybe<PopularTag>
+  updatePopularTags?: Maybe<Array<Maybe<PopularTag>>>
   updatePost?: Maybe<Post>
   updatePosts?: Maybe<Array<Maybe<Post>>>
   updateSection?: Maybe<Section>
@@ -1402,6 +1436,14 @@ export type MutationCreatePhotoArgs = {
 
 export type MutationCreatePhotosArgs = {
   data: Array<PhotoCreateInput>
+}
+
+export type MutationCreatePopularTagArgs = {
+  data: PopularTagCreateInput
+}
+
+export type MutationCreatePopularTagsArgs = {
+  data: Array<PopularTagCreateInput>
 }
 
 export type MutationCreatePostArgs = {
@@ -1546,6 +1588,14 @@ export type MutationDeletePhotoArgs = {
 
 export type MutationDeletePhotosArgs = {
   where: Array<PhotoWhereUniqueInput>
+}
+
+export type MutationDeletePopularTagArgs = {
+  where: PopularTagWhereUniqueInput
+}
+
+export type MutationDeletePopularTagsArgs = {
+  where: Array<PopularTagWhereUniqueInput>
 }
 
 export type MutationDeletePostArgs = {
@@ -1701,6 +1751,15 @@ export type MutationUpdatePhotoArgs = {
 
 export type MutationUpdatePhotosArgs = {
   data: Array<PhotoUpdateArgs>
+}
+
+export type MutationUpdatePopularTagArgs = {
+  data: PopularTagUpdateInput
+  where: PopularTagWhereUniqueInput
+}
+
+export type MutationUpdatePopularTagsArgs = {
+  data: Array<PopularTagUpdateArgs>
 }
 
 export type MutationUpdatePostArgs = {
@@ -1895,6 +1954,7 @@ export type Photo = {
   copyRight?: Maybe<Scalars['Boolean']['output']>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
+  defaultImage?: Maybe<Scalars['Boolean']['output']>
   id: Scalars['ID']['output']
   imageFile?: Maybe<ImageFieldOutput>
   name?: Maybe<Scalars['String']['output']>
@@ -1910,6 +1970,7 @@ export type PhotoCreateInput = {
   copyRight?: InputMaybe<Scalars['Boolean']['input']>
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
+  defaultImage?: InputMaybe<Scalars['Boolean']['input']>
   imageFile?: InputMaybe<ImageFieldInput>
   name?: InputMaybe<Scalars['String']['input']>
   topicKeywords?: InputMaybe<Scalars['String']['input']>
@@ -1927,6 +1988,7 @@ export type PhotoManyRelationFilter = {
 export type PhotoOrderByInput = {
   copyRight?: InputMaybe<OrderDirection>
   createdAt?: InputMaybe<OrderDirection>
+  defaultImage?: InputMaybe<OrderDirection>
   id?: InputMaybe<OrderDirection>
   name?: InputMaybe<OrderDirection>
   topicKeywords?: InputMaybe<OrderDirection>
@@ -1966,6 +2028,7 @@ export type PhotoUpdateInput = {
   copyRight?: InputMaybe<Scalars['Boolean']['input']>
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
+  defaultImage?: InputMaybe<Scalars['Boolean']['input']>
   imageFile?: InputMaybe<ImageFieldInput>
   name?: InputMaybe<Scalars['String']['input']>
   topicKeywords?: InputMaybe<Scalars['String']['input']>
@@ -1981,6 +2044,7 @@ export type PhotoWhereInput = {
   copyRight?: InputMaybe<BooleanFilter>
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
+  defaultImage?: InputMaybe<BooleanFilter>
   id?: InputMaybe<IdFilter>
   name?: InputMaybe<StringFilter>
   topicKeywords?: InputMaybe<StringFilter>
@@ -1991,6 +2055,65 @@ export type PhotoWhereInput = {
 
 export type PhotoWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type PopularTag = {
+  __typename?: 'PopularTag'
+  choices?: Maybe<Tag>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  createdBy?: Maybe<User>
+  id: Scalars['ID']['output']
+  order?: Maybe<Scalars['Int']['output']>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+  updatedBy?: Maybe<User>
+}
+
+export type PopularTagCreateInput = {
+  choices?: InputMaybe<TagRelateToOneForCreateInput>
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>
+  createdBy?: InputMaybe<UserRelateToOneForCreateInput>
+  order?: InputMaybe<Scalars['Int']['input']>
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>
+  updatedBy?: InputMaybe<UserRelateToOneForCreateInput>
+}
+
+export type PopularTagOrderByInput = {
+  createdAt?: InputMaybe<OrderDirection>
+  id?: InputMaybe<OrderDirection>
+  order?: InputMaybe<OrderDirection>
+  updatedAt?: InputMaybe<OrderDirection>
+}
+
+export type PopularTagUpdateArgs = {
+  data: PopularTagUpdateInput
+  where: PopularTagWhereUniqueInput
+}
+
+export type PopularTagUpdateInput = {
+  choices?: InputMaybe<TagRelateToOneForUpdateInput>
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>
+  createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
+  order?: InputMaybe<Scalars['Int']['input']>
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>
+  updatedBy?: InputMaybe<UserRelateToOneForUpdateInput>
+}
+
+export type PopularTagWhereInput = {
+  AND?: InputMaybe<Array<PopularTagWhereInput>>
+  NOT?: InputMaybe<Array<PopularTagWhereInput>>
+  OR?: InputMaybe<Array<PopularTagWhereInput>>
+  choices?: InputMaybe<TagWhereInput>
+  createdAt?: InputMaybe<DateTimeNullableFilter>
+  createdBy?: InputMaybe<UserWhereInput>
+  id?: InputMaybe<IdFilter>
+  order?: InputMaybe<IntNullableFilter>
+  updatedAt?: InputMaybe<DateTimeNullableFilter>
+  updatedBy?: InputMaybe<UserWhereInput>
+}
+
+export type PopularTagWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  order?: InputMaybe<Scalars['Int']['input']>
 }
 
 export type Post = {
@@ -2009,6 +2132,7 @@ export type Post = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
   css?: Maybe<Scalars['String']['output']>
+  defaultHeroImage?: Maybe<Photo>
   designers?: Maybe<Array<Contact>>
   designersCount?: Maybe<Scalars['Int']['output']>
   engineers?: Maybe<Array<Contact>>
@@ -2254,6 +2378,7 @@ export type PostCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
   css?: InputMaybe<Scalars['String']['input']>
+  defaultHeroImage?: InputMaybe<PhotoRelateToOneForCreateInput>
   designers?: InputMaybe<ContactRelateToManyForCreateInput>
   engineers?: InputMaybe<ContactRelateToManyForCreateInput>
   extend_byline?: InputMaybe<Scalars['String']['input']>
@@ -2371,6 +2496,7 @@ export type PostUpdateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
   css?: InputMaybe<Scalars['String']['input']>
+  defaultHeroImage?: InputMaybe<PhotoRelateToOneForUpdateInput>
   designers?: InputMaybe<ContactRelateToManyForUpdateInput>
   engineers?: InputMaybe<ContactRelateToManyForUpdateInput>
   extend_byline?: InputMaybe<Scalars['String']['input']>
@@ -2427,6 +2553,7 @@ export type PostWhereInput = {
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
   css?: InputMaybe<StringFilter>
+  defaultHeroImage?: InputMaybe<PhotoWhereInput>
   designers?: InputMaybe<ContactManyRelationFilter>
   engineers?: InputMaybe<ContactManyRelationFilter>
   extend_byline?: InputMaybe<StringFilter>
@@ -2450,6 +2577,7 @@ export type PostWhereInput = {
   style?: InputMaybe<StringNullableFilter>
   subtitle?: InputMaybe<StringFilter>
   tags?: InputMaybe<TagManyRelationFilter>
+  tags_algo?: InputMaybe<TagManyRelationFilter>
   title?: InputMaybe<StringFilter>
   topics?: InputMaybe<TopicWhereInput>
   updatedAt?: InputMaybe<DateTimeNullableFilter>
@@ -2499,6 +2627,9 @@ export type Query = {
   photo?: Maybe<Photo>
   photos?: Maybe<Array<Photo>>
   photosCount?: Maybe<Scalars['Int']['output']>
+  popularTag?: Maybe<PopularTag>
+  popularTags?: Maybe<Array<PopularTag>>
+  popularTagsCount?: Maybe<Scalars['Int']['output']>
   post?: Maybe<Post>
   posts?: Maybe<Array<Post>>
   postsCount?: Maybe<Scalars['Int']['output']>
@@ -2696,6 +2827,22 @@ export type QueryPhotosArgs = {
 
 export type QueryPhotosCountArgs = {
   where?: PhotoWhereInput
+}
+
+export type QueryPopularTagArgs = {
+  where: PopularTagWhereUniqueInput
+}
+
+export type QueryPopularTagsArgs = {
+  cursor?: InputMaybe<PopularTagWhereUniqueInput>
+  orderBy?: Array<PopularTagOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: PopularTagWhereInput
+}
+
+export type QueryPopularTagsCountArgs = {
+  where?: PopularTagWhereInput
 }
 
 export type QueryPostArgs = {
@@ -3141,6 +3288,17 @@ export type TagRelateToManyForUpdateInput = {
   set?: InputMaybe<Array<TagWhereUniqueInput>>
 }
 
+export type TagRelateToOneForCreateInput = {
+  connect?: InputMaybe<TagWhereUniqueInput>
+  create?: InputMaybe<TagCreateInput>
+}
+
+export type TagRelateToOneForUpdateInput = {
+  connect?: InputMaybe<TagWhereUniqueInput>
+  create?: InputMaybe<TagCreateInput>
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>
+}
+
 export type TagUpdateArgs = {
   data: TagUpdateInput
   where: TagWhereUniqueInput
@@ -3429,6 +3587,7 @@ export type TopicWhereUniqueInput = {
 
 export type User = {
   __typename?: 'User'
+  author?: Maybe<Contact>
   email?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
   isProtected?: Maybe<Scalars['Boolean']['output']>
@@ -3467,6 +3626,7 @@ export type UserAuthenticationWithPasswordSuccess = {
 }
 
 export type UserCreateInput = {
+  author?: InputMaybe<ContactRelateToOneForCreateInput>
   email?: InputMaybe<Scalars['String']['input']>
   isProtected?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
@@ -3500,6 +3660,7 @@ export type UserUpdateArgs = {
 }
 
 export type UserUpdateInput = {
+  author?: InputMaybe<ContactRelateToOneForUpdateInput>
   email?: InputMaybe<Scalars['String']['input']>
   isProtected?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
@@ -3512,6 +3673,7 @@ export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>
   NOT?: InputMaybe<Array<UserWhereInput>>
   OR?: InputMaybe<Array<UserWhereInput>>
+  author?: InputMaybe<ContactWhereInput>
   email?: InputMaybe<StringFilter>
   id?: InputMaybe<IdFilter>
   isProtected?: InputMaybe<BooleanFilter>
@@ -8058,35 +8220,107 @@ export const GetPostsByTagSlugDocument = {
                     },
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'tags' },
+                      name: { kind: 'Name', value: 'OR' },
                       value: {
-                        kind: 'ObjectValue',
-                        fields: [
+                        kind: 'ListValue',
+                        values: [
                           {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'some' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'slug' },
-                                  value: {
-                                    kind: 'ObjectValue',
-                                    fields: [
-                                      {
-                                        kind: 'ObjectField',
-                                        name: { kind: 'Name', value: 'equals' },
-                                        value: {
-                                          kind: 'Variable',
-                                          name: { kind: 'Name', value: 'slug' },
-                                        },
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'tags' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'some' },
+                                      value: {
+                                        kind: 'ObjectValue',
+                                        fields: [
+                                          {
+                                            kind: 'ObjectField',
+                                            name: {
+                                              kind: 'Name',
+                                              value: 'slug',
+                                            },
+                                            value: {
+                                              kind: 'ObjectValue',
+                                              fields: [
+                                                {
+                                                  kind: 'ObjectField',
+                                                  name: {
+                                                    kind: 'Name',
+                                                    value: 'equals',
+                                                  },
+                                                  value: {
+                                                    kind: 'Variable',
+                                                    name: {
+                                                      kind: 'Name',
+                                                      value: 'slug',
+                                                    },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          },
+                                        ],
                                       },
-                                    ],
-                                  },
+                                    },
+                                  ],
                                 },
-                              ],
-                            },
+                              },
+                            ],
+                          },
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'tags_algo' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'some' },
+                                      value: {
+                                        kind: 'ObjectValue',
+                                        fields: [
+                                          {
+                                            kind: 'ObjectField',
+                                            name: {
+                                              kind: 'Name',
+                                              value: 'slug',
+                                            },
+                                            value: {
+                                              kind: 'ObjectValue',
+                                              fields: [
+                                                {
+                                                  kind: 'ObjectField',
+                                                  name: {
+                                                    kind: 'Name',
+                                                    value: 'equals',
+                                                  },
+                                                  value: {
+                                                    kind: 'Variable',
+                                                    name: {
+                                                      kind: 'Name',
+                                                      value: 'slug',
+                                                    },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
                           },
                         ],
                       },

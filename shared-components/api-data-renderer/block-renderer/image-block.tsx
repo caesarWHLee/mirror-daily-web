@@ -28,6 +28,7 @@ export default function ImageBlock({
           images={image.resized}
           imagesWebP={image.resizedWebp}
           alt={image.name}
+          objectFit="contain"
         />
       </div>
       {image.desc && <figcaption>{image.desc}</figcaption>}

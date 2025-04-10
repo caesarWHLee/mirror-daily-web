@@ -6,6 +6,7 @@ import { SITE_NAME } from '@/constants/misc'
 import { getFirstParagraphFromApiData } from '@/utils/data-process'
 import { IMAGE_PATH } from '@/constants/default-path'
 import { getDefaultMetadata } from '@/utils/common'
+import AdultWarning from '../_components/adult-warning'
 
 type PageProps = { params: { id: string } }
 
@@ -55,6 +56,7 @@ export default async function Page({ params }: PageProps) {
     <main className="flex flex-col items-center">
       <hr className="hidden w-[680px] border border-[#000000] md:mb-9 md:block lg:mb-12 lg:mt-4 lg:w-[1128px]" />
       <ArticleSection {...postData} id={id} />
+      <AdultWarning isAdult={postData.isAdult} />
     </main>
   )
 }

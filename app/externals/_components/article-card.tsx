@@ -18,7 +18,13 @@ export default function ArticleCard({
       className="flex max-w-[340px] flex-col md:min-h-[291px] md:w-[280px] md:max-w-none lg:w-[240px]"
     >
       <figure className="relative mb-1 aspect-[340/188] overflow-hidden rounded md:h-[155px] lg:h-[133px]">
-        <NextImage src={thumb} unoptimized fill alt={title} />
+        <NextImage
+          src={thumb}
+          unoptimized
+          fill
+          alt={title}
+          className="object-cover"
+        />
         <p
           style={{ backgroundColor: sectionColor }}
           className="absolute bottom-2 left-2 rounded-lg px-1 py-0 text-xs font-bold leading-4 tracking-[0.5px] text-[#ffffff]"

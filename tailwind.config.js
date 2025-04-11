@@ -38,6 +38,7 @@ module.exports = {
         'upload-modal': 1000000,
         'light-box': 10000000,
         'mobile-nav': 1000000000,
+        'warning-modal': 1000000000,
       },
       height: {
         header: {
@@ -48,6 +49,7 @@ module.exports = {
       },
       boxShadow: {
         input: ['2px 2px 2px 0px rgba(0,0,0,0.05)'],
+        modal: ['0px 4px 4px 0px rgba(0, 0, 0, 0.25)'],
       },
     },
   },

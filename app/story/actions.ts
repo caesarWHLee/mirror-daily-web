@@ -78,6 +78,7 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
     algoTags,
     link,
     warning,
+    isAdult: rawData.isAdult ?? false,
   }
 }
 

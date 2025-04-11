@@ -4750,6 +4750,7 @@ export type GetPostByIdQuery = {
     publishedDate?: any | null
     apiData?: any | null
     apiDataBrief?: any | null
+    isAdult?: boolean | null
     heroImage?: {
       __typename?: 'Photo'
       id: string
@@ -8633,6 +8634,7 @@ export const GetPostByIdDocument = {
                     ],
                   },
                 },
+                { kind: 'Field', name: { kind: 'Name', value: 'isAdult' } },
               ],
             },
           },

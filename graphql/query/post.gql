@@ -121,6 +121,7 @@ query GetPostById($id: ID!) {
     Warning {
       content
     }
+    isAdult
   }
 }
 

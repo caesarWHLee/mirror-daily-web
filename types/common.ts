@@ -1,4 +1,6 @@
 import type { ImageDataFragment } from '@/graphql/__generated__/graphql'
+import type { headerSchema } from '@/utils/data-schema'
+import type { z } from 'zod'
 
 type ResizedImage = { original: string } & Partial<
   Record<
@@ -41,25 +43,9 @@ export type ParameterOfComponent<T> = T extends (
   ? P
   : never
 
-export type HeaderSection = {
-  name: string
-  slug: string
-  color: string
-  categories: {
-    name: string
-    slug: string
-    color: string
-  }[]
-  type: 'Section'
-}
+export type HeaderData = z.infer<typeof headerSchema>
 
-export type HeaderTopic = {
-  name: string
-  slug: string
-  type: 'Topic'
-}
-
-export type HeaderData = HeaderSection | HeaderTopic
+export type HeaderSection = HeaderData['sections'][number]
 
 export enum SHORTS_TYPE {
   NEWS = 'news',

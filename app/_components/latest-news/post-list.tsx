@@ -16,10 +16,10 @@ import {
 const RENDER_PAGE_SIZE = 20
 
 type PostListProps = {
-  headerData: Parameters<typeof getSectionColor>[0]
+  sectionData: Parameters<typeof getSectionColor>[0]
 }
 
-export default function PostList({ headerData }: PostListProps): ReactNode {
+export default function PostList({ sectionData }: PostListProps): ReactNode {
   const isInitialized = useAppSelector(selectIsInitialized)
   const liveEvent = useAppSelector(selectLiveEvent)
   const latestPosts = useAppSelector(selectLatestPosts)
@@ -28,7 +28,7 @@ export default function PostList({ headerData }: PostListProps): ReactNode {
     page: number = 0
   ): Promise<LatestPost[]> => {
     // fetch more latest post on browser side
-    return await fetchLatestPost(headerData, page)
+    return await fetchLatestPost(sectionData, page)
   }
 
   if (!isInitialized) return null

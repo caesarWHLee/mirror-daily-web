@@ -1,7 +1,7 @@
 import type { z } from 'zod'
 import { isValidUrl } from './common'
 import type { rawLatestPostSchema, rawPopularPostSchema } from './data-schema'
-import type { HeaderData, LatestPost } from '@/types/common'
+import type { HeaderSection, LatestPost } from '@/types/common'
 import { DEFAULT_SECTION_COLOR, DEFAULT_SECTION_NAME } from '@/constants/misc'
 import { getHeroImage, getSectionColor } from './data-process'
 import { getPostPageUrl } from './site-urls'
@@ -20,13 +20,13 @@ type CategoryConfig = {
 
 const getSectionConfig = (
   rawPosts: z.infer<typeof rawLatestPostSchema>,
-  headerData: HeaderData[]
+  sectionData: HeaderSection[]
 ): CategoryConfig => {
   const { partner, sections } = rawPosts
 
   if (typeof partner === 'string') {
     const categoryName = sections[0]?.name || DEFAULT_SECTION_NAME
-    const color = getSectionColor(headerData, sections[0]?.slug)
+    const color = getSectionColor(sectionData, sections[0]?.slug)
 
     return {
       name: categoryName,
@@ -52,10 +52,10 @@ const getSectionConfig = (
 
 const transformRawLatestPost = (
   rawPosts: z.infer<typeof rawLatestPostSchema>,
-  headerData: HeaderData[]
+  sectionData: HeaderSection[]
 ): LatestPost => {
   const { id, title, heroImage, publishedDate, partner } = rawPosts
-  const { name, color } = getSectionConfig(rawPosts, headerData)
+  const { name, color } = getSectionConfig(rawPosts, sectionData)
 
   return {
     categoryName: name,
@@ -70,10 +70,10 @@ const transformRawLatestPost = (
 
 const transformRawPopularPost = (
   rawPosts: z.infer<typeof rawPopularPostSchema>,
-  headerData: HeaderData[]
+  sectionData: HeaderSection[]
 ): LatestPost => {
   const { id, title, heroImage, sectionsInInputOrder: sections } = rawPosts
-  const color = getSectionColor(headerData, sections[0]?.slug)
+  const color = getSectionColor(sectionData, sections[0]?.slug)
 
   return {
     categoryName: sections[0]?.name ?? DEFAULT_SECTION_NAME,

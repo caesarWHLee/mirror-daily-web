@@ -1,24 +1,17 @@
 'use client'
-import type { HeaderData, HeaderSection } from '@/types/common'
+import type { HeaderData } from '@/types/common'
 import { useEffect, useState } from 'react'
 import NextLink from 'next/link'
-import {
-  getCategoryPageUrl,
-  getSectionPageUrl,
-  getTopicPageUrl,
-} from '@/utils/site-urls'
-import { isSectionItem } from '@/utils/common'
+import { getCategoryPageUrl, getSectionPageUrl } from '@/utils/site-urls'
 import { FIXED_KEY_FOR_SECTION_SHORTS } from '@/constants/config'
 
 type Props = {
-  data: HeaderData[]
+  data: HeaderData
 }
 
 export default function DesktopNavList({ data }: Props) {
   const [activeItem, setActiveItem] = useState('')
-  const section = data
-    .filter(isSectionItem)
-    .find((section) => section.slug === activeItem)
+  const section = data.sections.find((section) => section.slug === activeItem)
 
   useEffect(() => {
     if (section) {
@@ -36,26 +29,13 @@ export default function DesktopNavList({ data }: Props) {
       onBlur={() => setActiveItem('')}
     >
       <ul className="flex h-[28px] w-full items-center text-base font-bold tracking-[0.5px]">
-        {data.map((section) => {
+        {data.sections.map((section) => {
           const { name, slug } = section
-          let shouldShowCategories: boolean
-          let color: string
-          let link: string
-          let categories: HeaderSection['categories'] = []
-          let isShortsCategory: boolean
-
-          if (isSectionItem(section)) {
-            shouldShowCategories = activeItem === slug
-            color = section.color
-            link = getSectionPageUrl(slug)
-            categories = section.categories
-            isShortsCategory = slug === FIXED_KEY_FOR_SECTION_SHORTS
-          } else {
-            shouldShowCategories = false
-            color = '#2b2b2b'
-            link = getTopicPageUrl(slug)
-            isShortsCategory = false
-          }
+          const shouldShowCategories = activeItem === slug
+          const color = section.color
+          const link = getSectionPageUrl(slug)
+          const categories = section.categories
+          const isShortsCategory = slug === FIXED_KEY_FOR_SECTION_SHORTS
 
           return (
             <li

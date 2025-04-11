@@ -112,6 +112,10 @@ query GetPostById($id: ID!) {
       id
       name
     }
+    designers {
+      id
+      name
+    }
     apiData
     apiDataBrief
     Warning {

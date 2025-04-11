@@ -5,6 +5,7 @@ import type { HeaderSection, LatestPost } from '@/types/common'
 import { DEFAULT_SECTION_COLOR, DEFAULT_SECTION_NAME } from '@/constants/misc'
 import { getHeroImage, getSectionColor } from './data-process'
 import { getPostPageUrl } from './site-urls'
+import { dateFormatter } from './data-process'
 
 const hasExternalLink = (
   rawPost: z.infer<typeof rawLatestPostSchema>
@@ -63,7 +64,7 @@ const transformRawLatestPost = (
     postId: id,
     postName: title,
     heroImage: getHeroImage(heroImage),
-    publishedDate,
+    publishedDate: dateFormatter(publishedDate),
     link: getPostPageUrl(id, !!partner),
   }
 }
@@ -72,7 +73,13 @@ const transformRawPopularPost = (
   rawPosts: z.infer<typeof rawPopularPostSchema>,
   sectionData: HeaderSection[]
 ): LatestPost => {
-  const { id, title, heroImage, sectionsInInputOrder: sections } = rawPosts
+  const {
+    id,
+    title,
+    heroImage,
+    publishedDate,
+    sectionsInInputOrder: sections,
+  } = rawPosts
   const color = getSectionColor(sectionData, sections[0]?.slug)
 
   return {
@@ -81,7 +88,7 @@ const transformRawPopularPost = (
     postId: id,
     postName: title,
     heroImage: getHeroImage(heroImage),
-    publishedDate: new Date().toISOString(),
+    publishedDate: dateFormatter(publishedDate),
     link: getPostPageUrl(id),
   }
 }

@@ -121,7 +121,7 @@ export default function UiHeader({
           <DesktopNavList sections={data.sections} />
         </div>
         <div className="flex w-full grow items-start text-sm lg:mt-[9px] lg:text-base">
-          <p className="mr-[18px] mt-1 shrink-0 font-bold leading-none text-[#D94141] md:mr-[7px] lg:mr-3">
+          <p className="mr-[18px] mt-1 shrink-0 font-bold leading-none text-[#FF5457] md:mr-[7px] lg:mr-3">
             快訊
           </p>
           <FlashNewsList items={flashNews} />

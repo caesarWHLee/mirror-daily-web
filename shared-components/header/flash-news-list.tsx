@@ -40,7 +40,7 @@ export default function FlashNewsList({ items }: Props) {
   }
 
   return (
-    <div className="relative h-[60px] grow overflow-hidden font-normal leading-normal text-[#D94141] md:h-5 lg:h-[23px] lg:font-medium">
+    <div className="relative h-[60px] grow overflow-hidden font-normal leading-normal text-[#FF5457] md:h-5 lg:h-[23px] lg:font-medium">
       {items.map((item, index) => {
         const { postId, postName, link } = item
 

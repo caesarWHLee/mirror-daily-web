@@ -4001,7 +4001,7 @@ export type PostOverviewFragment = {
   __typename?: 'Post'
   id: string
   title?: string | null
-  createdAt?: any | null
+  publishedDate?: any | null
   apiDataBrief?: any | null
   apiData?: any | null
   heroImage?: {
@@ -4478,7 +4478,7 @@ export type GetPostsBySectionSlugQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     heroImage?: {
@@ -4551,7 +4551,7 @@ export type GetPostsByCategorySlugQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     heroImage?: {
@@ -4613,7 +4613,7 @@ export type GetPostsByAuthorIdQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     sections?: Array<{
@@ -4680,7 +4680,7 @@ export type GetPostsByTagSlugQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     sections?: Array<{
@@ -5632,7 +5632,7 @@ export const PostOverviewFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -7460,7 +7460,7 @@ export const GetPostsBySectionSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -7783,7 +7783,7 @@ export const GetPostsByCategorySlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -8104,7 +8104,7 @@ export const GetPostsByAuthorIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -8434,7 +8434,7 @@ export const GetPostsByTagSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {

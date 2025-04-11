@@ -5,7 +5,7 @@ import type { PostDataWithSection } from '@/utils/data-process'
 export default function ArticleCard({
   title,
   link,
-  createdTime,
+  publishedDate,
   sectionName,
   sectionColor,
   textContent,
@@ -36,7 +36,7 @@ export default function ArticleCard({
         style={{ color: sectionColor }}
         className="mb-[11px] text-sm font-normal leading-normal"
       >
-        {createdTime}
+        {publishedDate}
       </p>
       <figcaption className="mb-[6px] line-clamp-2 text-lg font-bold leading-normal text-[#4A4A4A]">
         {title}

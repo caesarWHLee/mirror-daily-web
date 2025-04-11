@@ -4819,6 +4819,11 @@ export type GetPostByIdQuery = {
       id: string
       name?: string | null
     }> | null
+    designers?: Array<{
+      __typename?: 'Contact'
+      id: string
+      name?: string | null
+    }> | null
     Warning?: { __typename?: 'Warning'; content?: string | null } | null
   } | null
 }
@@ -8591,6 +8596,17 @@ export const GetPostByIdDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'photographers' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'designers' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [

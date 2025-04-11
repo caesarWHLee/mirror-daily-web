@@ -16,6 +16,7 @@ export default function HeroSection({
   sectionColor,
   writers,
   photographers,
+  editors,
   tags,
   algoTags,
   link,
@@ -84,6 +85,14 @@ export default function HeroSection({
               <p className="shrink-0">攝影：</p>
               <p className="flex flex-wrap items-center break-all">
                 {getAuthorsContent(photographers)}
+              </p>
+            </div>
+          )}
+          {!!editors.length && (
+            <div className="flex">
+              <p className="shrink-0">編輯：</p>
+              <p className="flex flex-wrap items-center break-all">
+                {getAuthorsContent(editors)}
               </p>
             </div>
           )}

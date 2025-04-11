@@ -191,7 +191,7 @@ const transfromRawPost = (rawPost: RawPost): PostData => {
   const id = rawPost.id
   const title = rawPost.title ?? ''
   const link = getStoryPageUrl(id)
-  const createdTime = dateFormatter(rawPost.createdAt)
+  const publishedDate = dateFormatter(rawPost.publishedDate)
   const heroImage = getHeroImage(rawPost.heroImage)
   const brief = getFirstParagraphFromApiData(rawPost.apiDataBrief) ?? ''
   const content = getFirstParagraphFromApiData(rawPost.apiData) ?? ''
@@ -203,7 +203,7 @@ const transfromRawPost = (rawPost: RawPost): PostData => {
     id,
     title,
     link,
-    createdTime,
+    publishedDate,
     textContent,
     postMainImage,
   }
@@ -221,7 +221,7 @@ const transfromRawPostWithSection = (
   const id = rawPost.id
   const title = rawPost.title ?? ''
   const link = getStoryPageUrl(id)
-  const createdTime = dateFormatter(rawPost.createdAt) ?? ''
+  const publishedDate = dateFormatter(rawPost.publishedDate) ?? ''
   const heroImage = getHeroImage(rawPost.heroImage)
   const brief = getFirstParagraphFromApiData(rawPost.apiDataBrief) ?? ''
   const sectionName = rawPost.sections?.[0]?.name ?? DEFAULT_SECTION_NAME
@@ -236,7 +236,7 @@ const transfromRawPostWithSection = (
     title,
     textContent,
     link,
-    createdTime,
+    publishedDate,
     sectionColor,
     sectionName,
   }

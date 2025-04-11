@@ -1,5 +1,4 @@
 import type { ItemInTopNewsSection } from '@/types/homepage'
-import dayjs from 'dayjs'
 import NextLink from 'next/link'
 import type { CSSProperties } from 'react'
 
@@ -20,8 +19,6 @@ export default function ListItem({
   postName,
   link,
 }: Props) {
-  const timeStr = dayjs(publishedDate).format('YYYY/MM/DD HH:mm:ss')
-
   return (
     <div className="[&:not(:last-child)]:border-b [&:not(:last-child)]:border-[#CCCED4] [&:not(:last-child)]:pb-3 md:[&:not(:last-child)]:pb-2">
       <div className={`flex items-center`}>
@@ -35,7 +32,7 @@ export default function ListItem({
           style={{ color: categoryColor }}
           className="ml-2 text-sm font-light leading-normal tracking-[0.5px] md:ml-3"
         >
-          {timeStr}
+          {publishedDate}
         </time>
       </div>
       <NextLink

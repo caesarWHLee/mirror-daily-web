@@ -6,6 +6,8 @@ import { SITE_NAME } from '@/constants/misc'
 import { getFirstParagraphFromApiData } from '@/utils/data-process'
 import { IMAGE_PATH } from '@/constants/default-path'
 import { getDefaultMetadata } from '@/utils/common'
+import { Suspense } from 'react'
+import PageLogger from '@/app/_components/page-logger'
 import AdultWarning from '../_components/adult-warning'
 
 type PageProps = { params: { id: string } }
@@ -52,11 +54,25 @@ export default async function Page({ params }: PageProps) {
   const postData = await fetchPost(id)
   if (!postData) notFound()
 
+  const extra = {
+    storyId: postData.id,
+    storyTitle: postData.title,
+    authorNames: postData.writers.map((w) => w.name),
+    sectionName: postData.sectionName,
+    tags: postData.tags.map((t) => t.name),
+    algoTags: postData.algoTags.map((t) => t.name),
+  }
+
   return (
-    <main className="flex flex-col items-center">
-      <hr className="hidden w-[680px] border border-[#000000] md:mb-9 md:block lg:mb-12 lg:mt-4 lg:w-[1128px]" />
-      <ArticleSection {...postData} id={id} />
-      <AdultWarning isAdult={postData.isAdult} />
-    </main>
+    <>
+      <Suspense>
+        <PageLogger extra={extra} />
+      </Suspense>
+      <main className="flex flex-col items-center">
+        <hr className="hidden w-[680px] border border-[#000000] md:mb-9 md:block lg:mb-12 lg:mt-4 lg:w-[1128px]" />
+        <ArticleSection {...postData} id={id} />
+        <AdultWarning isAdult={postData.isAdult} />
+      </main>
+    </>
   )
 }

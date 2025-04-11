@@ -12,6 +12,7 @@ import ShortsDerivativeSection from './_components/shorts/derivative-section'
 import LatestNewsSection from './_components/latest-news/section'
 import Loading from './_components/loading'
 import { Suspense } from 'react'
+import PageLogger from './_components/page-logger'
 
 // add segment config to prevent data fetch during build
 export const dynamic = 'force-dynamic'
@@ -21,6 +22,9 @@ export default async function Home() {
 
   return (
     <>
+      <Suspense>
+        <PageLogger />
+      </Suspense>
       <Header />
       <div className="flex w-full max-w-screen-lg shrink-0 grow flex-col">
         <main className="flex w-full grow flex-col items-center justify-center">

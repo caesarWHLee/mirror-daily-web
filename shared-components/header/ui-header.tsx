@@ -13,6 +13,7 @@ import IconYouTube from '@/public/icons/logos/youtube-black.svg'
 import IconLine from '@/public/icons/logos/line-black.svg'
 import type { HeaderData } from '@/types/common'
 import type { FlashNews } from '@/types/homepage'
+import { getTagPageUrl } from '@/utils/site-urls'
 
 const ExtendedSocialLinks = [
   {
@@ -89,16 +90,21 @@ export default function UiHeader({
         </div>
       </div>
       <hr className="h-px w-full bg-[#ccced4] md:hidden" />
-      <div className="flex w-full max-w-screen-sm grow pb-[3px] pl-[17px] pr-[23px] pt-[18px] md:max-w-screen-md md:pb-[9px] md:pl-5 md:pr-6 md:pt-[10px] lg:max-w-screen-lg lg:flex-col lg:px-9 lg:pb-[17px]">
-        <div className="flex w-full grow items-start text-sm lg:order-2 lg:mt-[14px] lg:text-base">
-          <p className="mr-[18px] mt-1 shrink-0 font-bold leading-none text-[#D94141] md:mr-[7px] lg:mr-3">
-            快訊
-          </p>
-          <FlashNewsList items={flashNews} />
-        </div>
+      <div className="flex w-full max-w-screen-sm grow pb-[3px] pl-[17px] pr-[23px] pt-4 md:max-w-screen-md md:pb-[9px] md:pl-5 md:pr-6 md:pt-2 lg:max-w-screen-lg lg:flex-col lg:px-9 lg:pb-[17px] lg:pt-[13px]">
         <div className="flex">
-          <div className="hidden h-[53px] overflow-hidden lg:flex lg:grow">
-            <DesktopNavList data={data} />
+          <div className="hidden gap-x-4 overflow-hidden text-xl font-bold leading-tight text-[#2B2B2B] lg:flex lg:grow">
+            {data.popularTags.map((item) => {
+              return (
+                <a
+                  key={item.id}
+                  href={getTagPageUrl(item.choices.slug)}
+                  target="_blank"
+                  className=""
+                >
+                  {item.choices.name}
+                </a>
+              )
+            })}
           </div>
           <div className="hidden lg:flex lg:shrink-0 lg:grow-0 lg:gap-x-2">
             {ExtendedSocialLinks.map(({ name, href, icon }) => {
@@ -110,6 +116,15 @@ export default function UiHeader({
               )
             })}
           </div>
+        </div>
+        <div className="mt-[14px] hidden lg:flex">
+          <DesktopNavList sections={data.sections} />
+        </div>
+        <div className="flex w-full grow items-start text-sm lg:mt-[9px] lg:text-base">
+          <p className="mr-[18px] mt-1 shrink-0 font-bold leading-none text-[#D94141] md:mr-[7px] lg:mr-3">
+            快訊
+          </p>
+          <FlashNewsList items={flashNews} />
         </div>
       </div>
     </header>

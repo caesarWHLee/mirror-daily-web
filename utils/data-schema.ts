@@ -72,6 +72,7 @@ export const rawPopularPostSchema = z.object({
   id: z.string(),
   title: z.string(),
   heroImage: z.union([heroImageSchema, z.string(), z.null(), z.undefined()]),
+  publishedDate: z.string(),
   sectionsInInputOrder: z.array(sectionSchema.pick({ name: true, slug: true })),
 })
 

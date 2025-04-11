@@ -51,7 +51,7 @@ export default async function Page({ params }: PageProps) {
   const name = categoryInfo.name
 
   return (
-    <main className="mb-10 flex flex-col items-center md:mb-[72px] md:pt-5 lg:mb-[100px] lg:flex-row lg:justify-start lg:gap-x-[128px]">
+    <main className="mb-10 flex flex-col items-center md:mb-[72px] md:pt-5 lg:mb-[100px] lg:flex-row lg:items-start lg:gap-x-[128px] lg:px-9">
       <ArticlesList
         initialPosts={posts}
         slug={slug}

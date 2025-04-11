@@ -57,7 +57,7 @@ export default function UiHeader({
   return (
     <header className="flex h-[150px] w-full shrink-0 flex-col items-center md:h-[134px] lg:h-[202px]">
       <div className="flex h-[68px] w-full justify-center bg-mirror-blue-700 md:h-[95px] lg:h-[80px]">
-        <div className="flex w-full max-w-screen-sm pl-4 pr-6 md:max-w-screen-md md:pl-5 lg:max-w-screen-lg lg:pl-9">
+        <div className="flex w-full max-w-screen-sm pl-4 pr-6 md:max-w-screen-md md:pl-5 lg:max-w-screen-lg lg:px-9">
           <NextLink
             prefetch={false}
             href="/"
@@ -70,7 +70,7 @@ export default function UiHeader({
               className="aspect-[150/42] md:aspect-auto"
             />
           </NextLink>
-          <div className="ml-[35px] mt-[23px] flex shrink-0 md:ml-[232px] md:mt-10 md:gap-x-[5px] lg:ml-[635px] lg:mt-8 lg:gap-x-[7px]">
+          <div className="ml-auto mt-[23px] flex shrink-0 md:mt-10 md:gap-x-[5px] lg:mt-8 lg:gap-x-[7px]">
             {/* TODO: form submit handler, expanded search bar on mobile device */}
             <input
               type="text"
@@ -82,7 +82,7 @@ export default function UiHeader({
               <NextImage src={IconSearch} fill={true} alt="搜尋" />
             </button>
           </div>
-          <button className="ml-[11.71px] mt-5 h-7 shrink-0 rounded-[29px] bg-[#D94141] px-[10px] py-[3px] text-[15px] font-normal leading-none text-white md:ml-[18px] md:mt-10 md:h-5 md:px-[6px] md:py-[0.5px] md:text-[13px] lg:ml-[11.14px] lg:mt-[32px] lg:h-6 lg:px-[10px] lg:py-px lg:text-[15px]">
+          <button className="ml-[11.71px] mt-5 hidden h-7 shrink-0 rounded-[29px] bg-[#FF5457] px-[10px] py-[3px] text-[15px] font-normal leading-none text-white md:ml-[18px] md:mt-10 md:h-5 md:px-[6px] md:py-[0.5px] md:text-[13px] lg:ml-[11.14px] lg:mt-[32px] lg:inline-block lg:h-6 lg:px-[10px] lg:py-px lg:text-[15px]">
             {/* TODO: click handler */}
             我要爆料
           </button>
@@ -98,7 +98,6 @@ export default function UiHeader({
                 <a
                   key={item.id}
                   href={getTagPageUrl(item.choices.slug)}
-                  target="_blank"
                   className=""
                 >
                   {item.choices.name}

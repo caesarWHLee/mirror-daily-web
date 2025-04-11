@@ -1,6 +1,6 @@
 'use client'
 
-import type { HeaderData } from '@/types/common'
+import type { HeaderSection } from '@/types/common'
 import { useEffect, useState } from 'react'
 import NextLink from 'next/link'
 import NextImage from 'next/image'
@@ -11,10 +11,10 @@ import { getTailwindConfig } from '@/utils/tailwind'
 import { FIXED_KEY_FOR_SECTION_SHORTS } from '@/constants/config'
 
 type Props = {
-  data: HeaderData
+  sections: HeaderSection[]
 }
 
-export default function MobileNavList({ data }: Props) {
+export default function MobileNavList({ sections }: Props) {
   const config = getTailwindConfig()
   const desktopLowerBound = Number(config.theme.screens.lg.split('px')[0])
   const { width } = useWindowSize()
@@ -40,7 +40,7 @@ export default function MobileNavList({ data }: Props) {
   return (
     <nav className="w-full max-w-[calc(375px-46px*2)] grow self-center overflow-y-scroll">
       <ul className="flex w-[188px] flex-col">
-        {data.sections.map((section) => {
+        {sections.map((section) => {
           const { name, slug } = section
           const hasCategories = section.categories.length > 0
           const shouldShowCategories = slug === activeItem

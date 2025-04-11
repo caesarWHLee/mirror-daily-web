@@ -37,7 +37,7 @@ export default async function Home() {
           </Suspense>
           <SectionDivider customClasses="lg:hidden" />
           {/* 即時新聞/熱門新聞（10則） */}
-          <TopNewsSection headerData={headerData} />
+          <TopNewsSection sectionData={headerData['sections']} />
           <SectionDivider />
           {/* 短影音新聞 */}
           <Suspense

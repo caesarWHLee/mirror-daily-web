@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Selector from './selector'
 import PostList from './post-list'
-import type { HeaderData, ParameterOfComponent } from '@/types/common'
+import type { HeaderSection, ParameterOfComponent } from '@/types/common'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import {
   selectIsInitialized,
@@ -19,7 +19,7 @@ export const TAB = {
 } as const
 
 type Props = {
-  headerData: HeaderData[]
+  sectionData: HeaderSection[]
 }
 
 type PostData = Record<
@@ -27,7 +27,7 @@ type PostData = Record<
   ParameterOfComponent<typeof PostList>['list']
 >
 
-export default function TopNewsSection({ headerData }: Props) {
+export default function TopNewsSection({ sectionData }: Props) {
   const dispatch = useAppDispatch()
   const isInitialized = useAppSelector(selectIsInitialized)
   const liveEvent = useAppSelector(selectLiveEvent)
@@ -83,9 +83,9 @@ export default function TopNewsSection({ headerData }: Props) {
 
   useEffect(() => {
     if (!isInitialized) {
-      dispatch(initializeData(headerData))
+      dispatch(initializeData(sectionData))
     }
-  }, [isInitialized, dispatch, headerData])
+  }, [isInitialized, dispatch, sectionData])
 
   if (!isInitialized)
     return (

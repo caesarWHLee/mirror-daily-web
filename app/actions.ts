@@ -48,6 +48,7 @@ const transformRawLiveEvents = (
     postName: event.name ?? '',
     link: event.link ?? '',
     heroImage: getHeroImage(event.heroImage),
+    isVideoType: true,
   }
 }
 

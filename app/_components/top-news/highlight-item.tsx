@@ -1,14 +1,38 @@
 'use client'
 import type { ReactNode } from 'react'
+import type { PickupItemInTopNewsSection } from '@/types/homepage'
 import CustomImage from '@/shared-components/custom-image'
 import NextLink from 'next/link'
-import type { PickupItemInTopNewsSection } from '@/types/homepage'
+import ReactPlayer from 'react-player/lazy'
 
 export default function HighlightItem({
   heroImage,
   postName,
   link,
+  isVideoType,
 }: PickupItemInTopNewsSection): ReactNode {
+  if (isVideoType) {
+    return (
+      <div className="aspect-[330/200] w-full shrink-0 md:aspect-auto md:h-[187px] md:w-[312px] lg:h-[336px] lg:w-[560px]">
+        <ReactPlayer
+          url={link}
+          width="100%"
+          height="100%"
+          muted={false}
+          playing={false}
+          playsinline={true}
+          config={{
+            file: {
+              attributes: {
+                preload: 'none',
+              },
+            },
+          }}
+        />
+      </div>
+    )
+  }
+
   return (
     <NextLink
       prefetch={false}

@@ -53,6 +53,23 @@ module.exports = {
         modal: ['0px 4px 4px 0px rgba(0, 0, 0, 0.25)'],
       },
     },
+    keyframes: {
+      popup: {
+        '0%, 100%': {
+          transform: 'translateY(-100%)',
+          top: '0px',
+          opacity: 0,
+        },
+        '25%, 75%': {
+          transform: 'translateY(0%)',
+          top: '40px',
+          opacity: 1,
+        },
+      },
+    },
+    animation: {
+      popup: 'popup 1s ease-in-out',
+    },
   },
   plugins: [
     plugin(function ({ addVariant }) {

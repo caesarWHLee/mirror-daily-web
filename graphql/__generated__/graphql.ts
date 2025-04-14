@@ -4318,6 +4318,7 @@ export type GetEditorChoicesQuery = {
 
 export type GetLiveEventForHomepageQueryVariables = Exact<{
   startDate: Scalars['DateTime']['input']
+  endDate: Scalars['DateTime']['input']
 }>
 
 export type GetLiveEventForHomepageQuery = {
@@ -6649,6 +6650,20 @@ export const GetLiveEventForHomepageDocument = {
             },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'endDate' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'DateTime' },
+            },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -6736,6 +6751,59 @@ export const GetLiveEventForHomepageDocument = {
                               kind: 'Variable',
                               name: { kind: 'Name', value: 'startDate' },
                             },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'OR' },
+                      value: {
+                        kind: 'ListValue',
+                        values: [
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'endDate' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'gt' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: {
+                                          kind: 'Name',
+                                          value: 'endDate',
+                                        },
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'endDate' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'equals' },
+                                      value: { kind: 'NullValue' },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
                           },
                         ],
                       },

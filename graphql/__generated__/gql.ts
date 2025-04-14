@@ -31,7 +31,7 @@ const documents = {
     types.GetAuthorInformationDocument,
   'query GetEditorChoices {\n  editorChoices(\n    orderBy: [{order: asc}]\n    take: 10\n    where: {state: {equals: "published"}}\n  ) {\n    ...EditorChoiceData\n  }\n}':
     types.GetEditorChoicesDocument,
-  'query GetLiveEventForHomepage($startDate: DateTime!) {\n  events(\n    orderBy: [{publishedDate: desc}]\n    take: 1\n    where: {eventType: {equals: "livestreaming"}, state: {equals: "published"}, startDate: {lte: $startDate}}\n  ) {\n    name\n    link\n    heroImage {\n      ...ImageData\n    }\n  }\n}':
+  'query GetLiveEventForHomepage($startDate: DateTime!, $endDate: DateTime!) {\n  events(\n    orderBy: [{publishedDate: desc}]\n    take: 1\n    where: {eventType: {equals: "livestreaming"}, state: {equals: "published"}, startDate: {lte: $startDate}, OR: [{endDate: {gt: $endDate}}, {endDate: {equals: null}}]}\n  ) {\n    name\n    link\n    heroImage {\n      ...ImageData\n    }\n  }\n}':
     types.GetLiveEventForHomepageDocument,
   'query GetExternalById($id: ID!) {\n  external(where: {id: $id}) {\n    id\n    title\n    thumb\n    extend_byline\n    publishedDate\n    brief\n    content\n    tags {\n      name\n      slug\n    }\n  }\n}\n\nquery GetRelatedPostsByExternalId($id: ID!) {\n  external(where: {id: $id}) {\n    relateds {\n      ...RelatedPost\n    }\n  }\n}\n\nquery GetExternalsByPartnerSlug($skip: Int!, $take: Int!, $slug: String!) {\n  externals(\n    skip: $skip\n    take: $take\n    where: {partner: {slug: {equals: $slug}}}\n    orderBy: {publishedDate: desc}\n  ) {\n    id\n    title\n    brief\n    publishedDate\n    thumb\n  }\n}':
     types.GetExternalByIdDocument,
@@ -121,8 +121,8 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-  source: 'query GetLiveEventForHomepage($startDate: DateTime!) {\n  events(\n    orderBy: [{publishedDate: desc}]\n    take: 1\n    where: {eventType: {equals: "livestreaming"}, state: {equals: "published"}, startDate: {lte: $startDate}}\n  ) {\n    name\n    link\n    heroImage {\n      ...ImageData\n    }\n  }\n}'
-): (typeof documents)['query GetLiveEventForHomepage($startDate: DateTime!) {\n  events(\n    orderBy: [{publishedDate: desc}]\n    take: 1\n    where: {eventType: {equals: "livestreaming"}, state: {equals: "published"}, startDate: {lte: $startDate}}\n  ) {\n    name\n    link\n    heroImage {\n      ...ImageData\n    }\n  }\n}']
+  source: 'query GetLiveEventForHomepage($startDate: DateTime!, $endDate: DateTime!) {\n  events(\n    orderBy: [{publishedDate: desc}]\n    take: 1\n    where: {eventType: {equals: "livestreaming"}, state: {equals: "published"}, startDate: {lte: $startDate}, OR: [{endDate: {gt: $endDate}}, {endDate: {equals: null}}]}\n  ) {\n    name\n    link\n    heroImage {\n      ...ImageData\n    }\n  }\n}'
+): (typeof documents)['query GetLiveEventForHomepage($startDate: DateTime!, $endDate: DateTime!) {\n  events(\n    orderBy: [{publishedDate: desc}]\n    take: 1\n    where: {eventType: {equals: "livestreaming"}, state: {equals: "published"}, startDate: {lte: $startDate}, OR: [{endDate: {gt: $endDate}}, {endDate: {equals: null}}]}\n  ) {\n    name\n    link\n    heroImage {\n      ...ImageData\n    }\n  }\n}']
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

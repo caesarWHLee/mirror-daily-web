@@ -1,4 +1,4 @@
-query GetLiveEventForHomepage($startDate: DateTime!) {
+query GetLiveEventForHomepage($startDate: DateTime!, $endDate: DateTime!) {
   events(
     orderBy: [{ publishedDate: desc}],
     take: 1,
@@ -7,7 +7,19 @@ query GetLiveEventForHomepage($startDate: DateTime!) {
       state: { equals: "published" }
       startDate:  {
         lte: $startDate
-      }
+      },
+      OR: [
+        {
+          endDate:  {
+            gt: $endDate
+          }
+        },
+        {
+          endDate:  {
+             equals: null
+          }
+        }
+      ]
     }
   ) {
     name

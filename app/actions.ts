@@ -63,6 +63,7 @@ export const fetchLiveEvent =
       GetLiveEventForHomepageDocument,
       {
         startDate: dayjs().add(5, 'minutes').toISOString(),
+        endDate: dayjs().toISOString(),
       }
     )
 

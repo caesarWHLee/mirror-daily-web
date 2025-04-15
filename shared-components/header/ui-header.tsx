@@ -13,7 +13,8 @@ import IconYouTube from '@/public/icons/logos/youtube-black.svg'
 import IconLine from '@/public/icons/logos/line-black.svg'
 import type { HeaderData } from '@/types/common'
 import type { FlashNews } from '@/types/homepage'
-import { getTagPageUrl } from '@/utils/site-urls'
+import { getTopicPageUrl } from '@/utils/site-urls'
+import { isSectionItem } from '@/utils/common'
 
 const ExtendedSocialLinks = [
   {
@@ -92,18 +93,20 @@ export default function UiHeader({
       <hr className="h-px w-full bg-[#ccced4] md:hidden" />
       <div className="flex w-full max-w-screen-sm grow pb-[3px] pl-[17px] pr-[23px] pt-4 md:max-w-screen-md md:pb-[9px] md:pl-5 md:pr-6 md:pt-2 lg:max-w-screen-lg lg:flex-col lg:px-9 lg:pb-[17px] lg:pt-[13px]">
         <div className="flex">
-          <div className="hidden gap-x-4 overflow-hidden text-xl font-bold leading-tight text-[#2B2B2B] lg:flex lg:grow">
-            {data.popularTags.map((item) => {
-              return (
-                <a
-                  key={item.id}
-                  href={getTagPageUrl(item.choices.slug)}
-                  className=""
-                >
-                  {item.choices.name}
-                </a>
-              )
-            })}
+          <div className="hidden gap-x-4 overflow-hidden text-[22px] font-medium leading-[26px] text-[#2B2B2B] lg:flex lg:grow">
+            {data
+              .filter((item) => !isSectionItem(item))
+              .map((item) => {
+                return (
+                  <a
+                    key={item.slug}
+                    href={getTopicPageUrl(item.slug)}
+                    className="inline-block truncate"
+                  >
+                    {item.name}
+                  </a>
+                )
+              })}
           </div>
           <div className="hidden lg:flex lg:shrink-0 lg:grow-0 lg:gap-x-2">
             {ExtendedSocialLinks.map(({ name, href, icon }) => {
@@ -117,7 +120,7 @@ export default function UiHeader({
           </div>
         </div>
         <div className="mt-[14px] hidden lg:flex">
-          <DesktopNavList sections={data.sections} />
+          <DesktopNavList data={data} />
         </div>
         <div className="flex w-full grow items-start text-sm lg:mt-[9px] lg:text-base">
           <p className="mr-[18px] mt-1 shrink-0 font-bold leading-none text-[#FF5457] md:mr-[7px] lg:mr-3">

@@ -13,6 +13,7 @@ dotenv.config({ path: '.env.local', override: true })
 import { ENVIRONMENT } from './misc'
 
 const JSON_ROOT = '/json'
+const MISO_API_KEY = 'IHtn9b9tfPsO1EQpGV74OMf2syhELb6XVZe8u9FT'
 let STATIC_FILE_DOMAIN: string
 let JSON_FILE_PATH: string
 let SITE_URL: `https://${string}`
@@ -100,4 +101,5 @@ export {
   FIXED_KEY_FOR_SECTION_SHORTS,
   SITE_URL,
   GTM_ID,
+  MISO_API_KEY,
 }

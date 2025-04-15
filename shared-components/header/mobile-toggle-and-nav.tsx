@@ -38,7 +38,7 @@ const ExtendedSocialLinks = [
 ] as const
 
 type Props = {
-  data: HeaderData
+  data: HeaderData[]
 }
 
 export default function MobileToggleAndNav({ data }: Props) {

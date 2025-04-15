@@ -1,17 +1,24 @@
 'use client'
-import type { HeaderSection } from '@/types/common'
+import type { HeaderData, HeaderSection } from '@/types/common'
 import { useEffect, useState } from 'react'
 import NextLink from 'next/link'
-import { getCategoryPageUrl, getSectionPageUrl } from '@/utils/site-urls'
+import {
+  getCategoryPageUrl,
+  getSectionPageUrl,
+  getTopicPageUrl,
+} from '@/utils/site-urls'
+import { isSectionItem } from '@/utils/common'
 import { FIXED_KEY_FOR_SECTION_SHORTS } from '@/constants/config'
 
 type Props = {
-  sections: HeaderSection[]
+  data: HeaderData[]
 }
 
-export default function DesktopNavList({ sections }: Props) {
+export default function DesktopNavList({ data }: Props) {
   const [activeItem, setActiveItem] = useState('')
-  const section = sections.find((section) => section.slug === activeItem)
+  const section = data
+    .filter(isSectionItem)
+    .find((section) => section.slug === activeItem)
 
   useEffect(() => {
     if (section) {
@@ -28,15 +35,27 @@ export default function DesktopNavList({ sections }: Props) {
       onMouseLeave={() => setActiveItem('')}
       onBlur={() => setActiveItem('')}
     >
-      <ul className="flex w-full flex-wrap items-center text-lg font-bold leading-[22px]">
-        {sections.map((section) => {
+      <ul className="flex h-[28px] w-full items-center text-base font-bold tracking-[0.5px]">
+        {data.map((section) => {
           const { name, slug } = section
-          const color = section.color
-          const link = getSectionPageUrl(slug)
-          const categories = section.categories
-          const shouldShowCategories =
-            activeItem === slug && categories.length > 0
-          const isShortsCategory = slug === FIXED_KEY_FOR_SECTION_SHORTS
+          let shouldShowCategories: boolean
+          let color: string
+          let link: string
+          let categories: HeaderSection['categories'] = []
+          let isShortsCategory: boolean
+
+          if (isSectionItem(section)) {
+            shouldShowCategories = activeItem === slug
+            color = section.color
+            link = getSectionPageUrl(slug)
+            categories = section.categories
+            isShortsCategory = slug === FIXED_KEY_FOR_SECTION_SHORTS
+          } else {
+            shouldShowCategories = false
+            color = '#2b2b2b'
+            link = getTopicPageUrl(slug)
+            isShortsCategory = false
+          }
 
           return (
             <li

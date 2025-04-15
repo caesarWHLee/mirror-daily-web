@@ -51,7 +51,7 @@ export default function UiHeader({
   data,
   flashNews,
 }: {
-  data: HeaderData
+  data: HeaderData[]
   flashNews: FlashNews[]
 }) {
   return (

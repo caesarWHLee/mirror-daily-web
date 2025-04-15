@@ -67,7 +67,7 @@ switch (ENV) {
 
 const URL_STATIC_POPULAR_NEWS = `${JSON_FILE_PATH}/popular.json`
 const URL_STATIC_LATEST_NEWS = `${JSON_FILE_PATH}/latest_posts`
-const URL_STATIC_HEADER = `${JSON_FILE_PATH}/sections-categories-popularTag.json`
+const URL_STATIC_HEADER = `${JSON_FILE_PATH}/header.json`
 const URL_STATIC_FLASH_NEWS = `${JSON_FILE_PATH}/flash-news.json`
 const URL_STATIC_EDITOR_CHOICE = `${JSON_FILE_PATH}/editor-choice.json`
 const URL_STATIC_TOPIC = `${JSON_FILE_PATH}/topics.json`

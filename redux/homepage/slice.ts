@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { HeaderSection, LatestPost, PopularNews } from '@/types/common'
+import type { HeaderData, LatestPost, PopularNews } from '@/types/common'
 import {
   fetchLatestPost,
   fetchPopularPost,
@@ -24,10 +24,10 @@ const initialState: LatestPostState = {
 
 export const initializeData = createAsyncThunk(
   'homepage/initialize',
-  async (sectionData: HeaderSection[]) => {
+  async (headerData: HeaderData[]) => {
     const liveEvent = await fetchLiveEvent()
-    const latestPosts = await fetchLatestPost(sectionData, 1)
-    const popularNews = await fetchPopularPost(sectionData)
+    const latestPosts = await fetchLatestPost(headerData, 1)
+    const popularNews = await fetchPopularPost(headerData)
 
     return {
       liveEvent,

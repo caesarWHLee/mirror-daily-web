@@ -8,10 +8,7 @@ import type { FlashNews } from '@/types/homepage'
 import UiHeader from './header/ui-header'
 
 export default function Header() {
-  const [data, setData] = useState<HeaderData>({
-    sections: [],
-    popularTags: [],
-  })
+  const [data, setData] = useState<HeaderData[]>([])
   const [flashNews, setFlashNews] = useState<FlashNews[]>([])
 
   useEffect(() => {

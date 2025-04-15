@@ -12,7 +12,8 @@ import IconInstagram from '@/public/icons/logos/instagram-white.svg'
 import IconThreads from '@/public/icons/logos/threads-white.svg'
 import IconYouTube from '@/public/icons/logos/youtube-white.svg'
 import IconLine from '@/public/icons/logos/line-white.svg'
-import { getTagPageUrl } from '@/utils/site-urls'
+import { getTopicPageUrl } from '@/utils/site-urls'
+import { isSectionItem } from '@/utils/common'
 
 const ExtendedSocialLinks = [
   {
@@ -38,7 +39,7 @@ const ExtendedSocialLinks = [
 ] as const
 
 type Props = {
-  data: HeaderData
+  data: HeaderData[]
 }
 
 export default function MobileToggleAndNav({ data }: Props) {
@@ -84,20 +85,22 @@ export default function MobileToggleAndNav({ data }: Props) {
                 height={20}
               />
             </button>
-            <div className="mb-4 mt-[34px] flex w-full max-w-[calc(375px-46px*2)] flex-wrap gap-x-6 gap-y-4 self-center text-lg font-bold leading-[22px] text-[#E5E6E9]">
-              {data.popularTags.map((item) => {
-                return (
-                  <a
-                    key={item.id}
-                    href={getTagPageUrl(item.choices.slug)}
-                    className="inline-block max-w-full overflow-hidden text-ellipsis"
-                  >
-                    {item.choices.name}
-                  </a>
-                )
-              })}
+            <div className="mb-4 mt-[34px] flex w-full max-w-[calc(375px-46px*2)] flex-wrap gap-x-6 gap-y-4 self-center text-xl font-medium leading-[24px] text-[#E5E6E9]">
+              {data
+                .filter((item) => !isSectionItem(item))
+                .map((item) => {
+                  return (
+                    <a
+                      key={item.slug}
+                      href={getTopicPageUrl(item.slug)}
+                      className="inline-block max-w-full truncate"
+                    >
+                      {item.name}
+                    </a>
+                  )
+                })}
             </div>
-            <MobileNavList sections={data.sections} />
+            <MobileNavList data={data} />
             <div className="mt-5 flex shrink-0 items-center gap-x-4 self-center">
               {ExtendedSocialLinks.map(({ name, href, icon }) => (
                 <a key={name} href={href} target="_blank">

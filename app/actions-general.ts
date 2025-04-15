@@ -60,9 +60,7 @@ export const fetchLatestPost = async (
     )
 
     const headerData = await fetchHeaderData()
-    return filteredData.map((item) =>
-      transformRawLatestPost(item, headerData['sections'])
-    )
+    return filteredData.map((item) => transformRawLatestPost(item, headerData))
   } catch (e) {
     errorLogger(e)
     return []
@@ -87,7 +85,7 @@ export const fetchPopularPost = async (
     const headerData = await fetchHeaderData()
 
     return rawPostData
-      .map((item) => transformRawPopularPost(item, headerData['sections']))
+      .map((item) => transformRawPopularPost(item, headerData))
       .slice(0, amount)
   } catch (e) {
     errorLogger(e)
@@ -252,34 +250,46 @@ export const createCreativityShorts = async (
 
 const transformHeaderData = (
   rawData: z.infer<typeof headerSchema>
-): HeaderData => {
-  rawData.sections = rawData.sections.map((item) => {
-    const name = item.name ?? ''
-    const slug = item.slug ?? ''
-    const color = item.color ?? ''
-    const categories = (item.categories ?? []).map((rawCategory) => {
-      const name = rawCategory.name ?? ''
-      const slug = rawCategory.slug ?? ''
+): HeaderData[] => {
+  if (!rawData) return []
+
+  return rawData.map((item) => {
+    if (item.type === 'Topic') {
+      const name = item.name ?? ''
+      const slug = item.slug ?? ''
+
+      return {
+        name,
+        slug,
+        type: item.type,
+      }
+    } else {
+      const name = item.name ?? ''
+      const slug = item.slug ?? ''
+      const color = item.color ?? ''
+      const categories = (item.categories ?? []).map((rawCategory) => {
+        const name = rawCategory.name ?? ''
+        const slug = rawCategory.slug ?? ''
+
+        return {
+          name,
+          slug,
+          color,
+        }
+      })
 
       return {
         name,
         slug,
         color,
+        categories,
+        type: item.type ?? 'Section',
       }
-    })
-
-    return {
-      name,
-      slug,
-      color,
-      categories,
     }
   })
-
-  return rawData
 }
 
-export const fetchHeaderData = cache(async (): Promise<HeaderData> => {
+export const fetchHeaderData = cache(async (): Promise<HeaderData[]> => {
   const errorLogger = createErrorLogger(
     'Error occurs while fetching header json',
     getTraceObject()
@@ -288,10 +298,7 @@ export const fetchHeaderData = cache(async (): Promise<HeaderData> => {
 
   const data = await createDataFetchingChain<z.infer<typeof headerSchema>>(
     errorLogger,
-    {
-      sections: [],
-      popularTags: [],
-    },
+    [],
     async () => {
       const resp = await fetch(URL_STATIC_HEADER)
 

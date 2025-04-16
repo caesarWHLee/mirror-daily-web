@@ -2,7 +2,7 @@
 
 import { Logging } from '@google-cloud/logging'
 import { GCP_PROJECT_ID, ENV } from '@/constants/config'
-import { parseUserAgentInfo } from './user-agent'
+import { parseUserAgentInfo } from '@/utils/user-agent'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-tw'
 import timezone from 'dayjs/plugin/timezone'
@@ -15,9 +15,11 @@ const eventType = 'page-view'
 const logName = `${GCP_PROJECT_ID}-${ENV}-web-${eventType}`
 
 export async function logPageView({
+  referrer,
   screenSize,
   extra = {},
 }: {
+  referrer: string
   screenSize: { width: number; height: number }
   extra?: Record<string, unknown>
 }) {
@@ -27,12 +29,19 @@ export async function logPageView({
   const taipeiNow = dayjs().tz('Asia/Taipei')
   const formattedDate = taipeiNow.format('YYYY/MM/DD')
   const formattedTime = taipeiNow.format('HH:mm')
-  const { browser, device, os, isInAppBrowser, isWebview, ipAddress, referer } =
-    userAgentInfo
+  const {
+    browser,
+    device,
+    os,
+    isInAppBrowser,
+    isWebview,
+    ipAddress,
+    pathname,
+  } = userAgentInfo
   const { name: browserName, version: browserVersion } = browser
   const { model: deviceModel, vendor: deviceVendor } = device
   const { name: osName, version: osVersion } = os
-  const pageType = parsePageType(referer)
+  const pageType = parsePageType(pathname)
 
   const metadata = {
     resource: { type: 'global' },
@@ -48,12 +57,12 @@ export async function logPageView({
       osName,
       osVersion,
       ipAddress,
-      referer,
+      referrer,
     },
   }
 
   const jsonPayload = {
-    pageURL: referer,
+    pageURL: pathname,
     pageType,
     screenSize,
     isInAppBrowser,

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo } from 'react'
-import { logPageView } from '@/utils/logging'
+import { logPageView } from '@/app/actions-logging'
 
 export default function PageLogger({
   extra,
@@ -19,8 +19,10 @@ export default function PageLogger({
   useEffect(() => {
     const log = async () => {
       if (!screenSize) return
+      const referrer = document.referrer || ''
 
       await logPageView({
+        referrer,
         screenSize,
         extra,
       })

@@ -8,7 +8,7 @@ export function parseUserAgentInfo() {
   const userAgent = headersList.get('user-agent') || ''
   const ipAddress =
     headersList.get('x-forwarded-for') || headersList.get('remote-addr') || ''
-  const referer = headersList.get('referer') || ''
+  const pathname = headersList.get('referer') || ''
   const ua = new UAParser(userAgent)
   const inAppPatterns = [
     'fbav',
@@ -47,7 +47,7 @@ export function parseUserAgentInfo() {
 
   return {
     ipAddress,
-    referer,
+    pathname,
     browser,
     device,
     os,

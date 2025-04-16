@@ -63,7 +63,7 @@ export default function HeroSection({
           style={{ color: sectionColor }}
           className="mb-1"
         >{`｜${sectionName}`}</p>
-        <h1 className="mb-3 break-all text-2xl font-black leading-[1.3] text-[#212944] md:mb-1 lg:mb-4">
+        <h1 className="mb-3 break-all text-[32px] font-normal leading-[45px] text-[#212944] md:mb-1 lg:mb-4">
           {title}
         </h1>
         <h2 className="mb-3 text-xl font-bold leading-[1.4] text-[#212944] lg:mb-4">

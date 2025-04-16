@@ -123,7 +123,7 @@ export default function ShortsItem({
             />
           </div>
         </section>
-        <div className="absolute inset-x-0 bottom-0 h-[135px] bg-[linear-gradient(180deg,transparent_0%,#ADADAD_80.00%,#2D2D2D_99.35%)]">
+        <div className="absolute inset-x-0 bottom-0 h-[135px]">
           <div className="absolute inset-x-6 bottom-5 text-sm leading-normal text-white md:text-base">
             {!!contributor && (
               <div className="mb-2 flex max-w-[min(273px,100%)] items-center md:max-w-[min(320px,100%)]">
@@ -134,9 +134,6 @@ export default function ShortsItem({
                 </p>
               </div>
             )}
-            <p className="line-clamp-2 max-w-[240px] break-all font-normal md:max-w-[320px]">
-              {title}
-            </p>
           </div>
         </div>
         <div className="absolute -right-4 bottom-0 hidden translate-x-full rounded-full md:inline-block">

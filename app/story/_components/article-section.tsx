@@ -5,6 +5,8 @@ import Article from '../_components/article'
 import { fetchPopularPost, fetchLatestPost } from '@/app/actions-general'
 import { fetchRelatedPosts } from '../actions'
 import type { Post } from '@/types/story'
+import { DesktopGptAd } from '@/shared-components/gpt-ad/desktop-gpt-ad'
+import { MobileGptAd } from '@/shared-components/gpt-ad/mobile-gpt-ad'
 
 type Props = Post
 
@@ -23,7 +25,7 @@ export default async function ArticleSection({
     <section className="mb-[72px] flex w-full flex-col items-center md:mb-[76px] lg:mb-[92px] lg:flex-row lg:items-start lg:justify-center lg:gap-x-[104px]">
       <div className="max-w-screen-sm md:max-w-[600px] lg:max-w-screen-md">
         <HeroSection {...heroContent} />
-        <div className="mb-[60px]">
+        <div className="mb-12">
           <Article content={apiDataBrief} isBrief={true} />
           <Article content={apiData} isBrief={false} />
           <p className="mt-3 px-5 text-lg font-bold leading-loose text-[#212944] md:mt-8 md:px-0">
@@ -33,14 +35,29 @@ export default async function ArticleSection({
         {relatedPosts.length > 0 && <RelatedNewsSection posts={relatedPosts} />}
       </div>
 
-      <hr className="mb-12 mt-11 w-full max-w-[238px] border-[0.5px] border-[#7F8493] md:my-12 md:w-[588px] md:max-w-none lg:hidden" />
+      <MobileGptAd slotKey="mirrordaily_article_MW_336x280_AT3" />
 
-      <div className="flex flex-col gap-y-20 md:gap-y-12">
+      <hr className="my-8 w-full max-w-[238px] border-[0.5px] border-[#7F8493] md:my-12 md:w-[588px] md:max-w-none lg:hidden" />
+
+      <div className="flex flex-col items-center gap-y-[38px] md:gap-y-12">
         {latestPosts.length > 0 && (
-          <FeaturedNewsSection title="最新新聞" posts={latestPosts} />
+          <>
+            <DesktopGptAd
+              slotKey="mirrordaily_article_300x600_1"
+              customClasses="mb-[-20px]"
+            />
+            <FeaturedNewsSection title="最新新聞" posts={latestPosts} />
+          </>
         )}
         {popularPosts.length > 0 && (
-          <FeaturedNewsSection title="熱門新聞" posts={popularPosts} />
+          <>
+            <DesktopGptAd
+              slotKey="mirrordaily_article_PC_300x600_R2"
+              customClasses="mt-[-28px]"
+            />
+            <MobileGptAd slotKey="mirrordaily_article_MW_336x280_E1" />
+            <FeaturedNewsSection title="熱門新聞" posts={popularPosts} />
+          </>
         )}
       </div>
     </section>

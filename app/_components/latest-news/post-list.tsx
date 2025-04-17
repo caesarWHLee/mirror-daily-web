@@ -11,6 +11,8 @@ import {
   selectLatestPosts,
   selectLiveEvent,
 } from '@/redux/homepage/selector'
+import { MobileGptAd } from '@/shared-components/gpt-ad/mobile-gpt-ad'
+import React from 'react'
 
 /** the amount of articles each time load-more is clicked  */
 const RENDER_PAGE_SIZE = 20
@@ -56,7 +58,12 @@ export default function PostList({ headerData }: PostListProps): ReactNode {
       }
     >
       {(posts: LatestPost[]) =>
-        posts.map((post) => <LatestNewsCard {...post} key={post.postId} />)
+        posts.map((post, i) => (
+          <React.Fragment key={post.postId}>
+            <LatestNewsCard {...post} />
+            {i == 2 && <MobileGptAd slotKey="mirrordaily_home_MW_336x280_HD" />}
+          </React.Fragment>
+        ))
       }
     </InfiniteScrollList>
   )

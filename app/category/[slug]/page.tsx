@@ -39,25 +39,39 @@ export async function generateMetadata({
   return metaData
 }
 
+const PAGE_SIZE = 12
+
 export default async function Page({ params }: PageProps) {
   const slug = params.slug
 
   const categoryInfo = await fetchCategoryInformation(slug)
-  const posts = await fetchCategoryPosts(1, slug)
+  const posts = await fetchCategoryPosts({
+    take: PAGE_SIZE,
+    skip: 0,
+    slug,
+  })
 
   if (!categoryInfo) notFound()
 
   const color = categoryInfo.color
   const name = categoryInfo.name
 
+  const fetchMorePosts = async (page: number) => {
+    'use server'
+    return await fetchCategoryPosts({
+      slug,
+      take: PAGE_SIZE,
+      skip: PAGE_SIZE * (page - 1),
+    })
+  }
+
   return (
     <main className="mb-10 flex flex-col items-center md:mb-[72px] md:pt-5 lg:mb-[100px] lg:flex-row lg:items-start lg:gap-x-[128px] lg:px-9">
       <ArticlesList
         initialPosts={posts}
-        slug={slug}
         color={color}
         name={name}
-        fetchPosts={fetchCategoryPosts}
+        fetchMorePosts={fetchMorePosts}
       />
       <hr className="my-10 hidden w-[670px] border border-[#000928] md:block lg:hidden" />
       <PopularNewsSection />

@@ -1,7 +1,6 @@
 'use client'
 import type { HeaderData } from '@/types/common'
 import { useEffect, useState } from 'react'
-import NextLink from 'next/link'
 import { getCategoryPageUrl, getSectionPageUrl } from '@/utils/site-urls'
 import { isSectionItem } from '@/utils/common'
 import { FIXED_KEY_FOR_SECTION_SHORTS } from '@/constants/config'
@@ -48,9 +47,9 @@ export default function DesktopNavList({ data }: Props) {
               onMouseEnter={() => setActiveItem(slug)}
               onFocus={() => setActiveItem(slug)}
             >
-              <NextLink prefetch={false} href={link} style={{ color }}>
+              <a href={link} style={{ color }}>
                 {name}
-              </NextLink>
+              </a>
               <div
                 className={`absolute left-0 top-full z-over-flashnews flex text-base font-medium leading-[19px] text-[#CCCED4] ${shouldShowCategories ? 'w-auto' : 'size-px overflow-hidden'}`}
                 onMouseEnter={() => setActiveItem(slug)}
@@ -68,12 +67,9 @@ export default function DesktopNavList({ data }: Props) {
                         key={slug}
                         className="whitespace-nowrap focus-within:text-[color:var(--active-section-color)] hover-or-active:text-[color:var(--active-section-color)]"
                       >
-                        <NextLink
-                          prefetch={false}
-                          href={getCategoryPageUrl(slug, isShortsCategory)}
-                        >
+                        <a href={getCategoryPageUrl(slug, isShortsCategory)}>
                           {name}
-                        </NextLink>
+                        </a>
                       </li>
                     )
                   })}

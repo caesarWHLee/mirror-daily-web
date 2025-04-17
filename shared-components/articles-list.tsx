@@ -8,26 +8,20 @@ import type { PostData } from '@/utils/data-process'
 
 type Props<T> = {
   initialPosts: T[]
-  slug: string
   color: string
   name: string
-  fetchPosts(page: number, slug: string): Promise<T[]>
+  fetchMorePosts: (page: number) => Promise<T[]>
 }
+
+const PAGE_SIZE = 12
 
 export default function ArticlesList<T extends PostData>({
   initialPosts,
-  slug,
   color,
   name,
-  fetchPosts,
+  fetchMorePosts,
 }: Props<T>): ReactElement {
-  const PAGE_SIZE = 12
   const [firstPost, ...otherPosts] = initialPosts ?? []
-
-  const fetchMorePosts = async (page: number) => {
-    const posts = await fetchPosts(page, slug)
-    return posts
-  }
 
   if (!firstPost) notFound()
 
@@ -68,7 +62,7 @@ export default function ArticlesList<T extends PostData>({
                 {(posts) =>
                   posts.map((post) => (
                     <SecondaryArticleCard
-                      key={post.title}
+                      key={post.id}
                       color={color}
                       postItem={post}
                     />

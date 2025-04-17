@@ -32,16 +32,7 @@ export default function ShortsItem({
   setVolume,
 }: Props) {
   const [isClientSide, setIsClientSide] = useState(false)
-  const [isHover, setIsHover] = useState(false)
   const volumeSliderRef = useRef<HTMLElement>(null)
-
-  const handleMouseOver = () => {
-    setIsHover(true)
-  }
-
-  const handleMouseOut = () => {
-    setIsHover(false)
-  }
 
   useEffect(() => {
     setIsClientSide(true)
@@ -54,11 +45,7 @@ export default function ShortsItem({
 
   return (
     <div className="relative h-full">
-      <div
-        className="shorts-container"
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-      >
+      <div className="shorts-container">
         {isClientSide && (
           <ReactPlayer
             url={fileUrl}
@@ -78,66 +65,64 @@ export default function ShortsItem({
             }}
           />
         )}
-        {isHover && (
-          <section
-            className="absolute inset-x-7 top-4 flex gap-x-3"
-            ref={volumeSliderRef}
-          >
-            {isActive ? (
-              <button className="control shrink-0" onClick={onPause}>
-                <NextImage src={IconPause} width={8} height={10} alt="暫停" />
-              </button>
-            ) : (
-              <button className="control shrink-0" onClick={onPlay}>
-                <NextImage src={IconPlay} width={10} height={10} alt="播放" />
-              </button>
-            )}
+        <section
+          className="absolute inset-x-7 top-4 flex gap-x-3"
+          ref={volumeSliderRef}
+        >
+          {isActive ? (
+            <button className="control shrink-0" onClick={onPause}>
+              <NextImage src={IconPause} width={8} height={10} alt="暫停" />
+            </button>
+          ) : (
+            <button className="control shrink-0" onClick={onPlay}>
+              <NextImage src={IconPlay} width={10} height={10} alt="播放" />
+            </button>
+          )}
 
-            <div className="flex items-center gap-x-3">
-              <button
-                className="control"
-                onClick={() => {
-                  if (volume === 0.0) {
-                    setVolume(1.0)
-                  } else {
-                    setVolume(0.0)
-                  }
-                }}
-              >
-                {volume === 0.0 ? (
-                  <NextImage
-                    src={IconMute}
-                    width={11.25}
-                    height={11.25}
-                    alt="靜音"
-                  />
-                ) : (
-                  <NextImage
-                    src={IconVolume}
-                    width={11.25}
-                    height={11.25}
-                    alt="音量控制"
-                  />
-                )}
-              </button>
-
-              <input
-                className="volume-slider"
-                type="range"
-                min={0}
-                max={100}
-                step={1}
-                value={Math.floor(volume * 100)}
-                onChange={volumeChangeHandler}
-                style={
-                  {
-                    '--shorts-volume': `${volume * 100}%`,
-                  } as CSSProperties
+          <div className="flex items-center gap-x-3">
+            <button
+              className="control"
+              onClick={() => {
+                if (volume === 0.0) {
+                  setVolume(1.0)
+                } else {
+                  setVolume(0.0)
                 }
-              />
-            </div>
-          </section>
-        )}
+              }}
+            >
+              {volume === 0.0 ? (
+                <NextImage
+                  src={IconMute}
+                  width={11.25}
+                  height={11.25}
+                  alt="靜音"
+                />
+              ) : (
+                <NextImage
+                  src={IconVolume}
+                  width={11.25}
+                  height={11.25}
+                  alt="音量控制"
+                />
+              )}
+            </button>
+
+            <input
+              className="volume-slider"
+              type="range"
+              min={0}
+              max={100}
+              step={1}
+              value={Math.floor(volume * 100)}
+              onChange={volumeChangeHandler}
+              style={
+                {
+                  '--shorts-volume': `${volume * 100}%`,
+                } as CSSProperties
+              }
+            />
+          </div>
+        </section>
         <div className="absolute inset-x-0 bottom-0 h-[135px]">
           <div className="absolute inset-x-6 bottom-5 text-sm leading-normal text-white md:text-base">
             {!!contributor && (

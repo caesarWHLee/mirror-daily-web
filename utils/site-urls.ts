@@ -6,6 +6,8 @@ export const getPostPageUrl = (id: string, isExternal?: boolean) =>
 
 export const getExternalPageUrl = (id: string) => `/external/${id}`
 
+export const getExternalsPageUrl = (slug: string) => `/externals/${slug}`
+
 export const getStoryPageUrl = (id: string) => `/story/${id}`
 
 export const getSectionPageUrl = (slug: string) =>

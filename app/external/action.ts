@@ -9,7 +9,7 @@ import {
 import type { GetExternalByIdQuery } from '@/graphql/__generated__/graphql'
 import type { ExternalPost } from '@/types/external'
 import { dateFormatter, transfromRawRelatedPosts } from '@/utils/data-process'
-import { getExternalPageUrl } from '@/utils/site-urls'
+import { getExternalPageUrl, getExternalsPageUrl } from '@/utils/site-urls'
 import type { RelatedPost } from '@/types/common'
 
 function transformExternal(
@@ -18,7 +18,9 @@ function transformExternal(
   if (!rawData) return null
   const title = rawData.title ?? ''
   const thumb = rawData.thumb ?? ''
-  const writer = rawData.extend_byline ?? ''
+  const partner = rawData.partner?.name ?? ''
+  const partnerSlug = rawData.partner?.slug ?? ''
+  const externalsLink = getExternalsPageUrl(partnerSlug)
   const publishedTime = dateFormatter(rawData.publishedDate) ?? ''
   const brief = rawData.brief ?? ''
   const content = rawData.content ?? ''
@@ -33,7 +35,8 @@ function transformExternal(
   return {
     title,
     thumb,
-    writer,
+    partner,
+    externalsLink,
     publishedTime,
     brief,
     content,

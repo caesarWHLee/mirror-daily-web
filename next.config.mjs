@@ -14,7 +14,7 @@ const DAY = HOUR * 24
 /** @type {Header} */
 const cacheControl3Min = {
   key: 'cache-control',
-  value: `public, s-maxage=${MINUTE * 35}, stale-while-revalidate=60`,
+  value: `public, s-maxage=${MINUTE * 3}, stale-while-revalidate=60`,
 }
 
 /** @type {Header} */

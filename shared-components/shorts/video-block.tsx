@@ -24,7 +24,6 @@ export default function VideoBlock({
   fetchMore,
 }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const [volume, setVolume] = useState(0)
   const isModalOpened = useAppSelector(selectIsModalOpened)
 
   return (
@@ -70,10 +69,8 @@ export default function VideoBlock({
                 <ShortsItem
                   {...item}
                   isActive={activeIndex === index && !isModalOpened}
-                  volume={volume}
                   onPause={() => setActiveIndex(null)}
                   onPlay={() => setActiveIndex(index)}
-                  setVolume={setVolume}
                 />
               </SwiperSlide>
             ))}

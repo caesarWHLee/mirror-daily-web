@@ -2,7 +2,6 @@
 
 import type { HeaderData } from '@/types/common'
 import { useEffect, useState } from 'react'
-import NextLink from 'next/link'
 import NextImage from 'next/image'
 import { getCategoryPageUrl, getSectionPageUrl } from '@/utils/site-urls'
 import { useWindowSize } from 'usehooks-ts'
@@ -58,8 +57,7 @@ export default function MobileNavList({ data }: Props) {
             >
               {/* section item */}
               <div className="flex items-center justify-between">
-                <NextLink
-                  prefetch={false}
+                <a
                   href={link}
                   className="grow text-base font-bold leading-[175%] tracking-[0.5px]"
                   style={{
@@ -67,7 +65,7 @@ export default function MobileNavList({ data }: Props) {
                   }}
                 >
                   {name}
-                </NextLink>
+                </a>
                 {hasCategories && (
                   <button
                     className="inline-block py-2 pl-2"
@@ -93,13 +91,12 @@ export default function MobileNavList({ data }: Props) {
                     return (
                       <li key={slug}>
                         {/* category item */}
-                        <NextLink
-                          prefetch={false}
+                        <a
                           href={getCategoryPageUrl(slug, isShortsCategory)}
                           className="hover-or-active:text-[color:var(--active-section-color)]"
                         >
                           {name}
-                        </NextLink>
+                        </a>
                       </li>
                     )
                   })}

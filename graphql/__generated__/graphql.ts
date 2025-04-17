@@ -4382,7 +4382,6 @@ export type GetExternalByIdQuery = {
     id: string
     title?: string | null
     thumb?: string | null
-    extend_byline?: string | null
     publishedDate?: any | null
     brief?: string | null
     content?: string | null
@@ -4391,6 +4390,11 @@ export type GetExternalByIdQuery = {
       name?: string | null
       slug?: string | null
     }> | null
+    partner?: {
+      __typename?: 'Partner'
+      name?: string | null
+      slug?: string | null
+    } | null
   } | null
 }
 
@@ -6954,10 +6958,6 @@ export const GetExternalByIdDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'thumb' } },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'extend_byline' },
-                },
-                {
-                  kind: 'Field',
                   name: { kind: 'Name', value: 'publishedDate' },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'brief' } },
@@ -6965,6 +6965,17 @@ export const GetExternalByIdDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'tags' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'partner' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [

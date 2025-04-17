@@ -3,11 +3,14 @@ query GetExternalById($id: ID!) {
     id
     title
     thumb
-    extend_byline
     publishedDate
     brief
     content
     tags {
+      name
+      slug
+    }
+    partner {
       name
       slug
     }

@@ -53,7 +53,7 @@ export default function HeroSection({
             alt={title}
           />
         </div>
-        <figcaption className="mt-2 px-5 text-[13px] font-normal leading-normal text-[#7F8493] md:px-0 lg:mt-4">
+        <figcaption className="mt-2 flex justify-center px-5 text-[13px] font-normal leading-normal text-[#7F8493] md:px-0 lg:mt-4">
           {heroCaption}
         </figcaption>
       </figure>

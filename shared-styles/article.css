@@ -451,16 +451,6 @@
       & video {
         height: 100%;
       }
-
-      & .cover {
-        position: absolute;
-        inset: 0;
-        background-color: rgba(33, 41, 68, 1);
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
     }
 
     & div.slideshow-block {

@@ -1,14 +1,12 @@
 'use client'
 
-import Image from 'next/image'
-import { useRef, useState } from 'react'
-
 import type {
   ApiDataBlockBase,
   ApiDataBlockType,
   Organization,
   Video_Readr,
   VideoV2_MM,
+  VideoImage,
 } from '../types'
 
 type ContentVideo_Readr = {
@@ -44,39 +42,15 @@ type VideoProps = {
     id: string
     url: string
     name: string
+    heroImage: VideoImage | null
   }
 }
 
 const Video = ({ video }: VideoProps) => {
-  const [showCover, setShowCover] = useState(true)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const onCoverClicked = () => {
-    if (videoRef.current) {
-      videoRef.current.play()
-      setShowCover(false)
-    }
-  }
-
+  const heroImage = video.heroImage?.resized?.original
   return (
     <div className="video-block">
-      <video src={video.url} loop controls ref={videoRef} />
-      {showCover && (
-        <div className="cover" onClick={onCoverClicked}>
-          <Image
-            src="/icons/api-data-renderer/icon-video-play.svg"
-            width={64}
-            height={64}
-            alt="click to play video"
-            onError={(error) => {
-              console.error(
-                'load video icon error, make sure icon exist',
-                error
-              )
-            }}
-          />
-        </div>
-      )}
+      <video src={video.url} loop controls poster={heroImage} />
     </div>
   )
 }
@@ -98,6 +72,7 @@ export default function VideoBlock({
             id: videoData.id,
             name: videoData.name,
             url: videoData.videoSrc,
+            heroImage: videoData.heroImage,
           }}
         />
       )
@@ -107,7 +82,12 @@ export default function VideoBlock({
       const videoData = apiDataAudio.content[0]?.video
       return (
         <Video
-          video={{ id: videoData.id, name: videoData.name, url: videoData.url }}
+          video={{
+            id: videoData.id,
+            name: videoData.name,
+            url: videoData.url,
+            heroImage: videoData.coverPhoto,
+          }}
         />
       )
     }

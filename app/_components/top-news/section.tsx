@@ -48,6 +48,7 @@ export default function TopNewsSection({ headerData }: Props) {
         latestList = [
           {
             postName: first.postName,
+            postBrief: first.postBrief,
             heroImage: first.heroImage,
             link: first.link,
           },
@@ -65,6 +66,7 @@ export default function TopNewsSection({ headerData }: Props) {
         hotList = [
           {
             postName: first.postName,
+            postBrief: first.postBrief,
             heroImage: first.heroImage,
             link: first.link,
           },

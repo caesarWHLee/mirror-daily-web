@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player/lazy'
 export default function HighlightItem({
   heroImage,
   postName,
+  postBrief,
   link,
   isVideoType,
 }: PickupItemInTopNewsSection): ReactNode {
@@ -55,6 +56,9 @@ export default function HighlightItem({
       </div>
       <p className="mt-4 line-clamp-3 text-base font-medium leading-none text-[#000928] group-hover/highlight-item:text-[#575D71] group-active/highlight-item:text-[#575D71] md:mt-2 md:line-clamp-2 lg:mt-2 lg:text-xl lg:font-bold">
         {postName}
+      </p>
+      <p className="mt-3 hidden text-sm font-normal leading-normal text-[#68666D] md:line-clamp-3 lg:text-base lg:font-bold">
+        {postBrief}
       </p>
     </NextLink>
   )

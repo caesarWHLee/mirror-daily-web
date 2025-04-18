@@ -32,6 +32,7 @@ export type PopularNews = {
   heroImage: HeroImage
   publishedDate: string
   link: string
+  postBrief: string
 }
 
 export type ParameterOfComponent<T> = T extends (
@@ -83,6 +84,7 @@ export type LatestPost = {
   heroImage: HeroImage
   publishedDate: string
   link: string
+  postBrief: string
 }
 
 export type RelatedPost = {

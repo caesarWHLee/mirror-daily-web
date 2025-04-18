@@ -12,7 +12,7 @@ export type ItemInTopNewsSection = Pick<
 
 export type PickupItemInTopNewsSection = Pick<
   LatestPost,
-  'postName' | 'heroImage' | 'link'
+  'postName' | 'heroImage' | 'link' | 'postBrief'
 > & {
   isVideoType?: boolean
 }

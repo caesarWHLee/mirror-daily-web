@@ -61,6 +61,7 @@ const partnerSchema = z.object({
 export const rawLatestPostSchema = z.object({
   id: z.string(),
   title: z.string(),
+  brief: z.string(),
   heroImage: z.union([heroImageSchema, z.string(), z.null(), z.undefined()]),
   sections: z.array(sectionSchema.pick({ name: true, slug: true })),
   partner: z.union([partnerSchema, z.string()]),
@@ -71,6 +72,7 @@ export const rawLatestPostSchema = z.object({
 export const rawPopularPostSchema = z.object({
   id: z.string(),
   title: z.string(),
+  brief: z.string(),
   heroImage: z.union([heroImageSchema, z.string(), z.null(), z.undefined()]),
   publishedDate: z.string(),
   sectionsInInputOrder: z.array(sectionSchema.pick({ name: true, slug: true })),

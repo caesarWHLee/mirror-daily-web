@@ -6,6 +6,8 @@ import { SITE_NAME } from '@/constants/misc'
 import { getFirstParagraphFromApiData } from '@/utils/data-process'
 import { IMAGE_PATH } from '@/constants/default-path'
 import { getDefaultMetadata } from '@/utils/common'
+import { Suspense } from 'react'
+import PageLogger from '@/app/_components/page-logger'
 import AdultWarning from '../_components/adult-warning'
 // import dynamic from 'next/dynamic'
 // const MisoPageView = dynamic(() => import('@/app/_components/miso-pageview'), {
@@ -58,28 +60,42 @@ export default async function Page({ params }: PageProps) {
   const postData = await fetchPost(id)
   if (!postData) notFound()
 
+  const extra = {
+    storyId: postData.id,
+    storyTitle: postData.title,
+    authorNames: postData.writers.map((w) => w.name),
+    sectionName: postData.sectionName,
+    tags: postData.tags.map((t) => t.name),
+    algoTags: postData.algoTags.map((t) => t.name),
+  }
+
   return (
-    <main className="flex flex-col items-center">
-      <div className="hidden h-[306px] lg:block">
-        <DesktopGptAd
-          slotKey="mirrordaily_home_PC_970x250_1"
-          customClasses="mt-5 mb-9"
-        />
-      </div>
-      <div className="block h-[352px] md:hidden">
+    <>
+      <Suspense>
+        <PageLogger extra={extra} />
+      </Suspense>
+      <main className="flex flex-col items-center">
+        <div className="hidden h-[306px] lg:block">
+          <DesktopGptAd
+            slotKey="mirrordaily_home_PC_970x250_1"
+            customClasses="mt-5 mb-9"
+          />
+        </div>
+        <div className="block h-[352px] md:hidden">
+          <MobileGptAd
+            slotKey="mirrordaily_list_MW_336x280_HD"
+            customClasses="my-9"
+          />
+        </div>
+        <hr className="hidden w-[680px] border border-[#000000] md:mb-9 md:block lg:mb-12 lg:mt-4 lg:w-[1128px]" />
+        {/* <MisoPageView productIds={id} /> */}
+        <ArticleSection {...postData} id={id} />
+        <AdultWarning isAdult={postData.isAdult} />
         <MobileGptAd
-          slotKey="mirrordaily_list_MW_336x280_HD"
-          customClasses="my-9"
+          slotKey="mirrordaily_article_MW_320x100_ST"
+          customClasses="fixed bottom-0"
         />
-      </div>
-      <hr className="hidden w-[680px] border border-[#000000] md:mb-9 md:block lg:mb-12 lg:mt-4 lg:w-[1128px]" />
-      {/* <MisoPageView productIds={id} /> */}
-      <ArticleSection {...postData} id={id} />
-      <AdultWarning isAdult={postData.isAdult} />
-      <MobileGptAd
-        slotKey="mirrordaily_article_MW_320x100_ST"
-        customClasses="fixed bottom-0"
-      />
-    </main>
+      </main>
+    </>
   )
 }

@@ -28,7 +28,7 @@ export default function SecondaryArticleCard({ postItem, color }: Props) {
           style={{ color: color }}
           className={`$md:mb-[17px] mb-[5px] text-sm font-normal`}
         >
-          {postItem.createdTime}
+          {postItem.publishedDate}
         </p>
         <figcaption className="line-clamp-3 text-sm font-bold text-[#4A4A4A] md:mb-[6px] md:line-clamp-2 md:text-lg">
           {postItem.title}

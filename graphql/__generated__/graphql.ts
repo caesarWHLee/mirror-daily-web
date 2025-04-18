@@ -276,6 +276,7 @@ export type Contact = {
   createdBy?: Maybe<User>
   id: Scalars['ID']['output']
   name?: Maybe<Scalars['String']['output']>
+  role?: Maybe<ContactRoleType>
   sections?: Maybe<Array<Section>>
   sectionsCount?: Maybe<Scalars['Int']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
@@ -299,6 +300,7 @@ export type ContactCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
   name?: InputMaybe<Scalars['String']['input']>
+  role?: InputMaybe<ContactRoleType>
   sections?: InputMaybe<SectionRelateToManyForCreateInput>
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>
   updatedBy?: InputMaybe<UserRelateToOneForCreateInput>
@@ -315,6 +317,7 @@ export type ContactOrderByInput = {
   createdAt?: InputMaybe<OrderDirection>
   id?: InputMaybe<OrderDirection>
   name?: InputMaybe<OrderDirection>
+  role?: InputMaybe<OrderDirection>
   updatedAt?: InputMaybe<OrderDirection>
 }
 
@@ -341,6 +344,20 @@ export type ContactRelateToOneForUpdateInput = {
   disconnect?: InputMaybe<Scalars['Boolean']['input']>
 }
 
+export enum ContactRoleType {
+  CameraMan = 'camera_man',
+  Designer = 'designer',
+  Photographer = 'photographer',
+  Writer = 'writer',
+}
+
+export type ContactRoleTypeNullableFilter = {
+  equals?: InputMaybe<ContactRoleType>
+  in?: InputMaybe<Array<ContactRoleType>>
+  not?: InputMaybe<ContactRoleTypeNullableFilter>
+  notIn?: InputMaybe<Array<ContactRoleType>>
+}
+
 export type ContactUpdateArgs = {
   data: ContactUpdateInput
   where: ContactWhereUniqueInput
@@ -351,6 +368,7 @@ export type ContactUpdateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
   name?: InputMaybe<Scalars['String']['input']>
+  role?: InputMaybe<ContactRoleType>
   sections?: InputMaybe<SectionRelateToManyForUpdateInput>
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>
   updatedBy?: InputMaybe<UserRelateToOneForUpdateInput>
@@ -365,6 +383,7 @@ export type ContactWhereInput = {
   createdBy?: InputMaybe<UserWhereInput>
   id?: InputMaybe<IdFilter>
   name?: InputMaybe<StringFilter>
+  role?: InputMaybe<ContactRoleTypeNullableFilter>
   sections?: InputMaybe<SectionManyRelationFilter>
   updatedAt?: InputMaybe<DateTimeNullableFilter>
   updatedBy?: InputMaybe<UserWhereInput>
@@ -4001,7 +4020,7 @@ export type PostOverviewFragment = {
   __typename?: 'Post'
   id: string
   title?: string | null
-  createdAt?: any | null
+  publishedDate?: any | null
   apiDataBrief?: any | null
   apiData?: any | null
   heroImage?: {
@@ -4318,6 +4337,7 @@ export type GetEditorChoicesQuery = {
 
 export type GetLiveEventForHomepageQueryVariables = Exact<{
   startDate: Scalars['DateTime']['input']
+  endDate: Scalars['DateTime']['input']
 }>
 
 export type GetLiveEventForHomepageQuery = {
@@ -4362,7 +4382,6 @@ export type GetExternalByIdQuery = {
     id: string
     title?: string | null
     thumb?: string | null
-    extend_byline?: string | null
     publishedDate?: any | null
     brief?: string | null
     content?: string | null
@@ -4371,6 +4390,11 @@ export type GetExternalByIdQuery = {
       name?: string | null
       slug?: string | null
     }> | null
+    partner?: {
+      __typename?: 'Partner'
+      name?: string | null
+      slug?: string | null
+    } | null
   } | null
 }
 
@@ -4478,7 +4502,7 @@ export type GetPostsBySectionSlugQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     heroImage?: {
@@ -4551,7 +4575,7 @@ export type GetPostsByCategorySlugQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     heroImage?: {
@@ -4613,7 +4637,7 @@ export type GetPostsByAuthorIdQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     sections?: Array<{
@@ -4680,7 +4704,7 @@ export type GetPostsByTagSlugQuery = {
     __typename?: 'Post'
     id: string
     title?: string | null
-    createdAt?: any | null
+    publishedDate?: any | null
     apiDataBrief?: any | null
     apiData?: any | null
     sections?: Array<{
@@ -5632,7 +5656,7 @@ export const PostOverviewFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -6649,6 +6673,20 @@ export const GetLiveEventForHomepageDocument = {
             },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'endDate' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'DateTime' },
+            },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -6736,6 +6774,59 @@ export const GetLiveEventForHomepageDocument = {
                               kind: 'Variable',
                               name: { kind: 'Name', value: 'startDate' },
                             },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'OR' },
+                      value: {
+                        kind: 'ListValue',
+                        values: [
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'endDate' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'gt' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: {
+                                          kind: 'Name',
+                                          value: 'endDate',
+                                        },
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'endDate' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'equals' },
+                                      value: { kind: 'NullValue' },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
                           },
                         ],
                       },
@@ -6867,10 +6958,6 @@ export const GetExternalByIdDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'thumb' } },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'extend_byline' },
-                },
-                {
-                  kind: 'Field',
                   name: { kind: 'Name', value: 'publishedDate' },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'brief' } },
@@ -6878,6 +6965,17 @@ export const GetExternalByIdDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'tags' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'partner' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
@@ -7460,7 +7558,7 @@ export const GetPostsBySectionSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -7783,7 +7881,7 @@ export const GetPostsByCategorySlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -8104,7 +8202,7 @@ export const GetPostsByAuthorIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {
@@ -8434,7 +8532,7 @@ export const GetPostsByTagSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiDataBrief' } },
           { kind: 'Field', name: { kind: 'Name', value: 'apiData' } },
           {

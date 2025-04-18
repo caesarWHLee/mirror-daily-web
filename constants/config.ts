@@ -13,6 +13,7 @@ dotenv.config({ path: '.env.local', override: true })
 import { ENVIRONMENT } from './misc'
 
 const JSON_ROOT = '/json'
+const MISO_API_KEY = 'IHtn9b9tfPsO1EQpGV74OMf2syhELb6XVZe8u9FT'
 let STATIC_FILE_DOMAIN: string
 let JSON_FILE_PATH: string
 let SITE_URL: `https://${string}`
@@ -67,7 +68,7 @@ switch (ENV) {
 
 const URL_STATIC_POPULAR_NEWS = `${JSON_FILE_PATH}/popular.json`
 const URL_STATIC_LATEST_NEWS = `${JSON_FILE_PATH}/latest_posts`
-const URL_STATIC_HEADER = `${JSON_FILE_PATH}/sections-categories-popularTag.json`
+const URL_STATIC_HEADER = `${JSON_FILE_PATH}/header.json`
 const URL_STATIC_FLASH_NEWS = `${JSON_FILE_PATH}/flash-news.json`
 const URL_STATIC_EDITOR_CHOICE = `${JSON_FILE_PATH}/editor-choice.json`
 const URL_STATIC_TOPIC = `${JSON_FILE_PATH}/topics.json`
@@ -100,4 +101,5 @@ export {
   FIXED_KEY_FOR_SECTION_SHORTS,
   SITE_URL,
   GTM_ID,
+  MISO_API_KEY,
 }

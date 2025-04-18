@@ -95,6 +95,7 @@ export type {
   Audio_Readr,
   AudioV2_MM,
   Image,
+  VideoImage,
   Organization,
   TextBlockAlign,
   Video_Readr,

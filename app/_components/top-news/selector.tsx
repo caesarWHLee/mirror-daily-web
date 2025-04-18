@@ -14,7 +14,7 @@ export default function Selector({
   }
 
   return (
-    <div className="flex justify-center gap-x-6 text-lg font-bold leading-none text-[#68666d] md:justify-start md:gap-x-3 lg:gap-x-6 lg:text-xl lg:font-normal">
+    <div className="flex justify-center gap-x-6 text-lg font-bold leading-none text-[#68666d] md:justify-start md:gap-x-3 lg:justify-end lg:gap-x-6 lg:text-xl lg:font-normal">
       {Object.entries(TAB).map(([key, name]) => (
         <button
           key={key}

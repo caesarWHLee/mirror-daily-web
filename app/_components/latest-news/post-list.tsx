@@ -11,15 +11,17 @@ import {
   selectLatestPosts,
   selectLiveEvent,
 } from '@/redux/homepage/selector'
+import { MobileGptAd } from '@/shared-components/gpt-ad/mobile-gpt-ad'
+import React from 'react'
 
 /** the amount of articles each time load-more is clicked  */
 const RENDER_PAGE_SIZE = 20
 
 type PostListProps = {
-  sectionData: Parameters<typeof getSectionColor>[0]
+  headerData: Parameters<typeof getSectionColor>[0]
 }
 
-export default function PostList({ sectionData }: PostListProps): ReactNode {
+export default function PostList({ headerData }: PostListProps): ReactNode {
   const isInitialized = useAppSelector(selectIsInitialized)
   const liveEvent = useAppSelector(selectLiveEvent)
   const latestPosts = useAppSelector(selectLatestPosts)
@@ -28,7 +30,7 @@ export default function PostList({ sectionData }: PostListProps): ReactNode {
     page: number = 0
   ): Promise<LatestPost[]> => {
     // fetch more latest post on browser side
-    return await fetchLatestPost(sectionData, page)
+    return await fetchLatestPost(headerData, page)
   }
 
   if (!isInitialized) return null
@@ -56,7 +58,12 @@ export default function PostList({ sectionData }: PostListProps): ReactNode {
       }
     >
       {(posts: LatestPost[]) =>
-        posts.map((post) => <LatestNewsCard {...post} key={post.postId} />)
+        posts.map((post, i) => (
+          <React.Fragment key={post.postId}>
+            <LatestNewsCard {...post} />
+            {i == 2 && <MobileGptAd slotKey="mirrordaily_home_MW_336x280_HD" />}
+          </React.Fragment>
+        ))
       }
     </InfiniteScrollList>
   )

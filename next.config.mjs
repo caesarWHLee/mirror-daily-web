@@ -12,9 +12,9 @@ const HOUR = MINUTE * 60
 const DAY = HOUR * 24
 
 /** @type {Header} */
-const cacheControl5Min = {
+const cacheControl3Min = {
   key: 'cache-control',
-  value: `public, s-maxage=${MINUTE * 5}, stale-while-revalidate=60`,
+  value: `public, s-maxage=${MINUTE * 3}, stale-while-revalidate=60`,
 }
 
 /** @type {Header} */
@@ -70,18 +70,18 @@ const nextConfig = {
           },
         ],
       },
-      // 5 minutes
+      // 3 minutes
       {
         source: '/',
-        headers: [cacheControl5Min],
+        headers: [cacheControl3Min],
       },
       {
         source: '/shorts/:path*',
-        headers: [cacheControl5Min],
+        headers: [cacheControl3Min],
       },
       {
         source: '/topic/:path*',
-        headers: [cacheControl5Min],
+        headers: [cacheControl3Min],
       },
       // 30 minutes
       {

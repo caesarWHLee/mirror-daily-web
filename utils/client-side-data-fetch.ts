@@ -7,7 +7,7 @@ import {
 } from '@/constants/config'
 import { SHORTS_TYPE } from '@/types/common'
 import type {
-  HeaderSection,
+  HeaderData,
   LatestPost,
   PopularNews,
   Shorts,
@@ -25,7 +25,7 @@ import {
 import { createDataFetchingChain, transformLatestShorts } from './data-process'
 
 const fetchLatestPost = async (
-  sectionData: HeaderSection[],
+  headerData: HeaderData[],
   page: number = 0
 ): Promise<LatestPost[]> => {
   // fetch more latest post on browser side
@@ -38,7 +38,7 @@ const fetchLatestPost = async (
       (rawPost) => !hasExternalLink(rawPost)
     )
 
-    return filteredData.map((item) => transformRawLatestPost(item, sectionData))
+    return filteredData.map((item) => transformRawLatestPost(item, headerData))
   } catch (e) {
     // TODO: send error log
     console.error(e)
@@ -47,7 +47,7 @@ const fetchLatestPost = async (
 }
 
 const fetchPopularPost = async (
-  sectionData: HeaderSection[],
+  headerData: HeaderData[],
   amount: number = 10
 ): Promise<PopularNews[]> => {
   try {
@@ -58,7 +58,7 @@ const fetchPopularPost = async (
       .parse(resp.json())
 
     return rawPostData
-      .map((item) => transformRawPopularPost(item, sectionData))
+      .map((item) => transformRawPopularPost(item, headerData))
       .slice(0, amount)
   } catch (e) {
     // TODO: send error log

@@ -20,27 +20,27 @@ function transformSectionPost(
   return rawData.map(transfromRawPost)
 }
 
-async function fetchSectionPosts(page: number, slug: string) {
+async function fetchSectionPosts({
+  take,
+  skip = 0,
+  slug,
+}: {
+  take: number
+  skip: number
+  slug: string
+}) {
   const errorLogger = createErrorLogger(
     'Error occurs while fetching section posts in section page',
     getTraceObject()
   )
 
-  const firstPageSize = 13
-  const subsequentPageSize = 12
-
-  const isFirstPage = page === 1
-
-  const skip = isFirstPage ? 0 : firstPageSize + (page - 2) * subsequentPageSize
-  const take = isFirstPage ? firstPageSize * 2 : subsequentPageSize * 2
-
   const result = await fetchGQLData(
     errorLogger,
     GetPostsBySectionSlugDocument,
     {
-      skip: skip,
-      take: take,
-      slug: slug,
+      skip,
+      take,
+      slug,
     }
   )
 

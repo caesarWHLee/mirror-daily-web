@@ -1,6 +1,7 @@
 import { SITE_URL } from '@/constants/config'
 import { IMAGE_PATH } from '@/constants/default-path'
 import { SITE_NAME } from '@/constants/misc'
+import type { HeaderData, HeaderSection } from '@/types/common'
 import type { Metadata } from 'next'
 import { z } from 'zod'
 
@@ -21,6 +22,9 @@ const checkEmail = (email: string) => {
   const { success } = z.string().email().safeParse(email)
   return success
 }
+
+const isSectionItem = (item: HeaderData): item is HeaderSection =>
+  item.type === 'Section'
 
 const metaDescription =
   '《鏡報新聞網》——AI時代最需要的新聞媒體！快速、準確、中立，提供最新時事、深度調查報導與獨家新聞，一站掌握全球重大資訊, 打造趣味、有梗的短影音，貼近新世代年輕人媒體消費習慣。想掌握即時新聞、熱門話題？上《鏡報新聞網》，隨時隨地獲取關鍵資訊！'
@@ -84,6 +88,7 @@ export {
   isValidUrl,
   checkShortsTitle,
   checkEmail,
+  isSectionItem,
   getDefaultMetadata,
   updateMetadataOnClientSide,
 }

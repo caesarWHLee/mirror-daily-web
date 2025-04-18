@@ -1,7 +1,7 @@
 fragment PostOverview on Post {
   id
   title
-  createdAt
+  publishedDate
   apiDataBrief
   apiData
   heroImage {

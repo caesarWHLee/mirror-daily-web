@@ -44,6 +44,11 @@ export default function RootLayout({
         />
       </head>
       <body className="app-layout">
+        <Script
+          async
+          strategy="beforeInteractive"
+          src="https://cdn.jsdelivr.net/npm/@miso.ai/client-sdk@1.11.4/dist/umd/miso.min.js"
+        />
         <StoreProvider>
           {children}
           <UploadModal />

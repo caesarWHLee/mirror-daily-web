@@ -53,7 +53,7 @@ export default function HeroSection({
             alt={title}
           />
         </div>
-        <figcaption className="mt-2 px-5 text-[13px] font-normal leading-normal text-[#7F8493] md:px-0 lg:mt-4">
+        <figcaption className="mt-2 flex justify-center px-5 text-[13px] font-normal leading-normal text-[#7F8493] md:px-0 lg:mt-4">
           {heroCaption}
         </figcaption>
       </figure>
@@ -63,7 +63,7 @@ export default function HeroSection({
           style={{ color: sectionColor }}
           className="mb-1"
         >{`｜${sectionName}`}</p>
-        <h1 className="mb-3 break-all text-2xl font-black leading-[1.3] text-[#212944] md:mb-1 lg:mb-4">
+        <h1 className="mb-3 break-all text-[32px] font-normal leading-[45px] text-[#212944] md:mb-1 lg:mb-4">
           {title}
         </h1>
         <h2 className="mb-3 text-xl font-bold leading-[1.4] text-[#212944] lg:mb-4">

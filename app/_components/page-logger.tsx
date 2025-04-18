@@ -2,12 +2,18 @@
 
 import { useEffect, useMemo } from 'react'
 import { logPageView } from '@/app/actions-logging'
+import { useReferrerTracker } from '@/hooks/use-referrer-tracker'
 
 export default function PageLogger({
   extra,
 }: {
   extra?: Record<string, unknown>
 }) {
+  const { currentURL, referrer: clientReferrer } = useReferrerTracker()
+
+  const initialReferrer =
+    typeof document !== 'undefined' ? document.referrer : ''
+
   const screenSize = useMemo(() => {
     if (typeof window === 'undefined') return null
     return {
@@ -19,17 +25,16 @@ export default function PageLogger({
   useEffect(() => {
     const log = async () => {
       if (!screenSize) return
-      const referrer = document.referrer || ''
 
       await logPageView({
-        referrer,
+        referrer: clientReferrer || initialReferrer || '',
         screenSize,
         extra,
       })
     }
 
     log()
-  }, [extra, screenSize])
+  }, [clientReferrer, currentURL, extra, initialReferrer, screenSize])
 
   return null
 }

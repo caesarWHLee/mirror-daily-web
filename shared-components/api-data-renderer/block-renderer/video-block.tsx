@@ -50,7 +50,13 @@ const Video = ({ video }: VideoProps) => {
   const heroImage = video.heroImage?.resized?.original
   return (
     <div className="video-block">
-      <video src={video.url} loop controls poster={heroImage} />
+      <video
+        src={video.url}
+        loop
+        controls
+        poster={heroImage}
+        preload="metadata"
+      />
     </div>
   )
 }

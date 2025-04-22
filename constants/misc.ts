@@ -49,14 +49,13 @@ export const PAGE_LINKS: PageLink[] = [
 export const CONTACT_LINKS: ContactLink[] = [
   {
     name: '鏡報客服',
-    href: 'tel:+886(02)7737-4683',
-    text: '(02)7737-4683',
+    href: 'tel:+886(02)6619-8085',
+    text: '(02)6619-8085',
   },
   {
-    // TODO: update email
     name: '客服信箱',
-    href: 'mailto:movieservice@nexttv.com.tw',
-    text: 'movieservice@nexttv.com.tw',
+    href: 'mailto:119@mirrordaily.news',
+    text: '119@mirrordaily.news',
   },
 ]
 

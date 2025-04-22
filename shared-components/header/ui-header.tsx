@@ -1,6 +1,6 @@
 import NextImage from 'next/image'
 import NextLink from 'next/link'
-import { SOCIAL_LINKS } from '@/constants/misc'
+import { CONTACT_LINKS, SOCIAL_LINKS } from '@/constants/misc'
 import MobileToggleAndNav from './mobile-toggle-and-nav'
 import DesktopNavList from './desktop-nav-list'
 import FlashNewsList from './flash-news-list'
@@ -83,10 +83,12 @@ export default function UiHeader({
               <NextImage src={IconSearch} fill={true} alt="搜尋" />
             </button>
           </div>
-          <button className="ml-[11.71px] mt-5 hidden h-7 shrink-0 rounded-[29px] bg-[#FF5457] px-[10px] py-[3px] text-[15px] font-normal leading-none text-white md:ml-[18px] md:mt-10 md:h-5 md:px-[6px] md:py-[0.5px] md:text-[13px] lg:ml-[11.14px] lg:mt-[32px] lg:inline-block lg:h-6 lg:px-[10px] lg:py-px lg:text-[15px]">
-            {/* TODO: click handler */}
+          <a
+            className="ml-[11.14px] mt-8 hidden h-6 w-20 items-center justify-center rounded-[29px] bg-[#ff5457] text-[15px] font-normal leading-none text-white lg:flex"
+            href={CONTACT_LINKS[1]?.href}
+          >
             我要爆料
-          </button>
+          </a>
           <MobileToggleAndNav data={data} />
         </div>
       </div>

@@ -35,7 +35,10 @@ export default async function ArticleSection({
         {relatedPosts.length > 0 && <RelatedNewsSection posts={relatedPosts} />}
       </div>
 
-      <MobileGptAd slotKey="mirrordaily_article_MW_336x280_AT3" />
+      <MobileGptAd
+        slotKey="mirrordaily_article_MW_336x280_AT3"
+        customClasses="mt-8"
+      />
 
       <hr className="my-8 w-full max-w-[238px] border-[0.5px] border-[#7F8493] md:my-12 md:w-[588px] md:max-w-none lg:hidden" />
 

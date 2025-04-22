@@ -116,6 +116,10 @@ query GetPostById($id: ID!) {
       id
       name
     }
+    engineers {
+      id
+      name
+    }
     apiData
     apiDataBrief
     Warning {

@@ -46,6 +46,11 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
       link: getAuthorPageUrl(id),
       name: name ?? '',
     })) ?? []
+  const mainWriters =
+    rawData.engineers?.map(({ id, name }) => ({
+      link: getAuthorPageUrl(id),
+      name: name ?? '',
+    })) ?? []
   const apiData = rawData.apiData
   const apiDataBrief = rawData.apiDataBrief
   const tags =
@@ -72,6 +77,7 @@ function transformPost(rawData: GetPostByIdQuery['post']): Post | null {
     writers,
     photographers,
     editors,
+    mainWriters,
     apiData,
     apiDataBrief,
     tags,

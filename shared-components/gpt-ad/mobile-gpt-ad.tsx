@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import type { AdSlotKey } from './base-gpt-ad'
 import BaseGptAd from './base-gpt-ad'
 import { getTailwindConfigBreakpointNumber } from '@/utils/tailwind'
+import TempAdImage from './temp-ad-image'
 
 export function MobileGptAd({
   slotKey,
@@ -13,6 +14,7 @@ export function MobileGptAd({
   customClasses?: string
 }) {
   const [show, setShow] = useState(false)
+  const isAdScriptsReady = false
 
   useEffect(() => {
     const check = () =>
@@ -23,7 +25,12 @@ export function MobileGptAd({
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  return show ? (
+  return show && isAdScriptsReady ? (
     <BaseGptAd slotKey={slotKey} customClasses={customClasses} />
-  ) : null
+  ) : (
+    <TempAdImage
+      slotKey={slotKey}
+      customClasses={`md:hidden ${customClasses}`}
+    />
+  )
 }

@@ -125,6 +125,15 @@ const nextConfig = {
     ]
   },
   poweredByHeader: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/statics-dev.mirrordaily.news/ads_image/**',
+      },
+    ],
+  },
 }
 
 export default nextConfig

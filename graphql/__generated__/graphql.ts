@@ -135,6 +135,8 @@ export type Category = {
   __typename?: 'Category'
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
+  externals?: Maybe<Array<External>>
+  externalsCount?: Maybe<Scalars['Int']['output']>
   heroImage?: Maybe<Photo>
   id: Scalars['ID']['output']
   name?: Maybe<Scalars['String']['output']>
@@ -147,6 +149,18 @@ export type Category = {
   state?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
   updatedBy?: Maybe<User>
+}
+
+export type CategoryExternalsArgs = {
+  cursor?: InputMaybe<ExternalWhereUniqueInput>
+  orderBy?: Array<ExternalOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: ExternalWhereInput
+}
+
+export type CategoryExternalsCountArgs = {
+  where?: ExternalWhereInput
 }
 
 export type CategoryPostsArgs = {
@@ -176,6 +190,7 @@ export type CategorySectionsCountArgs = {
 export type CategoryCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
+  externals?: InputMaybe<ExternalRelateToManyForCreateInput>
   heroImage?: InputMaybe<PhotoRelateToOneForCreateInput>
   name?: InputMaybe<Scalars['String']['input']>
   order?: InputMaybe<Scalars['Int']['input']>
@@ -234,6 +249,7 @@ export type CategoryUpdateArgs = {
 export type CategoryUpdateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
+  externals?: InputMaybe<ExternalRelateToManyForUpdateInput>
   heroImage?: InputMaybe<PhotoRelateToOneForUpdateInput>
   name?: InputMaybe<Scalars['String']['input']>
   order?: InputMaybe<Scalars['Int']['input']>
@@ -251,6 +267,7 @@ export type CategoryWhereInput = {
   OR?: InputMaybe<Array<CategoryWhereInput>>
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
+  externals?: InputMaybe<ExternalManyRelationFilter>
   heroImage?: InputMaybe<PhotoWhereInput>
   id?: InputMaybe<IdFilter>
   name?: InputMaybe<StringFilter>
@@ -347,6 +364,7 @@ export type ContactRelateToOneForUpdateInput = {
 export enum ContactRoleType {
   CameraMan = 'camera_man',
   Designer = 'designer',
+  Engineer = 'engineer',
   Photographer = 'photographer',
   Writer = 'writer',
 }
@@ -453,6 +471,7 @@ export type DateTimeNullableFilter = {
 
 export type EditorChoice = {
   __typename?: 'EditorChoice'
+  choiceexternal?: Maybe<External>
   choices?: Maybe<Post>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
@@ -466,6 +485,7 @@ export type EditorChoice = {
 }
 
 export type EditorChoiceCreateInput = {
+  choiceexternal?: InputMaybe<ExternalRelateToOneForCreateInput>
   choices?: InputMaybe<PostRelateToOneForCreateInput>
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
@@ -492,6 +512,7 @@ export type EditorChoiceUpdateArgs = {
 }
 
 export type EditorChoiceUpdateInput = {
+  choiceexternal?: InputMaybe<ExternalRelateToOneForUpdateInput>
   choices?: InputMaybe<PostRelateToOneForUpdateInput>
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
@@ -507,6 +528,7 @@ export type EditorChoiceWhereInput = {
   AND?: InputMaybe<Array<EditorChoiceWhereInput>>
   NOT?: InputMaybe<Array<EditorChoiceWhereInput>>
   OR?: InputMaybe<Array<EditorChoiceWhereInput>>
+  choiceexternal?: InputMaybe<ExternalWhereInput>
   choices?: InputMaybe<PostWhereInput>
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
@@ -643,6 +665,9 @@ export type EventWhereUniqueInput = {
 export type External = {
   __typename?: 'External'
   brief?: Maybe<Scalars['String']['output']>
+  categories?: Maybe<Array<Category>>
+  categoriesCount?: Maybe<Scalars['Int']['output']>
+  categoriesInInputOrder?: Maybe<Array<Maybe<Category>>>
   content?: Maybe<Scalars['String']['output']>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
@@ -650,11 +675,16 @@ export type External = {
   groups?: Maybe<Array<Group>>
   groupsCount?: Maybe<Scalars['Int']['output']>
   id: Scalars['ID']['output']
+  manualOrderOfCategories?: Maybe<Scalars['JSON']['output']>
+  manualOrderOfSections?: Maybe<Scalars['JSON']['output']>
   partner?: Maybe<Partner>
   publishedDate?: Maybe<Scalars['DateTime']['output']>
   publishedDateString?: Maybe<Scalars['String']['output']>
   relateds?: Maybe<Array<Post>>
   relatedsCount?: Maybe<Scalars['Int']['output']>
+  sections?: Maybe<Array<Section>>
+  sectionsCount?: Maybe<Scalars['Int']['output']>
+  sectionsInInputOrder?: Maybe<Array<Maybe<Section>>>
   slug?: Maybe<Scalars['String']['output']>
   source?: Maybe<Scalars['String']['output']>
   state?: Maybe<Scalars['String']['output']>
@@ -662,8 +692,21 @@ export type External = {
   tagsCount?: Maybe<Scalars['Int']['output']>
   thumb?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
+  topics?: Maybe<Topic>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
   updatedBy?: Maybe<User>
+}
+
+export type ExternalCategoriesArgs = {
+  cursor?: InputMaybe<CategoryWhereUniqueInput>
+  orderBy?: Array<CategoryOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: CategoryWhereInput
+}
+
+export type ExternalCategoriesCountArgs = {
+  where?: CategoryWhereInput
 }
 
 export type ExternalGroupsArgs = {
@@ -690,6 +733,18 @@ export type ExternalRelatedsCountArgs = {
   where?: PostWhereInput
 }
 
+export type ExternalSectionsArgs = {
+  cursor?: InputMaybe<SectionWhereUniqueInput>
+  orderBy?: Array<SectionOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: SectionWhereInput
+}
+
+export type ExternalSectionsCountArgs = {
+  where?: SectionWhereInput
+}
+
 export type ExternalTagsArgs = {
   cursor?: InputMaybe<TagWhereUniqueInput>
   orderBy?: Array<TagOrderByInput>
@@ -704,21 +759,26 @@ export type ExternalTagsCountArgs = {
 
 export type ExternalCreateInput = {
   brief?: InputMaybe<Scalars['String']['input']>
+  categories?: InputMaybe<CategoryRelateToManyForCreateInput>
   content?: InputMaybe<Scalars['String']['input']>
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
   extend_byline?: InputMaybe<Scalars['String']['input']>
   groups?: InputMaybe<GroupRelateToManyForCreateInput>
+  manualOrderOfCategories?: InputMaybe<Scalars['JSON']['input']>
+  manualOrderOfSections?: InputMaybe<Scalars['JSON']['input']>
   partner?: InputMaybe<PartnerRelateToOneForCreateInput>
   publishedDate?: InputMaybe<Scalars['DateTime']['input']>
   publishedDateString?: InputMaybe<Scalars['String']['input']>
   relateds?: InputMaybe<PostRelateToManyForCreateInput>
+  sections?: InputMaybe<SectionRelateToManyForCreateInput>
   slug?: InputMaybe<Scalars['String']['input']>
   source?: InputMaybe<Scalars['String']['input']>
   state?: InputMaybe<Scalars['String']['input']>
   tags?: InputMaybe<TagRelateToManyForCreateInput>
   thumb?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+  topics?: InputMaybe<TopicRelateToOneForCreateInput>
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>
   updatedBy?: InputMaybe<UserRelateToOneForCreateInput>
 }
@@ -756,6 +816,17 @@ export type ExternalRelateToManyForUpdateInput = {
   set?: InputMaybe<Array<ExternalWhereUniqueInput>>
 }
 
+export type ExternalRelateToOneForCreateInput = {
+  connect?: InputMaybe<ExternalWhereUniqueInput>
+  create?: InputMaybe<ExternalCreateInput>
+}
+
+export type ExternalRelateToOneForUpdateInput = {
+  connect?: InputMaybe<ExternalWhereUniqueInput>
+  create?: InputMaybe<ExternalCreateInput>
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>
+}
+
 export type ExternalUpdateArgs = {
   data: ExternalUpdateInput
   where: ExternalWhereUniqueInput
@@ -763,21 +834,26 @@ export type ExternalUpdateArgs = {
 
 export type ExternalUpdateInput = {
   brief?: InputMaybe<Scalars['String']['input']>
+  categories?: InputMaybe<CategoryRelateToManyForUpdateInput>
   content?: InputMaybe<Scalars['String']['input']>
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
   extend_byline?: InputMaybe<Scalars['String']['input']>
   groups?: InputMaybe<GroupRelateToManyForUpdateInput>
+  manualOrderOfCategories?: InputMaybe<Scalars['JSON']['input']>
+  manualOrderOfSections?: InputMaybe<Scalars['JSON']['input']>
   partner?: InputMaybe<PartnerRelateToOneForUpdateInput>
   publishedDate?: InputMaybe<Scalars['DateTime']['input']>
   publishedDateString?: InputMaybe<Scalars['String']['input']>
   relateds?: InputMaybe<PostRelateToManyForUpdateInput>
+  sections?: InputMaybe<SectionRelateToManyForUpdateInput>
   slug?: InputMaybe<Scalars['String']['input']>
   source?: InputMaybe<Scalars['String']['input']>
   state?: InputMaybe<Scalars['String']['input']>
   tags?: InputMaybe<TagRelateToManyForUpdateInput>
   thumb?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+  topics?: InputMaybe<TopicRelateToOneForUpdateInput>
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>
   updatedBy?: InputMaybe<UserRelateToOneForUpdateInput>
 }
@@ -787,6 +863,7 @@ export type ExternalWhereInput = {
   NOT?: InputMaybe<Array<ExternalWhereInput>>
   OR?: InputMaybe<Array<ExternalWhereInput>>
   brief?: InputMaybe<StringFilter>
+  categories?: InputMaybe<CategoryManyRelationFilter>
   content?: InputMaybe<StringFilter>
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
@@ -797,11 +874,13 @@ export type ExternalWhereInput = {
   publishedDate?: InputMaybe<DateTimeNullableFilter>
   publishedDateString?: InputMaybe<StringFilter>
   relateds?: InputMaybe<PostManyRelationFilter>
+  sections?: InputMaybe<SectionManyRelationFilter>
   source?: InputMaybe<StringFilter>
   state?: InputMaybe<StringNullableFilter>
   tags?: InputMaybe<TagManyRelationFilter>
   thumb?: InputMaybe<StringFilter>
   title?: InputMaybe<StringFilter>
+  topics?: InputMaybe<TopicWhereInput>
   updatedAt?: InputMaybe<DateTimeNullableFilter>
   updatedBy?: InputMaybe<UserWhereInput>
 }
@@ -1077,6 +1156,83 @@ export type HeaderWhereUniqueInput = {
   order?: InputMaybe<Scalars['Int']['input']>
 }
 
+export type Hot = {
+  __typename?: 'Hot'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  createdBy?: Maybe<User>
+  heroImage?: Maybe<Photo>
+  hotexternal?: Maybe<External>
+  hotnews?: Maybe<Post>
+  id: Scalars['ID']['output']
+  order?: Maybe<Scalars['Int']['output']>
+  outlink?: Maybe<Scalars['String']['output']>
+  state?: Maybe<Scalars['String']['output']>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+  updatedBy?: Maybe<User>
+}
+
+export type HotCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>
+  createdBy?: InputMaybe<UserRelateToOneForCreateInput>
+  heroImage?: InputMaybe<PhotoRelateToOneForCreateInput>
+  hotexternal?: InputMaybe<ExternalRelateToOneForCreateInput>
+  hotnews?: InputMaybe<PostRelateToOneForCreateInput>
+  order?: InputMaybe<Scalars['Int']['input']>
+  outlink?: InputMaybe<Scalars['String']['input']>
+  state?: InputMaybe<Scalars['String']['input']>
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>
+  updatedBy?: InputMaybe<UserRelateToOneForCreateInput>
+}
+
+export type HotOrderByInput = {
+  createdAt?: InputMaybe<OrderDirection>
+  id?: InputMaybe<OrderDirection>
+  order?: InputMaybe<OrderDirection>
+  outlink?: InputMaybe<OrderDirection>
+  state?: InputMaybe<OrderDirection>
+  updatedAt?: InputMaybe<OrderDirection>
+}
+
+export type HotUpdateArgs = {
+  data: HotUpdateInput
+  where: HotWhereUniqueInput
+}
+
+export type HotUpdateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>
+  createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
+  heroImage?: InputMaybe<PhotoRelateToOneForUpdateInput>
+  hotexternal?: InputMaybe<ExternalRelateToOneForUpdateInput>
+  hotnews?: InputMaybe<PostRelateToOneForUpdateInput>
+  order?: InputMaybe<Scalars['Int']['input']>
+  outlink?: InputMaybe<Scalars['String']['input']>
+  state?: InputMaybe<Scalars['String']['input']>
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>
+  updatedBy?: InputMaybe<UserRelateToOneForUpdateInput>
+}
+
+export type HotWhereInput = {
+  AND?: InputMaybe<Array<HotWhereInput>>
+  NOT?: InputMaybe<Array<HotWhereInput>>
+  OR?: InputMaybe<Array<HotWhereInput>>
+  createdAt?: InputMaybe<DateTimeNullableFilter>
+  createdBy?: InputMaybe<UserWhereInput>
+  heroImage?: InputMaybe<PhotoWhereInput>
+  hotexternal?: InputMaybe<ExternalWhereInput>
+  hotnews?: InputMaybe<PostWhereInput>
+  id?: InputMaybe<IdFilter>
+  order?: InputMaybe<IntNullableFilter>
+  outlink?: InputMaybe<StringFilter>
+  state?: InputMaybe<StringNullableFilter>
+  updatedAt?: InputMaybe<DateTimeNullableFilter>
+  updatedBy?: InputMaybe<UserWhereInput>
+}
+
+export type HotWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  order?: InputMaybe<Scalars['Int']['input']>
+}
+
 export type IdFilter = {
   equals?: InputMaybe<Scalars['ID']['input']>
   gt?: InputMaybe<Scalars['ID']['input']>
@@ -1260,6 +1416,8 @@ export type Mutation = {
   createGroups?: Maybe<Array<Maybe<Group>>>
   createHeader?: Maybe<Header>
   createHeaders?: Maybe<Array<Maybe<Header>>>
+  createHot?: Maybe<Hot>
+  createHots?: Maybe<Array<Maybe<Hot>>>
   createInitialUser: UserAuthenticationWithPasswordSuccess
   createPartner?: Maybe<Partner>
   createPartners?: Maybe<Array<Maybe<Partner>>>
@@ -1299,6 +1457,8 @@ export type Mutation = {
   deleteGroups?: Maybe<Array<Maybe<Group>>>
   deleteHeader?: Maybe<Header>
   deleteHeaders?: Maybe<Array<Maybe<Header>>>
+  deleteHot?: Maybe<Hot>
+  deleteHots?: Maybe<Array<Maybe<Hot>>>
   deletePartner?: Maybe<Partner>
   deletePartners?: Maybe<Array<Maybe<Partner>>>
   deletePhoto?: Maybe<Photo>
@@ -1338,6 +1498,8 @@ export type Mutation = {
   updateGroups?: Maybe<Array<Maybe<Group>>>
   updateHeader?: Maybe<Header>
   updateHeaders?: Maybe<Array<Maybe<Header>>>
+  updateHot?: Maybe<Hot>
+  updateHots?: Maybe<Array<Maybe<Hot>>>
   updatePartner?: Maybe<Partner>
   updatePartners?: Maybe<Array<Maybe<Partner>>>
   updatePhoto?: Maybe<Photo>
@@ -1435,6 +1597,14 @@ export type MutationCreateHeaderArgs = {
 
 export type MutationCreateHeadersArgs = {
   data: Array<HeaderCreateInput>
+}
+
+export type MutationCreateHotArgs = {
+  data: HotCreateInput
+}
+
+export type MutationCreateHotsArgs = {
+  data: Array<HotCreateInput>
 }
 
 export type MutationCreateInitialUserArgs = {
@@ -1591,6 +1761,14 @@ export type MutationDeleteHeaderArgs = {
 
 export type MutationDeleteHeadersArgs = {
   where: Array<HeaderWhereUniqueInput>
+}
+
+export type MutationDeleteHotArgs = {
+  where: HotWhereUniqueInput
+}
+
+export type MutationDeleteHotsArgs = {
+  where: Array<HotWhereUniqueInput>
 }
 
 export type MutationDeletePartnerArgs = {
@@ -1752,6 +1930,15 @@ export type MutationUpdateHeaderArgs = {
 
 export type MutationUpdateHeadersArgs = {
   data: Array<HeaderUpdateArgs>
+}
+
+export type MutationUpdateHotArgs = {
+  data: HotUpdateInput
+  where: HotWhereUniqueInput
+}
+
+export type MutationUpdateHotsArgs = {
+  data: Array<HotUpdateArgs>
 }
 
 export type MutationUpdatePartnerArgs = {
@@ -2639,6 +2826,9 @@ export type Query = {
   header?: Maybe<Header>
   headers?: Maybe<Array<Header>>
   headersCount?: Maybe<Scalars['Int']['output']>
+  hot?: Maybe<Hot>
+  hots?: Maybe<Array<Hot>>
+  hotsCount?: Maybe<Scalars['Int']['output']>
   keystone: KeystoneMeta
   partner?: Maybe<Partner>
   partners?: Maybe<Array<Partner>>
@@ -2814,6 +3004,22 @@ export type QueryHeadersArgs = {
 
 export type QueryHeadersCountArgs = {
   where?: HeaderWhereInput
+}
+
+export type QueryHotArgs = {
+  where: HotWhereUniqueInput
+}
+
+export type QueryHotsArgs = {
+  cursor?: InputMaybe<HotWhereUniqueInput>
+  orderBy?: Array<HotOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: HotWhereInput
+}
+
+export type QueryHotsCountArgs = {
+  where?: HotWhereInput
 }
 
 export type QueryPartnerArgs = {
@@ -3009,6 +3215,8 @@ export type Section = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
   description?: Maybe<Scalars['String']['output']>
+  externals?: Maybe<Array<External>>
+  externalsCount?: Maybe<Scalars['Int']['output']>
   heroImage?: Maybe<Photo>
   id: Scalars['ID']['output']
   isFeatured?: Maybe<Scalars['Boolean']['output']>
@@ -3034,6 +3242,18 @@ export type SectionCategoriesArgs = {
 
 export type SectionCategoriesCountArgs = {
   where?: CategoryWhereInput
+}
+
+export type SectionExternalsArgs = {
+  cursor?: InputMaybe<ExternalWhereUniqueInput>
+  orderBy?: Array<ExternalOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: ExternalWhereInput
+}
+
+export type SectionExternalsCountArgs = {
+  where?: ExternalWhereInput
 }
 
 export type SectionPostsArgs = {
@@ -3066,6 +3286,7 @@ export type SectionCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
   description?: InputMaybe<Scalars['String']['input']>
+  externals?: InputMaybe<ExternalRelateToManyForCreateInput>
   heroImage?: InputMaybe<PhotoRelateToOneForCreateInput>
   isFeatured?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
@@ -3131,6 +3352,7 @@ export type SectionUpdateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
   description?: InputMaybe<Scalars['String']['input']>
+  externals?: InputMaybe<ExternalRelateToManyForUpdateInput>
   heroImage?: InputMaybe<PhotoRelateToOneForUpdateInput>
   isFeatured?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
@@ -3152,6 +3374,7 @@ export type SectionWhereInput = {
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
   description?: InputMaybe<StringFilter>
+  externals?: InputMaybe<ExternalManyRelationFilter>
   heroImage?: InputMaybe<PhotoWhereInput>
   id?: InputMaybe<IdFilter>
   isFeatured?: InputMaybe<BooleanFilter>
@@ -3366,6 +3589,8 @@ export type Topic = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   createdBy?: Maybe<User>
   dfp?: Maybe<Scalars['String']['output']>
+  externals?: Maybe<Array<External>>
+  externalsCount?: Maybe<Scalars['Int']['output']>
   heroImage?: Maybe<Photo>
   heroUrl?: Maybe<Scalars['String']['output']>
   heroVideo?: Maybe<Video>
@@ -3396,6 +3621,18 @@ export type Topic = {
   type?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
   updatedBy?: Maybe<User>
+}
+
+export type TopicExternalsArgs = {
+  cursor?: InputMaybe<ExternalWhereUniqueInput>
+  orderBy?: Array<ExternalOrderByInput>
+  skip?: Scalars['Int']['input']
+  take?: InputMaybe<Scalars['Int']['input']>
+  where?: ExternalWhereInput
+}
+
+export type TopicExternalsCountArgs = {
+  where?: ExternalWhereInput
 }
 
 export type TopicPostsArgs = {
@@ -3452,6 +3689,7 @@ export type TopicCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForCreateInput>
   dfp?: InputMaybe<Scalars['String']['input']>
+  externals?: InputMaybe<ExternalRelateToManyForCreateInput>
   heroImage?: InputMaybe<PhotoRelateToOneForCreateInput>
   heroUrl?: InputMaybe<Scalars['String']['input']>
   heroVideo?: InputMaybe<VideoRelateToOneForCreateInput>
@@ -3539,6 +3777,7 @@ export type TopicUpdateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>
   createdBy?: InputMaybe<UserRelateToOneForUpdateInput>
   dfp?: InputMaybe<Scalars['String']['input']>
+  externals?: InputMaybe<ExternalRelateToManyForUpdateInput>
   heroImage?: InputMaybe<PhotoRelateToOneForUpdateInput>
   heroUrl?: InputMaybe<Scalars['String']['input']>
   heroVideo?: InputMaybe<VideoRelateToOneForUpdateInput>
@@ -3572,6 +3811,7 @@ export type TopicWhereInput = {
   createdAt?: InputMaybe<DateTimeNullableFilter>
   createdBy?: InputMaybe<UserWhereInput>
   dfp?: InputMaybe<StringFilter>
+  externals?: InputMaybe<ExternalManyRelationFilter>
   heroImage?: InputMaybe<PhotoWhereInput>
   heroUrl?: InputMaybe<StringNullableFilter>
   heroVideo?: InputMaybe<VideoWhereInput>
@@ -4845,6 +5085,11 @@ export type GetPostByIdQuery = {
       name?: string | null
     }> | null
     designers?: Array<{
+      __typename?: 'Contact'
+      id: string
+      name?: string | null
+    }> | null
+    engineers?: Array<{
       __typename?: 'Contact'
       id: string
       name?: string | null
@@ -8706,6 +8951,17 @@ export const GetPostByIdDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'designers' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'engineers' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [

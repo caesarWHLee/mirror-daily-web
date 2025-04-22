@@ -446,7 +446,6 @@
       aspect-ratio: 100/56;
       display: flex;
       justify-content: center;
-      position: relative;
 
       & video {
         height: 100%;

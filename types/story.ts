@@ -17,6 +17,7 @@ export type Post = {
   sectionColor: string
   writers: Contact[]
   photographers: Contact[]
+  mainWriters: Contact[]
   editors: Contact[]
   apiData: ApiData
   apiDataBrief: ApiData

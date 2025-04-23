@@ -69,13 +69,13 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <div className="hidden h-[306px] lg:block">
+      <div className="hidden min-h-[306px] lg:block">
         <DesktopGptAd
           slotKey="mirrordaily_home_PC_970x250_1"
           customClasses="mt-5 mb-9 mx-auto"
         />
       </div>
-      <div className="block h-[352px] md:hidden">
+      <div className="block min-h-[352px] md:hidden">
         <MobileGptAd
           slotKey="mirrordaily_list_MW_336x280_HD"
           customClasses="my-9 mx-auto"

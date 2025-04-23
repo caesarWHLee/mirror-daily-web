@@ -4,7 +4,7 @@ import { CONTACT_LINKS, SOCIAL_LINKS } from '@/constants/misc'
 import MobileToggleAndNav from './mobile-toggle-and-nav'
 import DesktopNavList from './desktop-nav-list'
 import FlashNewsList from './flash-news-list'
-import IconSearch from '@/public/icons/search.svg'
+// import IconSearch from '@/public/icons/search.svg'
 import IconLogo from '@/public/icons/logos/mirror-daily.svg'
 import IconFacebook from '@/public/icons/logos/facebook-black.svg'
 import IconInstagram from '@/public/icons/logos/instagram-black.svg'
@@ -71,8 +71,8 @@ export default function UiHeader({
               className="aspect-[150/42] md:aspect-auto"
             />
           </NextLink>
-          <div className="ml-auto mt-[23px] flex shrink-0 md:mt-10 md:gap-x-[5px] lg:mt-8 lg:gap-x-[7px]">
-            {/* TODO: form submit handler, expanded search bar on mobile device */}
+          {/* <div className="ml-auto mt-[23px] flex shrink-0 md:mt-10 md:gap-x-[5px] lg:mt-8 lg:gap-x-[7px]">
+            {/* TODO: form submit handler, expanded search bar on mobile device 
             <input
               type="text"
               name="search"
@@ -82,9 +82,9 @@ export default function UiHeader({
             <button className="relative inline-block h-[22.15px] w-[22.29px] md:h-5 md:w-[18.57px] lg:mt-[3px] lg:h-[16.7px] lg:w-[14.86px]">
               <NextImage src={IconSearch} fill={true} alt="搜尋" />
             </button>
-          </div>
+          </div> */}
           <a
-            className="ml-[11.14px] mt-8 hidden h-6 w-20 items-center justify-center rounded-[29px] bg-[#ff5457] text-[15px] font-normal leading-none text-white lg:flex"
+            className="ml-auto mt-8 hidden h-6 w-20 items-center justify-center rounded-[29px] bg-[#ff5457] text-[15px] font-normal leading-none text-white lg:flex"
             href={CONTACT_LINKS[1]?.href}
           >
             我要爆料

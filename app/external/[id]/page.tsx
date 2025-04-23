@@ -64,7 +64,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main className="flex flex-col items-center">
-      <MisoPageView productIds={`story_${id}`} />
+      <MisoPageView productIds={`external_${id}`} />
       <div className="hidden min-h-[306px] lg:block">
         <DesktopGptAd
           slotKey="mirrordaily_home_PC_970x250_1"

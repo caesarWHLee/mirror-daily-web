@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Script from 'next/script'
 import { ENV } from '@/constants/config'
 import { ENVIRONMENT } from '@/constants/misc'
 import { adSlots } from '@/constants/ad'
@@ -58,11 +57,6 @@ export default function BaseGptAd({
 
   return (
     <>
-      <Script
-        id="gpt-sdk"
-        strategy="afterInteractive"
-        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-      />
       <div
         id={adDivId}
         style={{

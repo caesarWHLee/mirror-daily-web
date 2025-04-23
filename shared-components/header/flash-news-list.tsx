@@ -1,6 +1,5 @@
 'use client'
 import type { FlashNews } from '@/types/homepage'
-import NextLink from 'next/link'
 import { useEffect, useState } from 'react'
 import { SECOND } from '@/constants/time-unit'
 
@@ -45,14 +44,13 @@ export default function FlashNewsList({ items }: Props) {
         const { postId, postName, link } = item
 
         return (
-          <NextLink
-            prefetch={false}
+          <a
             key={postId}
             href={link}
             className={`${baseStyles} ${getClassesByIndex(index, currentIndex)}`}
           >
             {postName}
-          </NextLink>
+          </a>
         )
       })}
     </div>

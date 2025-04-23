@@ -90,10 +90,10 @@ export default async function Page({ params }: PageProps) {
         />
         <hr className="my-10 hidden w-[670px] border border-[#000928] md:block lg:hidden" />
         <PopularNewsSection />
-        <MobileGptAd
+        {/* <MobileGptAd
           slotKey="mirrordaily_list_MW_320x100_FIX"
           customClasses="fixed bottom-0 auto z-[9999]"
-        />
+        /> */}
       </main>
       <DesktopGptAd
         slotKey="mirrordaily_list_970x250"

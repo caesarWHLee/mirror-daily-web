@@ -96,10 +96,10 @@ export default async function Page({ params }: PageProps) {
           <FeatureNewsList title="熱門新聞" posts={popularPosts} />
         </div>
       </section>
-      <MobileGptAd
+      {/* <MobileGptAd
         slotKey="mirrordaily_article_MW_320x100_ST"
         customClasses="fixed bottom-0 z-10"
-      />
+      /> */}
     </main>
   )
 }

@@ -50,7 +50,7 @@ export default function MobileToggleAndNav({ data }: Props) {
   }
 
   return (
-    <div className="ml-3 mt-[22px] max-w-screen-sm shrink-0 md:ml-[14.43px] md:mt-10 lg:hidden">
+    <div className="ml-auto mt-[22px] max-w-screen-sm shrink-0 md:mt-10 lg:hidden">
       <button
         className="relative flex h-6 w-[26px] md:size-5"
         onClick={toggleOpen}

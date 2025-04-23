@@ -11,6 +11,7 @@ import { IMAGE_PATH } from '@/constants/default-path'
 import { getDefaultMetadata } from '@/utils/common'
 import { DesktopGptAd } from '@/shared-components/gpt-ad/desktop-gpt-ad'
 import { MobileGptAd } from '@/shared-components/gpt-ad/mobile-gpt-ad'
+import MisoPageView from '@/app/_components/miso-pageview'
 
 type PageProps = { params: { id: string } }
 
@@ -63,6 +64,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main className="flex flex-col items-center">
+      <MisoPageView productIds={`story_${id}`} />
       <div className="hidden min-h-[306px] lg:block">
         <DesktopGptAd
           slotKey="mirrordaily_home_PC_970x250_1"

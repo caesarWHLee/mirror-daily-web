@@ -61,7 +61,7 @@ export default function BaseGptAd({
         id={adDivId}
         style={{
           width: size[0],
-          height: size[1],
+          minHeight: size[1],
         }}
         className={twMerge(
           `${isDebugMode ? `relative border-2 border-dashed border-red-500` : ''}`,

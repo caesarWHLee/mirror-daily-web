@@ -101,7 +101,7 @@ export default async function Page({ params }: PageProps) {
       />
       <MobileGptAd
         slotKey="mirrordaily_list_MW_336x280_FT"
-        customClasses="mt-8 mb-9 mx-auto z-[-1]"
+        customClasses="mt-8 mb-9 mx-auto z-[5]"
       />
     </>
   )

@@ -93,7 +93,7 @@ export default async function Page({ params }: PageProps) {
         <AdultWarning isAdult={postData.isAdult} />
         <MobileGptAd
           slotKey="mirrordaily_article_MW_320x100_ST"
-          customClasses="fixed bottom-0"
+          customClasses="fixed bottom-0 z-10"
         />
       </main>
     </>

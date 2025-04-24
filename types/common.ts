@@ -28,6 +28,7 @@ export type PopularNews = {
   sectionName: string
   sectionColor: string
   categoryName: string
+  categoryColor: string
   postId: string
   postName: string
   heroImage: HeroImage
@@ -81,6 +82,7 @@ export type LatestPost = {
   sectionName: string
   sectionColor: string
   categoryName: string
+  categoryColor: string
   postId: string
   postName: string
   heroImage: HeroImage

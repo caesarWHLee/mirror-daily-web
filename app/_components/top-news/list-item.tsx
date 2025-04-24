@@ -1,5 +1,4 @@
 import type { ItemInTopNewsSection } from '@/types/homepage'
-import NextLink from 'next/link'
 import type { CSSProperties } from 'react'
 
 type Props = Pick<
@@ -35,8 +34,7 @@ export default function ListItem({
           {publishedDate}
         </time>
       </div>
-      <NextLink
-        prefetch={false}
+      <a
         href={link}
         target="_blank"
         className="mt-[6px] line-clamp-2 h-[42px] break-all text-base font-medium leading-[21px] text-[#575D71] hover-or-active:text-[color:var(--custom-active-color)] md:h-10 md:text-sm md:font-normal md:leading-[20px] lg:line-clamp-1 lg:h-auto lg:text-base lg:font-medium lg:leading-normal"
@@ -47,7 +45,7 @@ export default function ListItem({
         }
       >
         {postName}
-      </NextLink>
+      </a>
     </div>
   )
 }

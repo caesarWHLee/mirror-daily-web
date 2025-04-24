@@ -1,5 +1,4 @@
 import NextImage from 'next/image'
-import NextLink from 'next/link'
 import {
   SOCIAL_LINKS,
   PAGE_LINKS,
@@ -44,18 +43,14 @@ export default function Footer(): ReactElement {
   return (
     <footer className="flex w-full flex-col bg-mirror-blue-800">
       <div className="flex w-full max-w-screen-lg flex-col items-center self-center lg:flex-row">
-        <NextLink
-          prefetch={false}
-          href="/"
-          className="mt-5 md:mt-7 lg:ml-5 lg:mt-0"
-        >
+        <a href="/" className="mt-5 md:mt-7 lg:ml-5 lg:mt-0">
           <NextImage
             src={IconMirrorDaily}
             alt="Mirror Daily"
             width={120}
             height={32}
           />
-        </NextLink>
+        </a>
         <section className="mb-9 mt-4 tracking-[0.5px] md:mb-12 md:mt-[14px] lg:my-0 lg:ml-8 lg:mr-auto">
           <div className="text-center text-sm font-normal leading-[20px] lg:space-x-2">
             {CONTACT_LINKS.map(({ name, href, text }) => (
@@ -106,15 +101,14 @@ export default function Footer(): ReactElement {
           className={`relative text-center text-sm font-normal leading-[20px] text-white lg:my-[38px] lg:ml-[10.5px] lg:mr-[27.5px]`}
         >
           {PAGE_LINKS.map(({ name, href, isExternal }) => (
-            <NextLink
-              prefetch={false}
+            <a
               className="block"
               key={name}
               href={href}
               target={isExternal ? '_blank' : '_self'}
             >
               {name}
-            </NextLink>
+            </a>
           ))}
         </section>
         <section className="my-5 flex flex-row items-center gap-x-4 md:mb-7 md:mt-4 lg:hidden">

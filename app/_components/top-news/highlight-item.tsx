@@ -2,7 +2,6 @@
 import type { ReactNode } from 'react'
 import type { PickupItemInTopNewsSection } from '@/types/homepage'
 import CustomImage from '@/shared-components/custom-image'
-import NextLink from 'next/link'
 import ReactPlayer from 'react-player/lazy'
 
 export default function HighlightItem({
@@ -35,8 +34,7 @@ export default function HighlightItem({
   }
 
   return (
-    <NextLink
-      prefetch={false}
+    <a
       className="group/highlight-item w-full shrink-0 md:w-[312px] lg:w-[560px]"
       href={link}
       target="_blank"
@@ -62,6 +60,6 @@ export default function HighlightItem({
           {postBrief}
         </p>
       )}
-    </NextLink>
+    </a>
   )
 }

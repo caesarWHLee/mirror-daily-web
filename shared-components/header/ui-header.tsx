@@ -1,5 +1,4 @@
 import NextImage from 'next/image'
-import NextLink from 'next/link'
 import { CONTACT_LINKS, SOCIAL_LINKS } from '@/constants/misc'
 import MobileToggleAndNav from './mobile-toggle-and-nav'
 import DesktopNavList from './desktop-nav-list'
@@ -59,8 +58,7 @@ export default function UiHeader({
     <header className="flex h-[150px] w-full shrink-0 flex-col items-center md:h-[134px] lg:h-[202px]">
       <div className="flex h-[68px] w-full justify-center bg-mirror-blue-700 md:h-[95px] lg:h-[80px]">
         <div className="flex w-full max-w-screen-sm pl-4 pr-6 md:max-w-screen-md md:pl-5 lg:max-w-screen-lg lg:px-9">
-          <NextLink
-            prefetch={false}
+          <a
             href="/"
             className="relative mt-4 h-[42px] w-[150px] md:mt-5 md:h-[55.74px] md:w-[200px] lg:mt-3 lg:h-[56px] lg:w-[200px] lg:shrink-0"
           >
@@ -70,7 +68,7 @@ export default function UiHeader({
               alt="Logo"
               className="aspect-[150/42] md:aspect-auto"
             />
-          </NextLink>
+          </a>
           {/* <div className="ml-auto mt-[23px] flex shrink-0 md:mt-10 md:gap-x-[5px] lg:mt-8 lg:gap-x-[7px]">
             {/* TODO: form submit handler, expanded search bar on mobile device 
             <input

@@ -4,6 +4,7 @@ export type ItemInTopNewsSection = Pick<
   LatestPost,
   | 'sectionColor'
   | 'categoryName'
+  | 'categoryColor'
   | 'postName'
   | 'postId'
   | 'publishedDate'

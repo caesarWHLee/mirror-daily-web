@@ -4,7 +4,7 @@ import type { CSSProperties } from 'react'
 
 type Props = Pick<
   ItemInTopNewsSection,
-  | 'categoryColor'
+  | 'sectionColor'
   | 'categoryName'
   | 'postId'
   | 'postName'
@@ -13,8 +13,8 @@ type Props = Pick<
 >
 
 export default function ListItem({
-  categoryColor,
   categoryName,
+  sectionColor,
   publishedDate,
   postName,
   link,
@@ -23,13 +23,13 @@ export default function ListItem({
     <div className="[&:not(:last-child)]:border-b [&:not(:last-child)]:border-[#CCCED4] [&:not(:last-child)]:pb-3 md:[&:not(:last-child)]:pb-2">
       <div className={`flex items-center`}>
         <span
-          style={{ backgroundColor: categoryColor || '#FF5A36' }}
+          style={{ backgroundColor: sectionColor || '#FF5A36' }}
           className="inline-block h-5 rounded-xl px-2 py-1 text-xs font-bold leading-[12px] tracking-[0.5px] text-[#F6F6FB]"
         >
           {categoryName || 'Video'}
         </span>
         <time
-          style={{ color: categoryColor }}
+          style={{ color: sectionColor }}
           className="ml-2 text-sm font-light leading-normal tracking-[0.5px] md:ml-3"
         >
           {publishedDate}
@@ -42,7 +42,7 @@ export default function ListItem({
         className="mt-[6px] line-clamp-2 h-[42px] break-all text-base font-medium leading-[21px] text-[#575D71] hover-or-active:text-[color:var(--custom-active-color)] md:h-10 md:text-sm md:font-normal md:leading-[20px] lg:line-clamp-1 lg:h-auto lg:text-base lg:font-medium lg:leading-normal"
         style={
           {
-            '--custom-active-color': categoryColor,
+            '--custom-active-color': sectionColor,
           } as CSSProperties
         }
       >

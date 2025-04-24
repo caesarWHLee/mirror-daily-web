@@ -55,12 +55,14 @@ const transformRawLatestPost = (
   rawPosts: z.infer<typeof rawLatestPostSchema>,
   headerData: HeaderData[]
 ): LatestPost => {
-  const { id, title, brief, heroImage, publishedDate, partner } = rawPosts
+  const { id, title, brief, heroImage, publishedDate, partner, categories } =
+    rawPosts
   const { name, color } = getSectionConfig(rawPosts, headerData)
 
   return {
-    categoryName: name,
-    categoryColor: color,
+    sectionName: name,
+    sectionColor: color,
+    categoryName: categories[0]?.name ?? DEFAULT_SECTION_NAME,
     postId: id,
     postName: title,
     postBrief: brief,
@@ -81,12 +83,14 @@ const transformRawPopularPost = (
     heroImage,
     publishedDate,
     sectionsInInputOrder: sections,
+    categories,
   } = rawPosts
   const color = getSectionColor(headerData, sections[0]?.slug)
 
   return {
-    categoryName: sections[0]?.name ?? DEFAULT_SECTION_NAME,
-    categoryColor: color,
+    sectionName: sections[0]?.name ?? DEFAULT_SECTION_NAME,
+    sectionColor: color,
+    categoryName: categories[0]?.name ?? DEFAULT_SECTION_NAME,
     postId: id,
     postName: title,
     postBrief: brief,

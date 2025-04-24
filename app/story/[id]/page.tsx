@@ -64,6 +64,8 @@ export default async function Page({ params }: PageProps) {
     sectionName: postData.sectionName,
     tags: postData.tags.map((t) => t.name),
     algoTags: postData.algoTags.map((t) => t.name),
+    editors: postData.editors.map((e) => e.name),
+    mainWriters: postData.mainWriters.map((m) => m.name),
   }
 
   return (

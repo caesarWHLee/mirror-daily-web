@@ -197,7 +197,7 @@ const transfromRawPost = (rawPost: RawPost): PostData => {
   const content = getFirstParagraphFromApiData(rawPost.apiData) ?? ''
   const ogImage = getHeroImage(rawPost.og_image)
   const postMainImage = selectMainImage(heroImage, ogImage)
-  const textContent = brief || content
+  const textContent = removeHtmlTags(brief || content)
 
   return {
     id,
@@ -273,6 +273,11 @@ const getSectionColor = (headerData: HeaderData[], slug?: string) => {
     headerData.filter(isSectionItem).find((item) => item.slug === slug)
       ?.color ?? DEFAULT_SECTION_COLOR
   )
+}
+
+const removeHtmlTags = (content: string) => {
+  const regex = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g
+  return content.replaceAll(regex, '')
 }
 
 export {

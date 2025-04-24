@@ -7,12 +7,12 @@ import type { LatestPost } from '@/types/common'
 
 type Props = Pick<
   LatestPost,
-  'categoryName' | 'categoryColor' | 'postName' | 'heroImage' | 'link'
+  'sectionName' | 'sectionColor' | 'postName' | 'heroImage' | 'link'
 >
 
 export default function LatestNewsCard({
-  categoryName,
-  categoryColor,
+  sectionName,
+  sectionColor,
   postName,
   heroImage,
   link,
@@ -20,14 +20,14 @@ export default function LatestNewsCard({
   return (
     <div className="flex w-full max-w-[329px] flex-col md:w-[200px] lg:w-[255px] [&:nth-last-child(2)]:mr-auto">
       <span
-        className={`mb-1 inline-block h-1 w-3 ${!categoryName ? 'invisible' : ''}`}
-        style={{ backgroundColor: categoryColor }}
+        className={`mb-1 inline-block h-1 w-3 ${!sectionName ? 'invisible' : ''}`}
+        style={{ backgroundColor: sectionColor }}
       ></span>
       <p
         className="mb-[7px] h-6 text-base font-black leading-normal md:mb-[11px]"
-        style={{ color: categoryColor }}
+        style={{ color: sectionColor }}
       >
-        {categoryName}
+        {sectionName}
       </p>
       <NextLink
         prefetch={false}

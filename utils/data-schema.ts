@@ -64,6 +64,7 @@ export const rawLatestPostSchema = z.object({
   brief: z.string(),
   heroImage: z.union([heroImageSchema, z.string(), z.null(), z.undefined()]),
   sections: z.array(sectionSchema.pick({ name: true, slug: true })),
+  categories: z.array(categorySchema.pick({ name: true, slug: true })),
   partner: z.union([partnerSchema, z.string()]),
   redirect: z.string(),
   publishedDate: z.string(),
@@ -76,6 +77,7 @@ export const rawPopularPostSchema = z.object({
   heroImage: z.union([heroImageSchema, z.string(), z.null(), z.undefined()]),
   publishedDate: z.string(),
   sectionsInInputOrder: z.array(sectionSchema.pick({ name: true, slug: true })),
+  categories: z.array(categorySchema.pick({ name: true, slug: true })),
 })
 
 export const rawFlashNewsSchema = rawLatestPostSchema.pick({

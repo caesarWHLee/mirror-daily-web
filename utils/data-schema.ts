@@ -42,7 +42,6 @@ const heroImageSchema = z
   .partial()
 
 const categorySchema = z.object({
-  id: z.string(),
   name: z.string(),
   slug: z.string(),
 })

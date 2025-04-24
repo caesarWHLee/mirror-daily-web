@@ -4,8 +4,8 @@ import type { PopularNews } from '@/types/common'
 import type { ReactElement } from 'react'
 
 export default function FeaturedNewsCard({
-  categoryName,
-  categoryColor,
+  sectionName,
+  sectionColor,
   postName,
   link,
   heroImage,
@@ -27,10 +27,10 @@ export default function FeaturedNewsCard({
           <span
             className={`absolute bottom-2 left-2 rounded-lg px-1 py-0 text-xs font-bold leading-4 tracking-[0.5px] text-[#ffffff]`}
             style={{
-              backgroundColor: categoryColor,
+              backgroundColor: sectionColor,
             }}
           >
-            {categoryName}
+            {sectionName}
           </span>
         </div>
 

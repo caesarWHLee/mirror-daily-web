@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import NextLink from 'next/link'
 import NextImage from 'next/image'
 import IconHomepage from '@/public/icons/homepage.svg'
 import IconNews from '@/public/icons/shorts/news.svg'
@@ -52,17 +51,15 @@ export default function Navbar({ tabs, activeTab }: Props) {
   return (
     <div className="hidden shrink-0 flex-col md:mr-[49px] md:flex lg:mr-[200px]">
       <nav className="grid w-[80px] shrink-0 grid-rows-[80px_33px_80px_80px] place-items-center text-sm font-normal leading-normal text-black *:rounded-lg [&>*:active]:bg-[#F0F0F1] [&>*:hover]:bg-[#F6F6FB]">
-        <NextLink
-          prefetch={false}
+        <a
           href="/"
           className="flex size-full flex-col items-center justify-center gap-y-2"
         >
           <NextImage src={IconHomepage} alt="首頁" />
           <p>首頁</p>
-        </NextLink>
+        </a>
         <hr className="my-4 h-px w-[54px] bg-[#000000]" />
-        <NextLink
-          prefetch={false}
+        <a
           href={tabs.news}
           className={`flex size-full flex-col items-center justify-center gap-y-1 ${
             activeTab === SHORTS_TYPE.NEWS ? 'bg-[#F0F0F1]' : ''
@@ -70,9 +67,8 @@ export default function Navbar({ tabs, activeTab }: Props) {
         >
           <NextImage src={IconNews} alt="新聞" />
           <p>新聞</p>
-        </NextLink>
-        <NextLink
-          prefetch={false}
+        </a>
+        <a
           href={tabs.creativity}
           className={`flex size-full flex-col items-center justify-center gap-y-1 ${
             activeTab === SHORTS_TYPE.DERIVATIVE ? 'bg-[#F0F0F1]' : ''
@@ -80,7 +76,7 @@ export default function Navbar({ tabs, activeTab }: Props) {
         >
           <NextImage src={IconCreatity} alt="投稿" />
           <p>投稿</p>
-        </NextLink>
+        </a>
       </nav>
       <section className="mt-auto shrink-0 text-sm font-normal leading-[20px] tracking-[0.5px]">
         {CONTACT_LINKS.map(({ name, href, text }) => (
@@ -94,15 +90,14 @@ export default function Navbar({ tabs, activeTab }: Props) {
       </section>
       <section className="mt-4 shrink-0 text-sm font-normal leading-[20px] text-[#575D71]">
         {PAGE_LINKS.map(({ name, href, isExternal }) => (
-          <NextLink
-            prefetch={false}
+          <a
             className="block"
             key={name}
             href={href}
             target={isExternal ? '_blank' : '_self'}
           >
             {name}
-          </NextLink>
+          </a>
         ))}
       </section>
       <section className="mt-6 flex shrink-0 flex-row items-center gap-x-3">

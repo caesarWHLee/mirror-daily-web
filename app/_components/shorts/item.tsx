@@ -3,7 +3,6 @@
 import type { Shorts } from '@/types/common'
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
-import NextLink from 'next/link'
 
 type Props = Shorts & {
   isActive: boolean
@@ -27,7 +26,7 @@ export default function ShortsItem({
   }, [])
 
   return (
-    <NextLink prefetch={false} className="w-full select-none" href={link}>
+    <a className="w-full select-none" href={link}>
       <div className="relative h-[400px] w-full lg:h-[400px]">
         {isClientSide && (
           <ReactPlayer
@@ -58,6 +57,6 @@ export default function ShortsItem({
       <p className="mt-4 line-clamp-2 text-base font-normal leading-normal">
         {title}
       </p>
-    </NextLink>
+    </a>
   )
 }

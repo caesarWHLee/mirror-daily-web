@@ -1,6 +1,5 @@
 'use client'
 
-import NextLink from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 import { getTailwindConfig } from '@/utils/tailwind'
@@ -144,14 +143,13 @@ export default function TopicSelector({
           </button>
         )
       })}
-      <NextLink
-        prefetch={false}
+      <a
         href={getTopicListingPage()}
         target="_blank"
         className="whitespace-nowrap font-medium text-[#000928] hover-or-active:text-[#575D71]"
       >
         更多
-      </NextLink>
+      </a>
     </div>
   )
 }

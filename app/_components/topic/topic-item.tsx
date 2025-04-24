@@ -1,6 +1,5 @@
 import type { TopicPost } from '@/types/homepage'
 import CustomImage from '@/shared-components/custom-image'
-import NextLink from 'next/link'
 
 type Props = TopicPost & { isFirst?: boolean }
 
@@ -17,8 +16,7 @@ export default function TopicItem({
         isFirst ? '' : 'md:w-[204px] lg:w-[456px] lg:flex-row lg:gap-x-4'
       } `}
     >
-      <NextLink
-        prefetch={false}
+      <a
         href={topicLink}
         className={`relative aspect-[329/182] w-full shrink-0 overflow-hidden rounded ${
           isFirst
@@ -36,9 +34,8 @@ export default function TopicItem({
         {isFirst && (
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_63.26%,rgba(0,0,0,0.50)_100%)]" />
         )}
-      </NextLink>
-      <NextLink
-        prefetch={false}
+      </a>
+      <a
         href={link}
         className={`line-clamp-2 text-base font-normal leading-normal text-[#000928] group-hover/card:text-[#575D71] group-active/card:text-[#575D71] ${
           isFirst
@@ -47,7 +44,7 @@ export default function TopicItem({
         }`}
       >
         {postName}
-      </NextLink>
+      </a>
     </div>
   )
 }

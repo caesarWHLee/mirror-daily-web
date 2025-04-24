@@ -1,7 +1,6 @@
 'use client'
 
 import CustomImage from '@/shared-components/custom-image'
-import NextLink from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Keyboard } from 'swiper/modules'
 
@@ -41,12 +40,7 @@ export default function SwiperComponent({ list }: Props) {
             key={postId}
             className="relative w-full max-w-screen-sm md:max-w-none"
           >
-            <NextLink
-              prefetch={false}
-              href={link}
-              target="_blank"
-              className="group/slide w-full"
-            >
+            <a href={link} target="_blank" className="group/slide w-full">
               <div className="relative aspect-[330/200] w-full overflow-hidden md:aspect-[680/410] lg:aspect-[1128/655]">
                 <CustomImage
                   images={heroImage.resized}
@@ -58,7 +52,7 @@ export default function SwiperComponent({ list }: Props) {
               <p className="mt-5 line-clamp-3 h-[84px] text-xl font-bold leading-normal text-[#000928] group-hover/slide:text-[#575D71] group-active/slide:text-[#575D71] md:absolute md:bottom-3 md:left-5 md:m-0 md:line-clamp-2 md:h-auto md:max-h-[58px] md:w-[440px] md:text-white md:group-hover/slide:text-white md:group-hover/slide:underline md:group-active/slide:text-white md:group-active/slide:underline lg:bottom-7 lg:left-7 lg:max-h-[69px] lg:w-[654px] lg:text-2xl lg:font-black">
                 {postName}
               </p>
-            </NextLink>
+            </a>
           </SwiperSlide>
         )
       })}

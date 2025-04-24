@@ -3,7 +3,6 @@
 import type { ChangeEvent } from 'react'
 import { useState } from 'react'
 import NextImage from 'next/image'
-import NextLink from 'next/link'
 import IconLogo from '@/public/icons/logos/mirror-daily-shorts-header.svg'
 import IconSearchGray from '@/public/icons/search-gray.svg'
 import IconSearchWhite from '@/public/icons/search-white.svg'
@@ -37,13 +36,12 @@ export default function HeaderBlock({ inputValue, setInputValue }: Props) {
 
   return (
     <div className="relative hidden w-full md:flex">
-      <NextLink
-        prefetch={false}
+      <a
         href="/"
         className="relative my-5 ml-5 h-[58px] w-[200px] lg:my-6 lg:h-[60px] lg:w-[208px]"
       >
         <NextImage src={IconLogo} fill={true} alt="Logo" />
-      </NextLink>
+      </a>
       <p className="my-[30px] ml-3 whitespace-nowrap text-2xl font-black leading-normal text-[#FF5A36] lg:my-[35px] lg:ml-[26px]">
         短影音
       </p>

@@ -24,6 +24,12 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant" className={notoSans.className}>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-6288011202409243" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6288011202409243"
+          crossOrigin="anonymous"
+        />
         <GoogleTagManager gtmId={GTM_ID} />
         <Script
           id="comscore"

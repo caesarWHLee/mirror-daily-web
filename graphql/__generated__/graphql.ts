@@ -8341,6 +8341,98 @@ export const GetPostsByAuthorIdDocument = {
                               },
                             ],
                           },
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'designers' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'some' },
+                                      value: {
+                                        kind: 'ObjectValue',
+                                        fields: [
+                                          {
+                                            kind: 'ObjectField',
+                                            name: { kind: 'Name', value: 'id' },
+                                            value: {
+                                              kind: 'ObjectValue',
+                                              fields: [
+                                                {
+                                                  kind: 'ObjectField',
+                                                  name: {
+                                                    kind: 'Name',
+                                                    value: 'equals',
+                                                  },
+                                                  value: {
+                                                    kind: 'Variable',
+                                                    name: {
+                                                      kind: 'Name',
+                                                      value: 'id',
+                                                    },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
+                          {
+                            kind: 'ObjectValue',
+                            fields: [
+                              {
+                                kind: 'ObjectField',
+                                name: { kind: 'Name', value: 'engineers' },
+                                value: {
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'some' },
+                                      value: {
+                                        kind: 'ObjectValue',
+                                        fields: [
+                                          {
+                                            kind: 'ObjectField',
+                                            name: { kind: 'Name', value: 'id' },
+                                            value: {
+                                              kind: 'ObjectValue',
+                                              fields: [
+                                                {
+                                                  kind: 'ObjectField',
+                                                  name: {
+                                                    kind: 'Name',
+                                                    value: 'equals',
+                                                  },
+                                                  value: {
+                                                    kind: 'Variable',
+                                                    name: {
+                                                      kind: 'Name',
+                                                      value: 'id',
+                                                    },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
                         ],
                       },
                     },

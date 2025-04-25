@@ -46,6 +46,8 @@ query GetPostsByAuthorId($skip: Int!, $take: Int!, $id: ID!) {
       OR: [
         { writers: { some: { id: { equals: $id } } } }
         { photographers: { some: { id: { equals: $id } } } }
+        { designers: { some: { id: { equals: $id } } } }
+        { engineers: { some: { id: { equals: $id } } } }
       ]
     }
     orderBy: [{ publishedDate: desc }]

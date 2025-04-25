@@ -51,13 +51,6 @@ query GetShortsByTagAndVideoSection($tagId: ID!, $section: String!, $skip: Int =
       videoSection:  {
         equals: $section
       }
-      tags:  {
-        some:  {
-          id:  {
-            equals: $tagId
-          }
-        }
-      }
     }
     take: $take,
     skip: $skip,

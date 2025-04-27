@@ -13,7 +13,7 @@ export default function HighlightItem({
 }: PickupItemInTopNewsSection): ReactNode {
   if (isVideoType) {
     return (
-      <div className="aspect-[330/200] w-full shrink-0 md:aspect-auto md:h-[187px] md:w-[312px] lg:h-[336px] lg:w-[560px]">
+      <div className="aspect-[330/220] w-full shrink-0 md:aspect-auto md:h-[208px] md:w-[312px] lg:h-[374px] lg:w-[560px]">
         <ReactPlayer
           url={link}
           width="100%"
@@ -39,7 +39,7 @@ export default function HighlightItem({
       href={link}
       target="_blank"
     >
-      <div className="aspect-[330/200] overflow-hidden rounded group-hover/highlight-item:*:scale-110 group-active/highlight-item:*:scale-110 md:aspect-auto md:h-[187px] lg:h-[336px]">
+      <div className="aspect-[330/220] overflow-hidden rounded group-hover/highlight-item:*:scale-110 group-active/highlight-item:*:scale-110 md:aspect-auto md:h-[208px] lg:h-[374px]">
         <CustomImage
           images={heroImage.resized}
           imagesWebP={heroImage.resizedWebp}

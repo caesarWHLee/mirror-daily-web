@@ -41,7 +41,7 @@ export default function SwiperComponent({ list }: Props) {
             className="relative w-full max-w-screen-sm md:max-w-none"
           >
             <a href={link} target="_blank" className="group/slide w-full">
-              <div className="relative aspect-[330/200] w-full overflow-hidden md:aspect-[680/410] lg:aspect-[1128/655]">
+              <div className="relative aspect-[330/186] w-full overflow-hidden md:aspect-[680/383] lg:aspect-[1128/634]">
                 <CustomImage
                   images={heroImage.resized}
                   alt="編輯精選首圖"

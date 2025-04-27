@@ -22,7 +22,7 @@ export default function ArticleSection({
         </p>
       </div>
 
-      <div className="mb-9 flex w-full max-w-screen-sm flex-col items-center justify-center gap-y-8 md:mb-12 md:max-w-[588px] md:flex-row md:flex-wrap md:justify-start md:gap-x-7 md:gap-y-10 lg:max-w-[768px] lg:gap-x-6 lg:gap-y-12 [&>*:last-child]:mt-[-4px] [&>*:last-child]:flex [&>*:last-child]:w-full [&>*:last-child]:justify-center md:[&>*:last-child]:mt-2 lg:[&>*:last-child]:mt-[52px]">
+      <div className="mb-9 flex w-full max-w-screen-sm flex-col items-center justify-center gap-y-8 md:mb-12 md:max-w-[588px] md:flex-row md:flex-wrap md:items-start md:gap-x-7 md:gap-y-10 lg:max-w-[768px] lg:justify-start lg:gap-x-6 lg:gap-y-12 [&>*:last-child]:mt-[-4px] [&>*:last-child]:flex [&>*:last-child]:w-full [&>*:last-child]:justify-center md:[&>*:last-child]:mt-2 lg:[&>*:last-child]:mt-[52px]">
         <ArticlesList
           fetchMorePosts={fetchMorePosts}
           initialList={initialList}

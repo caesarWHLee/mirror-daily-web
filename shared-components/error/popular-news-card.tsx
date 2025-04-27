@@ -18,7 +18,7 @@ export default function PopularNewsCard({
       rel="noopener noreferrer"
       className="flex flex-col md:gap-y-2 lg:gap-y-3"
     >
-      <figure className="relative h-[133px] overflow-hidden rounded md:h-[154px]">
+      <figure className="relative h-[160px] overflow-hidden rounded md:h-[188px]">
         <CustomImage
           images={heroImage.resized}
           imagesWebP={heroImage.resizedWebp}

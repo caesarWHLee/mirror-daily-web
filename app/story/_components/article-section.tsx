@@ -23,16 +23,20 @@ export default async function ArticleSection({
 
   return (
     <section className="mb-[72px] flex w-full flex-col items-center md:mb-[76px] lg:mb-[92px] lg:flex-row lg:items-start lg:justify-center lg:gap-x-[104px]">
-      <div className="max-w-screen-sm md:max-w-[600px] lg:max-w-screen-md">
-        <HeroSection {...heroContent} />
-        <div className="mb-12">
-          <Article content={apiDataBrief} isBrief={true} />
-          <Article content={apiData} isBrief={false} />
-          <p className="mt-3 px-5 text-lg font-bold leading-loose text-[#212944] md:mt-8 md:px-0">
-            {warning}
-          </p>
+      <div>
+        <div className="max-w-screen-sm md:max-w-[600px] lg:max-w-screen-md">
+          <HeroSection {...heroContent} />
+          <div className="mb-12">
+            <Article content={apiDataBrief} isBrief={true} />
+            <Article content={apiData} isBrief={false} />
+            <p className="mt-3 px-5 text-lg font-bold leading-loose text-[#212944] md:mt-8 md:px-0">
+              {warning}
+            </p>
+          </div>
+          {relatedPosts.length > 0 && (
+            <RelatedNewsSection posts={relatedPosts} />
+          )}
         </div>
-        {relatedPosts.length > 0 && <RelatedNewsSection posts={relatedPosts} />}
       </div>
 
       <MobileGptAd

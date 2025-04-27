@@ -93,7 +93,7 @@
   }
 
   .article-container > .image {
-    @apply relative mb-4 aspect-[280/155] overflow-hidden rounded md:h-[155px] lg:h-[188px];
+    @apply relative mb-4 aspect-[280/188] overflow-hidden rounded md:h-[188px] lg:h-[228px];
   }
   
   .article-container > .title {

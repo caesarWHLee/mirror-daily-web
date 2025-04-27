@@ -17,7 +17,7 @@ export default function RelatedNewsCard({
       rel="noopener noreferrer"
     >
       <figure className="flex max-w-[330px] flex-row gap-x-3 md:w-[280px] md:flex-col md:gap-y-2 lg:w-[240px]">
-        <div className="relative h-[88px] w-40 shrink-0 overflow-hidden rounded md:h-[154px] md:w-full lg:h-[133px]">
+        <div className="relative h-[108px] w-40 shrink-0 overflow-hidden rounded md:h-[188px] md:w-full lg:h-[160px]">
           <CustomImage
             images={postMainImage.resized}
             imagesWebP={postMainImage.resizedWebp}

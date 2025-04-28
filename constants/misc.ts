@@ -48,12 +48,12 @@ export const PAGE_LINKS: PageLink[] = [
 
 export const CONTACT_LINKS: ContactLink[] = [
   {
-    name: '鏡報客服',
+    name: '爆料專線',
     href: 'tel:+886(02)6619-8085',
     text: '(02)6619-8085',
   },
   {
-    name: '客服信箱',
+    name: '爆料信箱',
     href: 'mailto:service@mirrordaily.news',
     text: 'service@mirrordaily.news',
   },

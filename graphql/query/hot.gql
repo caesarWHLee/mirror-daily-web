@@ -1,0 +1,13 @@
+query GetFlashNews {
+  hots(take: 8, where: { state: { equals: "published" } }) {
+    outlink
+    hotnews {
+      id
+      title
+    }
+    hotexternal {
+      id
+      title
+    }
+  }
+}

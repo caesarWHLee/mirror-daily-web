@@ -4721,6 +4721,22 @@ export type GetExternalsByPartnerSlugQuery = {
   }> | null
 }
 
+export type GetFlashNewsQueryVariables = Exact<{ [key: string]: never }>
+
+export type GetFlashNewsQuery = {
+  __typename?: 'Query'
+  hots?: Array<{
+    __typename?: 'Hot'
+    outlink?: string | null
+    hotnews?: { __typename?: 'Post'; id: string; title?: string | null } | null
+    hotexternal?: {
+      __typename?: 'External'
+      id: string
+      title?: string | null
+    } | null
+  }> | null
+}
+
 export type GetPartnerInformationQueryVariables = Exact<{
   slug: Scalars['String']['input']
 }>
@@ -4789,17 +4805,6 @@ export type GetPostsBySectionSlugQuery = {
         w2400?: string | null
       } | null
     } | null
-  }> | null
-}
-
-export type GetFlashNewsQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetFlashNewsQuery = {
-  __typename?: 'Query'
-  posts?: Array<{
-    __typename?: 'Post'
-    id: string
-    title?: string | null
   }> | null
 }
 
@@ -7536,6 +7541,87 @@ export const GetExternalsByPartnerSlugDocument = {
   GetExternalsByPartnerSlugQuery,
   GetExternalsByPartnerSlugQueryVariables
 >
+export const GetFlashNewsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetFlashNews' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'hots' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'take' },
+                value: { kind: 'IntValue', value: '8' },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'state' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'equals' },
+                            value: {
+                              kind: 'StringValue',
+                              value: 'published',
+                              block: false,
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'outlink' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'hotnews' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'hotexternal' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetFlashNewsQuery, GetFlashNewsQueryVariables>
 export const GetPartnerInformationDocument = {
   kind: 'Document',
   definitions: [
@@ -7840,85 +7926,6 @@ export const GetPostsBySectionSlugDocument = {
   GetPostsBySectionSlugQuery,
   GetPostsBySectionSlugQueryVariables
 >
-export const GetFlashNewsDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetFlashNews' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'posts' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'take' },
-                value: { kind: 'IntValue', value: '8' },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'orderBy' },
-                value: {
-                  kind: 'ListValue',
-                  values: [
-                    {
-                      kind: 'ObjectValue',
-                      fields: [
-                        {
-                          kind: 'ObjectField',
-                          name: { kind: 'Name', value: 'publishedDate' },
-                          value: { kind: 'EnumValue', value: 'desc' },
-                        },
-                      ],
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'state' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'equals' },
-                            value: {
-                              kind: 'StringValue',
-                              value: 'published',
-                              block: false,
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetFlashNewsQuery, GetFlashNewsQueryVariables>
 export const GetPostsByCategorySlugDocument = {
   kind: 'Document',
   definitions: [

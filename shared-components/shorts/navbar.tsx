@@ -13,7 +13,7 @@ import IconFacebook from '@/public/icons/logos/facebook-gray.svg'
 import IconInstagram from '@/public/icons/logos/instagram-gray.svg'
 import IconThreads from '@/public/icons/logos/threads-gray.svg'
 import IconYouTube from '@/public/icons/logos/youtube-gray.svg'
-import IconLine from '@/public/icons/logos/line-gray.svg'
+// import IconLine from '@/public/icons/logos/line-gray.svg'
 import IconMirrorMedia from '@/public/icons/logos/mirror-media-shorts.svg'
 import IconMirrorFiction from '@/public/icons/logos/mirror-fiction-shorts.png'
 import IconMirrorNews from '@/public/icons/logos/mirror-news-shorts.svg'
@@ -36,10 +36,10 @@ const ExtendedSocialLinks = [
     ...SOCIAL_LINKS[3],
     icon: IconYouTube,
   },
-  {
-    ...SOCIAL_LINKS[4],
-    icon: IconLine,
-  },
+  // {
+  //   ...SOCIAL_LINKS[4],
+  //   icon: IconLine,
+  // },
 ] as const
 
 type Props = {

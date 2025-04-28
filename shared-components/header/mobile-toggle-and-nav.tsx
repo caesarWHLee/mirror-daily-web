@@ -11,7 +11,7 @@ import IconFacebook from '@/public/icons/logos/facebook-white.svg'
 import IconInstagram from '@/public/icons/logos/instagram-white.svg'
 import IconThreads from '@/public/icons/logos/threads-white.svg'
 import IconYouTube from '@/public/icons/logos/youtube-white.svg'
-import IconLine from '@/public/icons/logos/line-white.svg'
+// import IconLine from '@/public/icons/logos/line-white.svg'
 import { getTopicPageUrl } from '@/utils/site-urls'
 import { isSectionItem } from '@/utils/common'
 
@@ -32,10 +32,10 @@ const ExtendedSocialLinks = [
     ...SOCIAL_LINKS[3],
     icon: IconYouTube,
   },
-  {
-    ...SOCIAL_LINKS[4],
-    icon: IconLine,
-  },
+  // {
+  //   ...SOCIAL_LINKS[4],
+  //   icon: IconLine,
+  // },
 ] as const
 
 type Props = {

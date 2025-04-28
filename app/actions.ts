@@ -18,12 +18,16 @@ import { fetchGQLData } from '@/utils/graphql'
 import type { GetLiveEventForHomepageQuery } from '@/graphql/__generated__/graphql'
 import {
   GetEditorChoicesDocument,
-  GetFlashNewsDocument,
   GetLiveEventForHomepageDocument,
   GetTopicsDocument,
+  GetFlashNewsDocument,
 } from '@/graphql/__generated__/graphql'
 import dayjs from 'dayjs'
-import { getStoryPageUrl, getTopicPageUrl } from '@/utils/site-urls'
+import {
+  getExternalPageUrl,
+  getStoryPageUrl,
+  getTopicPageUrl,
+} from '@/utils/site-urls'
 import { createDataFetchingChain, getHeroImage } from '@/utils/data-process'
 import type { ParameterOfComponent } from '@/types/common'
 import type EditorChoiceMain from './_components/editor-choice/main'
@@ -79,14 +83,33 @@ const transformRawFlashNews = (
   rawData: z.infer<ZodArray<typeof rawFlashNewsSchema>>
 ): FlashNews[] => {
   if (!rawData) return []
+  return rawData.map(({ hotnews, hotexternals, outlink }) => {
+    if (outlink) {
+      return {
+        link: outlink,
+        postName: '快訊',
+      }
+    }
 
-  return rawData.map((rawPost) => {
-    const postId = rawPost.id ?? ''
+    if (hotnews) {
+      const postId = hotnews?.id ?? ''
+      return {
+        link: getStoryPageUrl(postId),
+        postName: hotnews?.title ?? '',
+      }
+    }
+
+    if (hotexternals) {
+      const postId = hotexternals?.id ?? ''
+      return {
+        link: getExternalPageUrl(postId),
+        postName: hotexternals?.title ?? '',
+      }
+    }
 
     return {
-      postId,
-      postName: rawPost.title ?? '',
-      link: getStoryPageUrl(postId),
+      link: '',
+      postName: '',
     }
   })
 }
@@ -96,7 +119,7 @@ export const fetchFlashNews = async (): Promise<FlashNews[]> => {
     'Error occurs while fetching flash news',
     getTraceObject()
   )
-  const schema = z.promise(z.object({ posts: z.array(rawFlashNewsSchema) }))
+  const schema = z.promise(z.object({ hots: z.array(rawFlashNewsSchema) }))
 
   const data = await createDataFetchingChain<
     z.infer<ZodArray<typeof rawFlashNewsSchema>>
@@ -107,13 +130,13 @@ export const fetchFlashNews = async (): Promise<FlashNews[]> => {
       const resp = await fetch(URL_STATIC_FLASH_NEWS)
 
       const result = await schema.parse(resp.json())
-      return result.posts
+      return result.hots
     },
     async () => {
       const result = await schema.parse(
         fetchGQLData(errorLogger, GetFlashNewsDocument)
       )
-      return result.posts
+      return result.hots
     }
   )
 

@@ -19,7 +19,7 @@ export type PickupItemInTopNewsSection = Pick<
   postBrief?: string
 }
 
-export type FlashNews = Pick<LatestPost, 'postId' | 'postName' | 'link'>
+export type FlashNews = Pick<LatestPost, 'postName' | 'link'>
 
 export type EditorChoice = Pick<
   LatestPost,

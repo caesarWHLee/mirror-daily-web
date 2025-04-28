@@ -41,11 +41,11 @@ export default function FlashNewsList({ items }: Props) {
   return (
     <div className="relative h-[60px] grow overflow-hidden font-normal leading-normal text-[#FF5457] md:h-5 lg:h-[23px] lg:font-medium">
       {items.map((item, index) => {
-        const { postId, postName, link } = item
+        const { postName, link } = item
 
         return (
           <a
-            key={postId}
+            key={index}
             href={link}
             className={`${baseStyles} ${getClassesByIndex(index, currentIndex)}`}
           >

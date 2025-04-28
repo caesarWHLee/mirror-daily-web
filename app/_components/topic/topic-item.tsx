@@ -39,7 +39,7 @@ export default function TopicItem({
         href={link}
         className={`line-clamp-2 text-base font-normal leading-normal text-[#000928] group-hover/card:text-[#575D71] group-active/card:text-[#575D71] ${
           isFirst
-            ? 'md:absolute md:bottom-[14px] md:left-[21px] md:w-[471px] md:text-xl md:text-white md:group-hover/card:text-white md:group-hover/card:underline md:group-active/card:text-white md:group-active/card:underline lg:bottom-3 lg:left-4 lg:w-[526px] lg:font-bold lg:leading-none'
+            ? 'md:absolute md:bottom-[14px] md:left-[21px] md:w-[471px] md:text-xl md:text-white md:group-hover/card:text-white md:group-hover/card:underline md:group-active/card:text-white md:group-active/card:underline lg:static lg:mt-6 lg:w-[526px] lg:font-bold lg:leading-none lg:text-[#2B2B2B] lg:group-hover/card:text-[#575D71]'
             : 'md:line-clamp-3 md:h-[72px]'
         }`}
       >

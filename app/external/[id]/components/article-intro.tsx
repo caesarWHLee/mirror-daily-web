@@ -17,7 +17,7 @@ export default function ArticleIntro({
 }: PostIntro) {
   return (
     <section className="flex max-w-screen-sm flex-col items-center md:w-[600px] md:max-w-none lg:w-[720px]">
-      <figure className="relative order-1 mb-6 aspect-[2/1] w-full lg:order-2">
+      <figure className="relative order-1 mb-6 aspect-[3/2] w-full lg:order-2">
         <Image
           src={thumb || IMAGE_PATH}
           alt={title}

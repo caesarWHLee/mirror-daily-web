@@ -9,9 +9,9 @@ export default function TopicCard({ topic }: { topic: Topic }) {
       prefetch={false}
       href={getTopicPageUrl(topic.slug)}
       target="_blank"
-      className="mx-auto w-[319px] md:w-[280px] lg:w-[466px]"
+      className="mx-auto w-[320px] md:w-[280px] lg:w-[466px]"
     >
-      <figure className="relative h-[126px] w-[319px] md:h-[111px] md:w-[280px] lg:h-[186px] lg:w-[466px]">
+      <figure className="relative h-[180px] w-[320px] md:h-[158px] md:w-[280px] lg:h-[262px] lg:w-[466px]">
         <CustomImage
           images={topic.heroImage.resized}
           imagesWebP={topic.heroImage.resizedWebp}

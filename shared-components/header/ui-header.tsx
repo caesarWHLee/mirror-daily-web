@@ -9,7 +9,7 @@ import IconFacebook from '@/public/icons/logos/facebook-black.svg'
 import IconInstagram from '@/public/icons/logos/instagram-black.svg'
 import IconThreads from '@/public/icons/logos/threads-black.svg'
 import IconYouTube from '@/public/icons/logos/youtube-black.svg'
-import IconLine from '@/public/icons/logos/line-black.svg'
+// import IconLine from '@/public/icons/logos/line-black.svg'
 import type { HeaderData } from '@/types/common'
 import type { FlashNews } from '@/types/homepage'
 import { getTopicPageUrl } from '@/utils/site-urls'
@@ -32,10 +32,10 @@ const ExtendedSocialLinks = [
     ...SOCIAL_LINKS[3],
     icon: IconYouTube,
   },
-  {
-    ...SOCIAL_LINKS[4],
-    icon: IconLine,
-  },
+  // {
+  //   ...SOCIAL_LINKS[4],
+  //   icon: IconLine,
+  // },
 ] as const
 
 const iconSizes: Record<(typeof ExtendedSocialLinks)[number]['name'], number> =
@@ -44,7 +44,7 @@ const iconSizes: Record<(typeof ExtendedSocialLinks)[number]['name'], number> =
     Threads: 22,
     Instagram: 24,
     YouTube: 32,
-    LINE: 24,
+    // LINE: 24,
   }
 
 export default function UiHeader({

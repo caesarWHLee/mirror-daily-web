@@ -11103,44 +11103,6 @@ export const GetShortsByTagAndVideoSectionDocument = {
                         ],
                       },
                     },
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'tags' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'some' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'id' },
-                                  value: {
-                                    kind: 'ObjectValue',
-                                    fields: [
-                                      {
-                                        kind: 'ObjectField',
-                                        name: { kind: 'Name', value: 'equals' },
-                                        value: {
-                                          kind: 'Variable',
-                                          name: {
-                                            kind: 'Name',
-                                            value: 'tagId',
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
                   ],
                 },
               },

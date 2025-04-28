@@ -4,17 +4,20 @@ import { fetchTopicBasicInfo } from '../action'
 import {
   getHeroImage,
   selectMainImage,
-  getImageSrc,
+  // getImageSrc,
   getFirstParagraphFromApiData,
 } from '@/utils/data-process'
 import { SITE_NAME } from '@/constants/misc'
 import { IMAGE_PATH } from '@/constants/default-path'
 import { notFound } from 'next/navigation'
-import { TOPIC_LEADING, TOPIC_LIST_TYPE } from '@/types/topic'
-import type { ImageKeys } from '@/utils/data-schema'
-import LeadingVideo from './_components/leading-video'
-import CustomImage from '@/shared-components/custom-image'
-import LeadingSlideshow from './_components/leading-slideshow'
+import {
+  // TOPIC_LEADING,
+  TOPIC_LIST_TYPE,
+} from '@/types/topic'
+// import type { ImageKeys } from '@/utils/data-schema'
+// import LeadingVideo from './_components/leading-video'
+// import CustomImage from '@/shared-components/custom-image'
+// import LeadingSlideshow from './_components/leading-slideshow'
 import ListTypeListing from './_components/list-type'
 import GroupTypeListing from './_components/group-type'
 import { getTopicPageUrl } from '@/utils/site-urls'
@@ -76,107 +79,107 @@ export default async function Page({
   }
 
   const {
-    leading,
-    heroUrl,
-    heroVideo,
-    heroImage,
+    // leading,
+    // heroUrl,
+    // heroVideo,
+    // heroImage,
     style,
-    slideshow_images,
-    manualOrderOfSlideshowImages,
+    // slideshow_images,
+    // manualOrderOfSlideshowImages,
     type,
     tags,
   } = topic
 
-  let leadingJsx: React.ReactNode
+  // let leadingJsx: React.ReactNode
 
-  switch (leading) {
-    case TOPIC_LEADING.VIDEO: {
-      const pickedSize: ImageKeys[] = ['w1600', 'w1200', 'w800', 'original']
-      const isExternalVideoSrc = Boolean(heroUrl)
+  // switch (leading) {
+  //   case TOPIC_LEADING.VIDEO: {
+  //     const pickedSize: ImageKeys[] = ['w1600', 'w1200', 'w800', 'original']
+  //     const isExternalVideoSrc = Boolean(heroUrl)
 
-      // external video has higher precedence
-      if (isExternalVideoSrc) {
-        const poster =
-          getImageSrc(heroImage?.resizedWebp, pickedSize) ||
-          getImageSrc(heroImage?.resized, pickedSize) ||
-          ''
+  //     // external video has higher precedence
+  //     if (isExternalVideoSrc) {
+  //       const poster =
+  //         getImageSrc(heroImage?.resizedWebp, pickedSize) ||
+  //         getImageSrc(heroImage?.resized, pickedSize) ||
+  //         ''
 
-        leadingJsx = (
-          <div className="leading-wrapper">
-            <LeadingVideo poster={poster} fileUrl={heroUrl!} />
-          </div>
-        )
-      } else {
-        if (!heroVideo || !heroVideo.videoSrc) {
-          throw new Error(
-            `topic page (slug: ${slug}) with leading (${TOPIC_LEADING.VIDEO}) without valid video source`
-          )
-        }
+  //       leadingJsx = (
+  //         <div className="leading-wrapper">
+  //           <LeadingVideo poster={poster} fileUrl={heroUrl!} />
+  //         </div>
+  //       )
+  //     } else {
+  //       if (!heroVideo || !heroVideo.videoSrc) {
+  //         throw new Error(
+  //           `topic page (slug: ${slug}) with leading (${TOPIC_LEADING.VIDEO}) without valid video source`
+  //         )
+  //       }
 
-        const poster =
-          getImageSrc(heroVideo.heroImage?.resizedWebp, pickedSize) ||
-          getImageSrc(heroVideo.heroImage?.resized, pickedSize) ||
-          ''
+  //       const poster =
+  //         getImageSrc(heroVideo.heroImage?.resizedWebp, pickedSize) ||
+  //         getImageSrc(heroVideo.heroImage?.resized, pickedSize) ||
+  //         ''
 
-        leadingJsx = (
-          <div className="leading-wrapper">
-            <LeadingVideo poster={poster} fileUrl={heroVideo.videoSrc} />
-          </div>
-        )
-      }
-      break
-    }
-    case TOPIC_LEADING.SLIDESHOW: {
-      if (slideshow_images) {
-        leadingJsx = (
-          <div className="leading-wrapper bg-transparent">
-            <LeadingSlideshow
-              heroUrl={heroUrl}
-              list={slideshow_images}
-              orderList={manualOrderOfSlideshowImages}
-            />
-          </div>
-        )
-      } else {
-        leadingJsx = null
-      }
-      break
-    }
-    case TOPIC_LEADING.IMAGE:
-    default: {
-      if (heroImage) {
-        const images = getHeroImage(heroImage)
+  //       leadingJsx = (
+  //         <div className="leading-wrapper">
+  //           <LeadingVideo poster={poster} fileUrl={heroVideo.videoSrc} />
+  //         </div>
+  //       )
+  //     }
+  //     break
+  //   }
+  //   case TOPIC_LEADING.SLIDESHOW: {
+  //     if (slideshow_images) {
+  //       leadingJsx = (
+  //         <div className="leading-wrapper bg-transparent">
+  //           <LeadingSlideshow
+  //             heroUrl={heroUrl}
+  //             list={slideshow_images}
+  //             orderList={manualOrderOfSlideshowImages}
+  //           />
+  //         </div>
+  //       )
+  //     } else {
+  //       leadingJsx = null
+  //     }
+  //     break
+  //   }
+  //   case TOPIC_LEADING.IMAGE:
+  //   default: {
+  //     if (heroImage) {
+  //       const images = getHeroImage(heroImage)
 
-        if (heroUrl) {
-          leadingJsx = (
-            <a target="_blank" href={heroUrl} className="leading-wrapper">
-              <CustomImage
-                images={images.resized}
-                imagesWebP={images.resizedWebp}
-                objectFit="contain"
-                alt="topic 首圖"
-              />
-            </a>
-          )
-        } else {
-          leadingJsx = (
-            <div className="leading-wrapper">
-              <CustomImage
-                className="leading-image"
-                images={images.resized}
-                imagesWebP={images.resizedWebp}
-                objectFit="contain"
-                alt="topic 首圖"
-              />
-            </div>
-          )
-        }
-      } else {
-        leadingJsx = null
-      }
-      break
-    }
-  }
+  //       if (heroUrl) {
+  //         leadingJsx = (
+  //           <a target="_blank" href={heroUrl} className="leading-wrapper">
+  //             <CustomImage
+  //               images={images.resized}
+  //               imagesWebP={images.resizedWebp}
+  //               objectFit="contain"
+  //               alt="topic 首圖"
+  //             />
+  //           </a>
+  //         )
+  //       } else {
+  //         leadingJsx = (
+  //           <div className="leading-wrapper">
+  //             <CustomImage
+  //               className="leading-image"
+  //               images={images.resized}
+  //               imagesWebP={images.resizedWebp}
+  //               objectFit="contain"
+  //               alt="topic 首圖"
+  //             />
+  //           </div>
+  //         )
+  //       }
+  //     } else {
+  //       leadingJsx = null
+  //     }
+  //     break
+  //   }
+  // }
 
   let listingJsx: React.ReactNode
 
@@ -197,7 +200,8 @@ export default async function Page({
       {/* custom styles, use dangerouslySetInnerHTML to prevent hydration error */}
       {style && <style dangerouslySetInnerHTML={{ __html: style }} />}
       <div className="topic">
-        {leadingJsx}
+        {/* 因為該需求先註解掉：https://app.asana.com/1/614399484723017/project/1210077071799813/task/1210066204142622?focus=true */}
+        {/* {leadingJsx} */}
         <main className="topic-list">{listingJsx}</main>
       </div>
     </>

@@ -10,7 +10,7 @@
 
   /* leading */
   .leading-wrapper {
-    @apply relative aspect-[5/2] w-full bg-black md:max-h-[288px] lg:max-h-[480px];
+    @apply relative aspect-[16/9] w-full bg-black md:max-h-[405px] lg:max-h-[675px];
   }
 
   .leading-image {

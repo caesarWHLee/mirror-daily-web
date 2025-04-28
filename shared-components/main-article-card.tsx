@@ -16,7 +16,7 @@ export default function MainArticleCard({ postItem, color }: Props) {
       rel="noopener noreferrer"
       className="flex w-full flex-col gap-y-5 md:gap-y-[30px] lg:gap-y-7"
     >
-      <figure className="aspect-[375/208] w-full overflow-hidden md:h-[375px] md:rounded lg:h-[412px]">
+      <figure className="aspect-[375/250] w-full overflow-hidden md:h-[446px] md:rounded lg:h-[492px]">
         <CustomImage
           images={postItem.postMainImage.resized}
           imagesWebP={postItem.postMainImage.resizedWebp}

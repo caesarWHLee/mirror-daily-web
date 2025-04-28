@@ -17,9 +17,9 @@ export default function ArticleCard({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex max-w-[340px] flex-col md:min-h-[291px] md:w-[280px] md:max-w-none lg:w-[240px]"
+      className="flex max-w-[340px] flex-col md:w-[280px] md:max-w-none lg:w-[240px]"
     >
-      <figure className="relative mb-1 aspect-[340/188] overflow-hidden rounded md:h-[155px] lg:h-[133px]">
+      <figure className="relative mb-1 aspect-[340/228] overflow-hidden rounded md:h-[188px] lg:h-[160px]">
         <CustomImage
           images={postMainImage.resized}
           imagesWebP={postMainImage.resizedWebp}

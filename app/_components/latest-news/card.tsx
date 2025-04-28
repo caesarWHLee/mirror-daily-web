@@ -17,7 +17,7 @@ export default function LatestNewsCard({
   link,
 }: Props): ReactNode {
   return (
-    <div className="flex w-full max-w-[329px] flex-col md:w-[200px] lg:w-[255px] [&:nth-last-child(2)]:mr-auto">
+    <div className="flex w-full max-w-[330px] flex-col md:w-[200px] lg:w-[255px] [&:nth-last-child(2)]:mr-auto">
       <span
         className={`mb-1 inline-block h-1 w-3 ${!sectionName ? 'invisible' : ''}`}
         style={{ backgroundColor: sectionColor }}
@@ -29,7 +29,7 @@ export default function LatestNewsCard({
         {sectionName}
       </p>
       <a href={link} target="_blank" className="group/card">
-        <div className="relative aspect-[329/182] w-full overflow-hidden rounded group-hover/card:*:scale-110 group-active/card:*:scale-110 md:aspect-auto md:h-[134px] lg:h-[172px]">
+        <div className="relative aspect-[330/220] w-full overflow-hidden rounded group-hover/card:*:scale-110 group-active/card:*:scale-110 md:aspect-auto md:h-[134px] lg:h-[170px]">
           <CustomImage
             images={heroImage.resized}
             imagesWebP={heroImage.resizedWebp}

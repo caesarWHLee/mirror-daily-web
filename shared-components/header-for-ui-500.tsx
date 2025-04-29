@@ -22,7 +22,7 @@ export default function Header() {
 
     const getFlashNews = async () => {
       try {
-        const posts = await fetchLatestPost()
+        const posts = (await fetchLatestPost()).slice(0, 8)
         setLatestPosts(posts)
       } catch (err) {
         console.error(err)

@@ -68,6 +68,12 @@ export default function VideoBlock({
               <SwiperSlide key={index}>
                 <ShortsItem
                   {...item}
+                  readyToLoad={
+                    activeIndex !== null &&
+                    (index === activeIndex ||
+                      index === activeIndex + 1 ||
+                      index === activeIndex - 1)
+                  }
                   isActive={activeIndex === index && !isModalOpened}
                   onPause={() => setActiveIndex(null)}
                   onPlay={() => setActiveIndex(index)}

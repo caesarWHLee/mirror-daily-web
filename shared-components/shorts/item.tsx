@@ -9,6 +9,7 @@ type Props = Shorts & {
   isActive: boolean
   onPlay(): void
   onPause(): void
+  readyToLoad: boolean
 }
 
 export default function ShortsItem({
@@ -18,19 +19,27 @@ export default function ShortsItem({
   contributor,
   link,
   isActive,
+  readyToLoad,
   onPlay,
   onPause,
 }: Props) {
   const [isClientSide, setIsClientSide] = useState(false)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
   useEffect(() => {
     setIsClientSide(true)
   }, [])
 
+  useEffect(() => {
+    if (readyToLoad && !hasLoaded) {
+      setHasLoaded(true)
+    }
+  }, [readyToLoad, hasLoaded])
+
   return (
     <div className="relative h-full">
       <div className="shorts-container">
-        {isClientSide && (
+        {isClientSide && hasLoaded && (
           <ReactPlayer
             url={fileUrl}
             width="100%"

@@ -1,76 +1,69 @@
 query GetLatestShorts($amount: Int!, $start: Int!) {
   news: videos(
-    skip: $start,
-    take: $amount,
-    orderBy: [{ publishedDate: desc }],
+    skip: $start
+    take: $amount
+    orderBy: [{ publishedDate: desc }]
     where: {
-      state: {
-          equals: "published",
-      },
-      isShorts:  {
-         equals: true
-      },
-      videoSection: {
-          equals: "news"
-      }
-    }) {
-      ...LatestShorts
+      state: { equals: "published" }
+      isShorts: { equals: true }
+      videoSection: { equals: "news" }
     }
-  creativity: videos(
-    skip: $start,
-    take: $amount,
-    orderBy: [{ publishedDate: desc }],
-    where: {
-      state: {
-          equals: "published",
-      },
-      isShorts:  {
-         equals: true
-      },
-      videoSection: {
-          equals: "creativity"
-      }
-    }) {
-      ...LatestShorts
-    }
-}
-
-query GetShortsData($id: ID!) {
-  video(where: {id: $id}) {
-    ...ShortsData
+  ) {
+    ...LatestShorts
   }
-}
-
-query GetShortsByTagAndVideoSection($tagId: ID!, $section: String!, $skip: Int = 0, $take: Int = 0) {
-  videos(
-    orderBy: [{ publishedDate: desc }],
+  creativity: videos(
+    skip: $start
+    take: $amount
+    orderBy: [{ publishedDate: desc }]
     where: {
-      state: {
-          equals: "published",
-      },
-      videoSection:  {
-        equals: $section
-      }
+      state: { equals: "published" }
+      isShorts: { equals: true }
+      videoSection: { equals: "creativity" }
     }
-    take: $take,
-    skip: $skip,
   ) {
     ...LatestShorts
   }
 }
 
-query GetShortsByVideoSection($section: String!, $skip: Int = 0, $take: Int = 0) {
+query GetShortsData($id: ID!) {
+  video(where: { id: $id }) {
+    ...ShortsData
+  }
+}
+
+query GetShortsByTagAndVideoSection(
+  $tagId: ID!
+  $section: String!
+  $skip: Int = 0
+  $take: Int = 0
+) {
   videos(
-    orderBy: [{ publishedDate: desc }],
+    orderBy: [{ publishedDate: desc }]
     where: {
-      state: {
-          equals: "published",
-      },
-      videoSection:  {
-        equals: $section
-      }
-    },
-    take: $take,
+      state: { equals: "published" }
+      videoSection: { equals: $section }
+      isShorts: { equals: true }
+    }
+    take: $take
+    skip: $skip
+  ) {
+    id
+    name
+  }
+}
+
+query GetShortsByVideoSection(
+  $section: String!
+  $skip: Int = 0
+  $take: Int = 0
+) {
+  videos(
+    orderBy: [{ publishedDate: desc }]
+    where: {
+      state: { equals: "published" }
+      videoSection: { equals: $section }
+    }
+    take: $take
     skip: $skip
   ) {
     ...LatestShorts

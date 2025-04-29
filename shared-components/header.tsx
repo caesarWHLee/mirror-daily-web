@@ -3,7 +3,7 @@ import UiHeader from './header/ui-header'
 
 export default async function Header() {
   const data = await fetchHeaderData()
-  const latestPosts = (await fetchLatestPost()).slice(0, 6)
+  const latestPosts = (await fetchLatestPost()).slice(0, 8)
 
   return <UiHeader data={data} latestPosts={latestPosts} />
 }

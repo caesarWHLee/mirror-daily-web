@@ -10,8 +10,8 @@ import IconInstagram from '@/public/icons/logos/instagram-black.svg'
 import IconThreads from '@/public/icons/logos/threads-black.svg'
 import IconYouTube from '@/public/icons/logos/youtube-black.svg'
 // import IconLine from '@/public/icons/logos/line-black.svg'
-import type { HeaderData } from '@/types/common'
-import type { FlashNews } from '@/types/homepage'
+import type { HeaderData, LatestPost } from '@/types/common'
+
 import { getTopicPageUrl } from '@/utils/site-urls'
 import { isSectionItem } from '@/utils/common'
 
@@ -49,10 +49,10 @@ const iconSizes: Record<(typeof ExtendedSocialLinks)[number]['name'], number> =
 
 export default function UiHeader({
   data,
-  flashNews,
+  latestPosts,
 }: {
   data: HeaderData[]
-  flashNews: FlashNews[]
+  latestPosts: LatestPost[]
 }) {
   return (
     <header className="flex h-[150px] w-full shrink-0 flex-col items-center md:h-[134px] lg:h-[202px]">
@@ -126,7 +126,7 @@ export default function UiHeader({
           <p className="mr-[18px] mt-1 shrink-0 font-bold leading-none text-[#FF5457] md:mr-[7px] lg:mr-3">
             快訊
           </p>
-          <FlashNewsList items={flashNews} />
+          <FlashNewsList items={latestPosts} />
         </div>
       </div>
     </header>

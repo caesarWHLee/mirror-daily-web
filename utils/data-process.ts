@@ -229,7 +229,7 @@ const transfromRawPostWithSection = (
   const content = getFirstParagraphFromApiData(rawPost.apiData) ?? ''
   const ogImage = getHeroImage(rawPost.og_image)
   const postMainImage = selectMainImage(heroImage, ogImage)
-  const textContent = brief || content
+  const textContent = removeHtmlTags(brief || content)
 
   return {
     postMainImage,

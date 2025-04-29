@@ -1,15 +1,14 @@
 'use client'
 
-import { fetchFlashNews } from '@/app/actions'
+import { fetchLatestPost } from '@/app/actions-general'
 import { fetchHeaderData } from '@/app/actions-general'
 import { useState, useEffect } from 'react'
-import type { HeaderData } from '@/types/common'
-import type { FlashNews } from '@/types/homepage'
+import type { HeaderData, LatestPost } from '@/types/common'
 import UiHeader from './header/ui-header'
 
 export default function Header() {
   const [data, setData] = useState<HeaderData[]>([])
-  const [flashNews, setFlashNews] = useState<FlashNews[]>([])
+  const [latestPosts, setLatestPosts] = useState<LatestPost[]>([])
 
   useEffect(() => {
     const getData = async () => {
@@ -23,8 +22,8 @@ export default function Header() {
 
     const getFlashNews = async () => {
       try {
-        const posts = await fetchFlashNews()
-        setFlashNews(posts)
+        const posts = await fetchLatestPost()
+        setLatestPosts(posts)
       } catch (err) {
         console.error(err)
       }
@@ -34,5 +33,5 @@ export default function Header() {
     getFlashNews()
   }, [])
 
-  return <UiHeader data={data} flashNews={flashNews} />
+  return <UiHeader data={data} latestPosts={latestPosts} />
 }

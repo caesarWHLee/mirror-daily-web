@@ -76,6 +76,14 @@ export const fetchShortsByTagAndVideoSection = async (
     errorLogger,
     [],
     async () => {
+      const baseUrl = URL_STATIC_NEWS_SHORTSPAGE
+      const jsonUrl = `${baseUrl}01.json`
+      const resp = await fetch(jsonUrl)
+
+      const result = await resp.json()
+      return result
+    },
+    async () => {
       const fetchFunc = fetchGQLData(
         errorLogger,
         GetShortsByVideoSectionDocument,
@@ -100,14 +108,6 @@ export const fetchShortsByTagAndVideoSection = async (
 
       const result = await schema.parse(fetchFunc)
       return result.videos
-    },
-    async () => {
-      const baseUrl = URL_STATIC_NEWS_SHORTSPAGE
-      const jsonUrl = `${baseUrl}01.json`
-      const resp = await fetch(jsonUrl)
-
-      const result = await resp.json()
-      return result
     }
   )
 

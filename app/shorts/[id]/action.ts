@@ -9,7 +9,7 @@ import {
   transformLatestShorts,
 } from '@/utils/data-process'
 import {
-  GetShortsByTagAndVideoSectionDocument,
+  // GetShortsByTagAndVideoSectionDocument,
   GetShortsByVideoSectionDocument,
   GetShortsDataDocument,
 } from '@/graphql/__generated__/graphql'
@@ -64,8 +64,8 @@ export const fetchShortsByTagAndVideoSection = async (
   )
   const schema = z.promise(z.object({ videos: z.array(latestShortsSchema) }))
 
-  const isValidTagId = (tagId: string | undefined): tagId is string =>
-    !Number.isNaN(Number(tagId))
+  // const isValidTagId = (tagId: string | undefined): tagId is string =>
+  //   !Number.isNaN(Number(tagId))
 
   const take = 20
   const skip = (page - 1) * take
@@ -76,18 +76,27 @@ export const fetchShortsByTagAndVideoSection = async (
     errorLogger,
     [],
     async () => {
-      const fetchFunc = isValidTagId(tagId)
-        ? fetchGQLData(errorLogger, GetShortsByTagAndVideoSectionDocument, {
-            tagId,
-            section,
-            skip,
-            take,
-          })
-        : fetchGQLData(errorLogger, GetShortsByVideoSectionDocument, {
-            section,
-            skip,
-            take,
-          })
+      const fetchFunc = fetchGQLData(
+        errorLogger,
+        GetShortsByVideoSectionDocument,
+        {
+          section,
+          skip,
+          take,
+        }
+      )
+      // const fetchFunc = isValidTagId(tagId)
+      //   ? fetchGQLData(errorLogger, GetShortsByTagAndVideoSectionDocument, {
+      //       tagId,
+      //       section,
+      //       skip,
+      //       take,
+      //     })
+      //   : fetchGQLData(errorLogger, GetShortsByVideoSectionDocument, {
+      //       section,
+      //       skip,
+      //       take,
+      //     })
 
       const result = await schema.parse(fetchFunc)
       return result.videos

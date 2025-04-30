@@ -42,6 +42,13 @@ query GetShortsByTagAndVideoSection(
     where: {
       state: { equals: "published" }
       videoSection: { equals: $section }
+      tags:  {
+        some:  {
+          id:  {
+            equals: $tagId
+          }
+        }
+      }
       isShorts: { equals: true }
     }
     take: $take

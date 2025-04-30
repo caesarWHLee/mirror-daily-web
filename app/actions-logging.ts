@@ -11,9 +11,6 @@ import utc from 'dayjs/plugin/utc'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-const eventType = 'page-view'
-const logName = `${GCP_PROJECT_ID}-${ENV}-web-${eventType}`
-
 export async function logPageView({
   referrer,
   screenSize,
@@ -23,6 +20,71 @@ export async function logPageView({
   screenSize: { width: number; height: number }
   extra?: Record<string, unknown>
 }) {
+  const eventType = 'page-view'
+  const logName = `${GCP_PROJECT_ID}-${ENV}-web-${eventType}`
+  const logging = new Logging({ projectId: GCP_PROJECT_ID })
+  const log = logging.log(logName)
+  const userAgentInfo = parseUserAgentInfo()
+  const taipeiNow = dayjs().tz('Asia/Taipei')
+  const formattedDate = taipeiNow.format('YYYY/MM/DD')
+  const formattedTime = taipeiNow.format('HH:mm')
+  const {
+    browser,
+    device,
+    os,
+    isInAppBrowser,
+    isWebview,
+    ipAddress,
+    pathname,
+  } = userAgentInfo
+  const { name: browserName, version: browserVersion } = browser
+  const { model: deviceModel, vendor: deviceVendor } = device
+  const { name: osName, version: osVersion } = os
+  const pageType = parsePageType(pathname)
+
+  const metadata = {
+    resource: { type: 'global' },
+    severity: 'DEFAULT',
+    labels: {
+      eventType,
+      date: formattedDate,
+      time: formattedTime,
+      browserName,
+      browserVersion,
+      deviceModel,
+      deviceVendor,
+      osName,
+      osVersion,
+      ipAddress,
+      referrer,
+    },
+  }
+
+  const jsonPayload = {
+    pageURL: pathname,
+    pageType,
+    screenSize,
+    isInAppBrowser,
+    isWebview,
+    extra,
+  }
+
+  const entry = log.entry(metadata, jsonPayload)
+
+  return log.write(entry)
+}
+
+export async function logVideoView({
+  referrer,
+  screenSize,
+  extra = {},
+}: {
+  referrer: string
+  screenSize: { width: number; height: number }
+  extra?: Record<string, unknown>
+}) {
+  const eventType = 'video-view'
+  const logName = `${GCP_PROJECT_ID}-${ENV}-web-${eventType}`
   const logging = new Logging({ projectId: GCP_PROJECT_ID })
   const log = logging.log(logName)
   const userAgentInfo = parseUserAgentInfo()

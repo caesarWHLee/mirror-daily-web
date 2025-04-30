@@ -1,5 +1,6 @@
 'use client'
 
+import useVideoViewLogger from '@/hooks/use-video-logger'
 import type { Shorts } from '@/types/common'
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
@@ -20,6 +21,15 @@ export default function ShortsItem({
   onPause,
 }: Props) {
   const [isClientSide, setIsClientSide] = useState(false)
+  const [duration, setDuration] = useState<number | null>(null)
+  const [playedSeconds, setPlayedSeconds] = useState(0)
+  const { sendVideoLog } = useVideoViewLogger({
+    isActive,
+    title,
+    link,
+    duration,
+    playedSeconds,
+  })
 
   useEffect(() => {
     setIsClientSide(true)
@@ -45,7 +55,14 @@ export default function ShortsItem({
               },
             }}
             onPause={() => onPause()}
-            onEnded={() => onPause()}
+            onEnded={async () => {
+              onPause()
+              await sendVideoLog(100, true)
+            }}
+            onDuration={(duration) => setDuration(duration)}
+            onProgress={({ playedSeconds }) => {
+              setPlayedSeconds(playedSeconds)
+            }}
           />
         )}
         <div

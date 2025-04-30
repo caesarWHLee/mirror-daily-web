@@ -4,6 +4,7 @@ import type { Shorts } from '@/types/common'
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
 import SocialShareBar from '../social-share-bar'
+import useVideoViewLogger from '@/hooks/use-video-logger'
 
 type Props = Shorts & {
   isActive: boolean
@@ -25,6 +26,15 @@ export default function ShortsItem({
 }: Props) {
   const [isClientSide, setIsClientSide] = useState(false)
   const [hasLoaded, setHasLoaded] = useState(false)
+  const [duration, setDuration] = useState<number | null>(null)
+  const [playedSeconds, setPlayedSeconds] = useState(0)
+  const { sendVideoLog } = useVideoViewLogger({
+    isActive,
+    title,
+    link,
+    duration,
+    playedSeconds,
+  })
 
   useEffect(() => {
     setIsClientSide(true)
@@ -57,6 +67,13 @@ export default function ShortsItem({
             }}
             onPlay={() => onPlay()}
             onPause={() => onPause()}
+            onDuration={(duration) => setDuration(duration)}
+            onProgress={({ playedSeconds }) => {
+              setPlayedSeconds(playedSeconds)
+            }}
+            onEnded={async () => {
+              await sendVideoLog(100, true)
+            }}
           />
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[135px]">

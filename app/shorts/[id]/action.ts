@@ -15,6 +15,7 @@ import {
 } from '@/graphql/__generated__/graphql'
 import { fetchGQLData } from '@/utils/graphql'
 import type { Shorts, SHORTS_TYPE } from '@/types/common'
+import { URL_STATIC_NEWS_SHORTSPAGE } from '@/constants/config'
 
 export const fetchShortsData = async (
   videoId: string
@@ -71,23 +72,38 @@ export const fetchShortsByTagAndVideoSection = async (
 
   const data = await createDataFetchingChain<
     z.infer<z.ZodArray<typeof latestShortsSchema>>
-  >(errorLogger, [], async () => {
-    const fetchFunc = isValidTagId(tagId)
-      ? fetchGQLData(errorLogger, GetShortsByTagAndVideoSectionDocument, {
-          tagId,
-          section,
-          skip,
-          take,
-        })
-      : fetchGQLData(errorLogger, GetShortsByVideoSectionDocument, {
-          section,
-          skip,
-          take,
-        })
+  >(
+    errorLogger,
+    [],
+    async () => {
+      console.log({ tagId })
+      const fetchFunc = isValidTagId(tagId)
+        ? fetchGQLData(errorLogger, GetShortsByTagAndVideoSectionDocument, {
+            tagId,
+            section,
+            skip,
+            take,
+          })
+        : fetchGQLData(errorLogger, GetShortsByVideoSectionDocument, {
+            section,
+            skip,
+            take,
+          })
 
-    const result = await schema.parse(fetchFunc)
-    return result.videos
-  })
+      const result = await schema.parse(fetchFunc)
+      console.log({ URL_STATIC_NEWS_SHORTSPAGE }, result.videos)
+      return result.videos
+    },
+    async () => {
+      const baseUrl = URL_STATIC_NEWS_SHORTSPAGE
+      const jsonUrl = `${baseUrl}01.json`
+      const resp = await fetch(jsonUrl)
+
+      const result = await resp.json()
+      console.log(12345, result.map(transformLatestShorts))
+      return result
+    }
+  )
 
   const orginalVideo = data.find((video) => video.id === originalVideoId)
   if (orginalVideo) {

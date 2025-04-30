@@ -11237,6 +11237,20 @@ export const GetShortsByVideoSectionDocument = {
                         ],
                       },
                     },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'isShorts' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'equals' },
+                            value: { kind: 'BooleanValue', value: true },
+                          },
+                        ],
+                      },
+                    },
                   ],
                 },
               },

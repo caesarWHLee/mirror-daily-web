@@ -48,6 +48,17 @@ export default function RootLayout({
           async
           crossOrigin="anonymous"
         />
+        <Script
+          type="text/javascript"
+          id="popin"
+          dangerouslySetInnerHTML={{
+            __html: `    (function() {
+            var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.charset = "utf-8"; pa.async = true;
+            pa.src = window.location.protocol + "//api.popin.cc/searchbox/mirrordaily_tw.js";
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+        })(); `,
+          }}
+        />
         <noscript
           dangerouslySetInnerHTML={{
             __html: `<img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=24318560&amp;cv=3.9.1&amp;cj=1">`,

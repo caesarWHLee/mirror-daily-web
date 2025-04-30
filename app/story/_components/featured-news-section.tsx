@@ -5,11 +5,12 @@ import type { LatestPost } from '@/types/common'
 type Props<T> = {
   title: string
   posts: T
+  type: 'latest' | 'popular'
 }
 
 export default function FeaturedNewsSection<
   T extends PopularNews[] | LatestPost[],
->({ title, posts }: Props<T>) {
+>({ title, posts, type }: Props<T>) {
   return (
     <section className="flex flex-col items-center gap-y-8 pl-12 pr-[47px] md:px-0 lg:gap-y-5">
       <h3 className="text-lg font-bold leading-normal text-[#674ab1]">
@@ -19,6 +20,8 @@ export default function FeaturedNewsSection<
         {posts.map((item) => (
           <FeaturedNewsCard {...item} key={item.postId} />
         ))}
+        {type === 'latest' && <div id="_popIn_recommend"></div>}
+        {type === 'popular' && <div id="_popIn_recommend_nd"></div>}
       </div>
     </section>
   )

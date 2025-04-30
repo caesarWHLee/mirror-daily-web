@@ -36,6 +36,8 @@ export default async function ArticleSection({
           {relatedPosts.length > 0 && (
             <RelatedNewsSection posts={relatedPosts} />
           )}
+          <div id="_popIn_recommend_word"></div>
+          <div id="_popIn_recommend"></div>
         </div>
       </div>
 
@@ -53,7 +55,11 @@ export default async function ArticleSection({
               slotKey="mirrordaily_article_300x600_1"
               customClasses="mb-[-20px]"
             />
-            <FeaturedNewsSection title="最新新聞" posts={latestPosts} />
+            <FeaturedNewsSection
+              title="最新新聞"
+              posts={latestPosts}
+              type="latest"
+            />
           </>
         )}
         {popularPosts.length > 0 && (
@@ -63,7 +69,11 @@ export default async function ArticleSection({
               customClasses="mt-[-28px]"
             />
             <MobileGptAd slotKey="mirrordaily_article_MW_336x280_E1" />
-            <FeaturedNewsSection title="熱門新聞" posts={popularPosts} />
+            <FeaturedNewsSection
+              title="熱門新聞"
+              posts={popularPosts}
+              type="popular"
+            />
           </>
         )}
       </div>

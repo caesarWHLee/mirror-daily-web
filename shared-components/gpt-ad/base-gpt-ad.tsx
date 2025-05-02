@@ -64,7 +64,7 @@ export default function BaseGptAd({
           minHeight: size[1],
         }}
         className={twMerge(
-          `${isDebugMode ? `relative border-2 border-dashed border-red-500` : ''}`,
+          `${isDebugMode ? `relative flex items-center justify-center border-2 border-dashed border-red-500` : 'flex items-center justify-center'}`,
           customClasses
         )}
       >
